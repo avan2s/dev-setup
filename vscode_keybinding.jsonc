@@ -175,10 +175,18 @@
         "when": "editorFocus && neovim.mode!=insert"
         
     },
-    // open git view
+    // open git view and focus the last change, NOT the commit message
     {
         "key": "ctrl+shift+g",
-        "command": "workbench.view.scm",
-        "when": "isMac && workbench.scm.active && activeViewlet != 'workbench.view.scm'"
+        "command": "runCommands",
+        "when": "workbench.scm.active",
+        //"when": "workbench.scm.active && activeViewlet != 'workbench.view.scm'",
+        "args": {
+            "commands": [
+                "workbench.view.scm",
+                "list.focusLast",
+                "list.select"
+            ]
+        }
     }
 ]
