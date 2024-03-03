@@ -1,0 +1,159 @@
+
+[
+    // https://code.visualstudio.com/api/references/when-clause-contexts
+    // toggle the sidebar with double ctrl
+    {
+        "command": "workbench.action.toggleSidebarVisibility",
+        "key": "ctrl ctrl"
+    },
+    // in order to focus the fileView only  if the explorer is currently not visible
+    {
+        "command": "workbench.explorer.fileView.focus",
+        "key": "ctrl ctrl",
+        "when": "!explorerViewletVisible"
+    },
+    
+    // make nvim redo working and use U redo und u undo
+    {
+        "key": "shift+u",
+        "command": "vscode-neovim.send",
+        "when": "editorTextFocus && neovim.mode != insert",
+        "args": "<C-r>"
+    },
+    // window navigation
+    {
+        "command": "workbench.action.navigateLeft",
+        "key": "ctrl+h"
+    },
+    {
+        "command": "workbench.action.navigateRight",
+        "key": "ctrl+l"
+    },
+    {
+        "command": "workbench.action.navigateDown",
+        "key": "ctrl+j"
+    },
+    {
+        "command": "workbench.action.navigateUp",
+        "key": "ctrl+k"
+    },
+    {
+        "key": "space w q",
+        "command": "workbench.action.closeActiveEditor",
+        "when": "editorFocus && neovim.mode!=insert"
+    },
+    // window - terminal navigation
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.terminal.focusNextPane",
+        "when": "terminalFocus && terminalCount > 1"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.terminal.focusPreviousPane",
+        "when": "terminalFocus && terminalCount > 1"
+    },
+    {
+        "key": "ctrl+shift+c",
+        "command": "workbench.action.terminal.clear",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+s",
+        "command": "workbench.action.terminal.split",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+j",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+k",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+a",
+        "command": "workbench.action.terminal.new",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+q",
+        "command": "workbench.action.terminal.kill",
+        "when": "terminalFocus"
+    },
+    // window group navigation
+    {
+        "key": "space w h",
+        "command": "workbench.action.moveEditorToLeftGroup",
+        "when": "editorFocus && neovim.mode != insert"
+    },
+    {
+        "key": "space w l",
+        "command": "workbench.action.moveEditorToRightGroup",
+        "when": "editorFocus && neovim.mode != insert"
+    },
+    // tab navigation
+    {
+        "command": "workbench.action.nextEditor",
+        "key": "alt+l"
+    },
+    {
+        "key": "alt+h",
+        "command": "-git.viewFileHistory"
+    },
+    {
+        "command": "workbench.action.previousEditor",
+        "key": "alt+h"
+    },
+
+    // suggestion navigation
+    {
+        "command": "selectNextSuggestion",
+        "key": "ctrl+j",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "command": "selectPrevSuggestion",
+        "key": "ctrl+k",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "command": "workbench.action.quickOpenSelectPrevious",
+        "key": "ctrl+k",
+        "when": "inQuickOpen && neovim.wildMenuVisible || inQuickOpen && neovim.mode!='cmdline'"
+    }, 
+    {
+        "command": "workbench.action.quickOpenSelectNext",
+        "key": "ctrl+j",
+        "when": "inQuickOpen && neovim.wildMenuVisible || inQuickOpen && neovim.mode!='cmdline'"
+    },
+    {
+        "command": "selectNextCodeAction",
+        "key": "ctrl+j",
+        "when": "codeActionMenuVisible"
+    },
+    {
+        "command": "selectPrevCodeAction",
+        "key": "ctrl+k",
+        "when": "codeActionMenuVisible"
+    },
+    // git shortcuts
+    {
+        "key": "space o c",
+        "command": "git.openChange",
+        "when": "editorFocus && !isInDiffEditor && neovim.mode!=insert"
+    },
+    {
+        "key": "space o c",
+        "command": "git.openFile",
+        "when": "editorFocus && isInDiffEditor && neovim.mode!=insert"
+    },
+    {
+        "key": "space g r s",
+        "command": "git.clean",
+        "when": "editorFocus && neovim.mode!=insert"
+        
+    }
+]
