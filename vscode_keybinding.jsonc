@@ -174,5 +174,11 @@
         "command": "git.clean",
         "when": "editorFocus && neovim.mode!=insert"
         
+    },
+    // open git view
+    {
+        "key": "ctrl+shift+g",
+        "command": "workbench.view.scm",
+        "when": "isMac && workbench.scm.active && activeViewlet != 'workbench.view.scm'"
     }
 ]
