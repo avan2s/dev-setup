@@ -1,6 +1,15 @@
-
 [
     // https://code.visualstudio.com/api/references/when-clause-contexts
+    // linux file sa
+    {
+        "key": "ctrl+s",
+        "command": "workbench.action.files.save",
+        "when": "isMac"
+    },
+    {
+        "key": "f1",
+        "command": "workbench.action.showCommands"
+    },
     // toggle the sidebar with double ctrl
     {
         "command": "workbench.action.toggleSidebarVisibility",
