@@ -92,6 +92,16 @@
         "command": "workbench.action.terminal.kill",
         "when": "terminalFocus"
     },
+    {
+        "key": "ctrl+shift+'",
+        "command": "workbench.action.toggleMaximizedPanel",
+        "when": "isMac && inDebugRepl && panelAlignment == 'center' || inDebugRepl && panelPosition != 'bottom' || problemFocus && panelAlignment == 'center' || problemFocus && panelPosition != 'bottom' || terminalFocus && panelAlignment == 'center' || terminalFocus && panelPosition != 'bottom' || focusedView == 'workbench.panel.output' && panelAlignment == 'center' || focusedView == 'workbench.panel.output' && panelPosition != 'bottom'"
+    },
+    {
+        "key": "shift+cmd+'",
+        "command": "-workbench.action.toggleMaximizedPanel",
+        "when": "isMac & inDebugRepl && panelAlignment == 'center' || inDebugRepl && panelPosition != 'bottom' || problemFocus && panelAlignment == 'center' || problemFocus && panelPosition != 'bottom' || terminalFocus && panelAlignment == 'center' || terminalFocus && panelPosition != 'bottom' || focusedView == 'workbench.panel.output' && panelAlignment == 'center' || focusedView == 'workbench.panel.output' && panelPosition != 'bottom'"
+    },
     // window group navigation
     {
         "key": "space w h",
