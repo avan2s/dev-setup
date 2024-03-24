@@ -1,11 +1,28 @@
 [
     // https://code.visualstudio.com/api/references/when-clause-contexts
-    // linux file sa
+    // linux file save
     {
         "key": "ctrl+s",
         "command": "workbench.action.files.save",
         "when": "isMac"
     },
+    // debug operations  
+    // {
+    //     "key": "f9",
+    //     "command": "-editor.debug.action.toggleBreakpoint",
+    //     "when": "debuggersAvailable && editorTextFocus"
+    // },
+    // {
+    //     "key": "f9",
+    //     "command": "workbench.action.debug.continue",
+    //     "when": "inDebugMode"
+    // },
+    // {
+    //     "key": "alt+cmd+r",
+    //     "command": "-workbench.action.debug.continue",
+    //     "when": "isMac && inDebugMode"
+    // },
+    // show command window
     {
         "key": "f1",
         "command": "workbench.action.showCommands"
@@ -20,6 +37,21 @@
         "command": "workbench.explorer.fileView.focus",
         "key": "ctrl ctrl",
         "when": "!explorerViewletVisible"
+    },
+    // show documentation window
+    {
+        "key": "ctrl+q",
+        "command": "-workbench.action.quickOpenView"
+    },
+    {
+        "key": "ctrl+q",
+        "command": "-workbench.action.quickOpenNavigateNextInViewPicker",
+        "when": "inQuickOpen && inViewsPicker"
+    },
+    {
+        "key": "ctrl+q",
+        "command": "editor.action.showHover",
+        "when": "editorTextFocus"
     },
     
     // make nvim redo working and use U redo und u undo
@@ -49,7 +81,7 @@
     {
         "key": "space w q",
         "command": "workbench.action.closeActiveEditor",
-        "when": "editorFocus && neovim.mode!=insert"
+        "when": "editorFocus && neovim.mode!=insert && !findWidgetVisible && !replaceWidgetVisible"
     },
     // window - terminal navigation
     {
@@ -106,12 +138,12 @@
     {
         "key": "space w h",
         "command": "workbench.action.moveEditorToLeftGroup",
-        "when": "editorFocus && neovim.mode != insert"
+        "when": "editorFocus && neovim.mode != insert && !findWidgetVisible && !replaceWidgetVisible"
     },
     {
         "key": "space w l",
         "command": "workbench.action.moveEditorToRightGroup",
-        "when": "editorFocus && neovim.mode != insert"
+        "when": "editorFocus && neovim.mode != insert && !findWidgetVisible && !replaceWidgetVisible"
     },
     // tab navigation
     {
@@ -162,20 +194,19 @@
     {
         "key": "space o c",
         "command": "git.openChange",
-        "when": "editorFocus && !isInDiffEditor && neovim.mode!=insert"
+        "when": "editorFocus && !isInDiffEditor && neovim.mode!=insert && !findWidgetVisible && !replaceWidgetVisible"
     },
     {
         "key": "space o c",
         "command": "git.openFile",
-        "when": "editorFocus && isInDiffEditor && neovim.mode!=insert"
+        "when": "editorFocus && isInDiffEditor && neovim.mode!=insert && !findWidgetVisible && !replaceWidgetVisible"
     },
     {
         "key": "space g r s",
         "command": "git.clean",
-        "when": "editorFocus && neovim.mode!=insert"
-        
+        "when": "editorFocus && neovim.mode!=insert && !findWidgetVisible && !replaceWidgetVisible"
     },
-    // open git view and focus the last change, NOT the commit message
+    // open git view
     {
         "key": "ctrl+shift+g",
         "command": "runCommands",
@@ -188,5 +219,20 @@
                 "list.select"
             ]
         }
+    },
+    {
+        "key": "ctrl+]",
+        "command": "editor.gotoNextFold",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+[",
+        "command": "editor.gotoPreviousFold",
+        "when": "editorFocus"
+    },
+    {
+        "key": "cmd+k",
+        "command": "-git.commitAll",
+        "when": "!inDebugMode && !operationInProgress && !terminalFocus"
     }
 ]
