@@ -223,16 +223,93 @@
     {
         "key": "ctrl+]",
         "command": "editor.gotoNextFold",
-        "when": "editorFocus"
+        "when": "editorFocus || isInDiffEditor"
     },
     {
         "key": "ctrl+[",
         "command": "editor.gotoPreviousFold",
-        "when": "editorFocus"
+        "when": "editorFocus || isInDiffEditor"
     },
     {
         "key": "cmd+k",
         "command": "-git.commitAll",
         "when": "!inDebugMode && !operationInProgress && !terminalFocus"
+    },
+    // prepare ctrl+d for scrolling down
+    {
+        "key": "ctrl+d",
+        "command": "-workbench.action.debug.run",
+        "when": "debuggersAvailable && !inDebugMode && !terminalFocus"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "-vscode-neovim.ctrl-d",
+        "when": "editorTextFocus && neovim.ctrlKeysNormal.d && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "-vscode-neovim.send",
+        "when": "editorTextFocus && neovim.ctrlKeysInsert.d && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "-deleteRight",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "-list.focusPageDown",
+        "when": "listFocus && !inputFocus"
+    },
+    {
+        "key": "ctrl+r ctrl+d",
+        "command": "-vscode-neovim.send-cmdline",
+        "when": "neovim.init && neovim.mode == 'cmdline'"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "-vscode-neovim.ctrl-u",
+        "when": "editorTextFocus && neovim.ctrlKeysNormal.u && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "-vscode-neovim.send-cmdline",
+        "when": "neovim.init && neovim.mode == 'cmdline'"
+    },
+    {
+        "key": "ctrl+r ctrl+u",
+        "command": "-vscode-neovim.send-cmdline",
+        "when": "neovim.init && neovim.mode == 'cmdline'"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "-vscode-neovim.send",
+        "when": "editorTextFocus && neovim.ctrlKeysInsert.u && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "runCommands",
+        "when": "editorTextFocus && neovim.mode != insert",
+        "args": {
+            "commands": [
+                {"command": "vscode-neovim.send", "args": "<C-d>"},
+                {"command": "vscode-neovim.send", "args": "zz"},
+                {"command": "vscode-neovim.send", "args": "zz"},
+                {"command": "vscode-neovim.send", "args": "zz"}
+            ]
+        }
+    },
+    {
+        "key": "ctrl+u",
+        "command": "runCommands",
+        "when": "editorTextFocus && neovim.mode != insert",
+        "args": {
+            "commands": [
+                {"command": "vscode-neovim.send", "args": "<C-u>"}, 
+                {"command": "vscode-neovim.send", "args": "zz"},
+                {"command": "vscode-neovim.send", "args": "zz"},
+                {"command": "vscode-neovim.send", "args": "zz"}
+            ]
+        }
     }
 ]
