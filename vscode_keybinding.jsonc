@@ -239,27 +239,27 @@
     {
         "key": "ctrl+d",
         "command": "-workbench.action.debug.run",
-        "when": "debuggersAvailable && !inDebugMode && !terminalFocus"
+        "when": "debuggersavailable && !indebugmode && !terminalfocus"
     },
     {
         "key": "ctrl+d",
         "command": "-vscode-neovim.ctrl-d",
-        "when": "editorTextFocus && neovim.ctrlKeysNormal.d && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+        "when": "editortextfocus && neovim.ctrlkeysnormal.d && neovim.init && neovim.mode != 'insert' && editorlangid not in 'neovim.editorlangidexclusions'"
     },
     {
         "key": "ctrl+d",
         "command": "-vscode-neovim.send",
-        "when": "editorTextFocus && neovim.ctrlKeysInsert.d && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+        "when": "editortextfocus && neovim.ctrlkeysinsert.d && neovim.init && neovim.mode == 'insert' && editorlangid not in 'neovim.editorlangidexclusions'"
     },
     {
         "key": "ctrl+d",
-        "command": "-deleteRight",
-        "when": "textInputFocus"
+        "command": "-deleteright",
+        "when": "textinputfocus"
     },
     {
         "key": "ctrl+d",
-        "command": "-list.focusPageDown",
-        "when": "listFocus && !inputFocus"
+        "command": "-list.focuspagedown",
+        "when": "listfocus && !inputfocus"
     },
     {
         "key": "ctrl+r ctrl+d",
@@ -269,7 +269,7 @@
     {
         "key": "ctrl+u",
         "command": "-vscode-neovim.ctrl-u",
-        "when": "editorTextFocus && neovim.ctrlKeysNormal.u && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+        "when": "editortextfocus && neovim.ctrlkeysnormal.u && neovim.init && neovim.mode != 'insert' && editorlangid not in 'neovim.editorlangidexclusions'"
     },
     {
         "key": "ctrl+u",
@@ -284,7 +284,7 @@
     {
         "key": "ctrl+u",
         "command": "-vscode-neovim.send",
-        "when": "editorTextFocus && neovim.ctrlKeysInsert.u && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+        "when": "editortextfocus && neovim.ctrlkeysinsert.u && neovim.init && neovim.mode == 'insert' && editorlangid not in 'neovim.editorlangidexclusions'"
     },
     {
         "key": "ctrl+d",
@@ -293,8 +293,6 @@
         "args": {
             "commands": [
                 {"command": "vscode-neovim.send", "args": "<C-d>"},
-                {"command": "vscode-neovim.send", "args": "zz"},
-                {"command": "vscode-neovim.send", "args": "zz"},
                 {"command": "vscode-neovim.send", "args": "zz"}
             ]
         }
@@ -306,10 +304,38 @@
         "args": {
             "commands": [
                 {"command": "vscode-neovim.send", "args": "<C-u>"}, 
-                {"command": "vscode-neovim.send", "args": "zz"},
-                {"command": "vscode-neovim.send", "args": "zz"},
                 {"command": "vscode-neovim.send", "args": "zz"}
             ]
         }
-    }
+    },
+    {
+        "key": "space p",
+        "command": "vscode-neovim.send",
+        "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'",
+        "args": "<Space>p" 
+    },
+    {
+        "key": "space d",
+        "command": "vscode-neovim.send",
+        "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'",
+        "args": "<Space>d" 
+    },
+    {
+        "key": "space s",
+        "command": "actions.find",
+        "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
+    },
+    // change the rest of the line without overwriting clipboard
+    {
+        "key": "space shift+c",
+        "command": "vscode-neovim.send",
+        "args": "<Space>C",
+        "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
+    },
+    {
+        "key": "space c",
+        "command": "vscode-neovim.send",
+        "args": "<Space>c",
+        "when": "editorTextFocus && neovim.init && neovim.mode == 'normal'"
+    }    
 ]
