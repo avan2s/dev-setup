@@ -85,6 +85,16 @@
     },
     // window - terminal navigation
     {
+        "key": "shift+escape",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+    },
+    {
+        "key": "ctrl+`",
+        "command": "-workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+    },
+    {
         "key": "ctrl+l",
         "command": "workbench.action.terminal.focusNextPane",
         "when": "terminalFocus && terminalCount > 1"
@@ -337,5 +347,5 @@
         "command": "vscode-neovim.send",
         "args": "<Space>c",
         "when": "editorTextFocus && neovim.init && neovim.mode == 'normal'"
-    }    
+    }
 ]
