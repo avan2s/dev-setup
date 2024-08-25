@@ -38,6 +38,16 @@
         "key": "ctrl ctrl",
         "when": "!explorerViewletVisible"
     },
+    {
+        "command": "workbench.explorer.fileView.focus",
+        "key": "ctrl+h",
+        "when": "!editorIsOpen && explorerViewletVisible && !explorerViewletFocus"
+    },
+    {
+        "command": "workbench.action.terminal.focus",
+        "key": "ctrl+j",
+        "when": "!editorIsOpen && terminal.visible && !terminalFocus"
+    },
     // show documentation window
     {
         "key": "ctrl+q",
@@ -64,7 +74,9 @@
     // window navigation
     {
         "command": "workbench.action.navigateLeft",
-        "key": "ctrl+h"
+        "key": "ctrl+h",
+        // opposite when condition of file view focus - no active editor (ctrl+h) in order to prevent colission
+        "when": "!(!editorIsOpen && explorerViewletVisible && !explorerViewletFocus)"
     },
     {
         "command": "workbench.action.navigateRight",
@@ -72,7 +84,9 @@
     },
     {
         "command": "workbench.action.navigateDown",
-        "key": "ctrl+j"
+        "key": "ctrl+j",
+        // opposite when condition of terminal focus - no active editors (ctrl+j) in order to prevent colission
+        "when": "!(!editorIsOpen && terminal.visible && !terminalFocus)"
     },
     {
         "command": "workbench.action.navigateUp",
@@ -365,6 +379,6 @@
         "key": "space c",
         "command": "vscode-neovim.send",
         "args": "<Space>c",
-        "when": "editorTextFocus && neovim.init && neovim.mode == 'normal'"
+        "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
     }
 ]
