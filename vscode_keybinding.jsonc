@@ -58,7 +58,7 @@
     {
         "key": "shift+u",
         "command": "vscode-neovim.send",
-        "when": "editorTextFocus && neovim.mode != insert",
+        "when": "editorTextFocus && neovim.mode != insert && neovim.mode != visual",
         "args": "<C-r>"
     },
     // window navigation
@@ -82,6 +82,11 @@
         "key": "space w q",
         "command": "workbench.action.closeActiveEditor",
         "when": "editorFocus && neovim.mode!=insert && !findWidgetVisible && !replaceWidgetVisible"
+    },
+    {
+        "key": "space w q",
+        "command": "workbench.action.closeActiveEditor",
+        "when": "!editorTextFocus && !inputFocus && !filesExplorerFocus && !searchViewletFocus && !terminalFocus && neovim.mode != 'cmdline'"
     },
     // window - terminal navigation
     {
@@ -219,14 +224,19 @@
     // open git view
     {
         "key": "ctrl+shift+g",
+        "command": "-workbench.view.scm",
+        "when": "workbench.scm.active"
+    },
+    {
+        "key": "ctrl+shift+g",
         "command": "runCommands",
         "when": "workbench.scm.active",
-        //"when": "workbench.scm.active && activeViewlet != 'workbench.view.scm'",
+        // "when": "activeViewlet == 'workbench.view.scm'",
         "args": {
             "commands": [
-                "workbench.view.scm",
-                "list.focusLast",
-                "list.select"
+                {"command": "workbench.view.scm"},
+                {"command": "list.focusFirst"}
+                // "list.select",
             ]
         }
     },
