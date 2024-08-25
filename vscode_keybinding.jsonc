@@ -174,9 +174,14 @@
         "key": "alt+h"
     },
     {
-        "key": "space t o",
-        "command": "workbench.action.files.newUntitledFile",
-        "when": "!panelFocus && !filesExplorerFocus && !searchViewletFocus && !terminalFocus && neovim.mode != 'cmdline' && neovim.mode != 'visual' && neovim.mode != 'insert'"
+        "key": "cmd+n",
+        "command": "-editor.action.sourceAction",
+        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+s",
+        "command": "editor.action.sourceAction",
+        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
     },
     // suggestion navigation
     {
@@ -342,7 +347,7 @@
         "key": "space d",
         "command": "vscode-neovim.send",
         "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'",
-        "args": "<Space>d" 
+        "args": "<Space>d"
     },
     {
         "key": "space s",
