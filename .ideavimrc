@@ -1,0 +1,169 @@
+" ------ CONFIG -------
+" inspired by https://github.com/JetBrains/ideavim/discussions/578#discussioncomment-8450898
+set number relativenumber
+set idearefactormode=keep
+
+"enable plugins
+set which-key
+set ideajoin
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'tpope/vim-surround'
+
+
+" This makes clipboard and yanking the same
+set clipboard=unnamedplus
+"set shiftround                  " use multiple of shiftwidth when indenting with '<' and '>'
+" filetype plugin indent on
+
+" search & replace configuration
+set hlsearch " highlight search
+set incsearch " Incrementally search while typing
+set ignorecase " Use smart case for searching
+set smartcase " if you type uppercase letter in the search, it will be case sensitive
+set matchpairs+=<:>
+
+nmap <leader>fi <Action>(Find)
+nmap <leader>ff <Action>(FindInPath)
+nmap <leader>ri <Action>(Replace)
+nmap <leader>rr <Action>(ReplaceInPath)
+
+" tabs & indentation (unsupported in ideavim plugin - should be set via editor settings)
+" set tabstop=2 " 2 spaces for tabs (prettier default)
+" set shiftwidth=2 "2 spaces for indent width
+" set expandtab                   " expand tabs to spaces by default
+" set autoindent " copy indent from current line when starting new one
+
+" mute sound
+set belloff=all
+set visualbell
+set t_vb=
+
+
+" https://www.johnhawthorn.com/2012/09/vi-escape-delays/
+" timeoutlen is used for mapping delays, and ttimeoutlen is used for key code delays
+"set timeoutlen=180 ttimeoutlen=0
+" for which-key
+set notimeout
+
+" And remember to write the ollowing line before that, to make sure spacebar doesn't have any mapping beforehand:
+noremap <SPACE> <Nop>
+let mapleader = " "
+" delete without yanking
+nnoremap <leader>d "_d
+nnoremap x "_x
+nnoremap s "_s
+nnoremap c "_c
+nnoremap C "_C
+nnoremap S "_S
+nnoremap <leader>nx :nohl<CR>
+let g:WhichKeyDesc_ClearSearchHighlights = "<leader>nx Clear search highlights"
+nnoremap <C-d> <C-d>zz
+let g:WhichKeyDesc_ScrollDownAndCenter = "<C-d> scroll down and center"
+nnoremap <C-u> <C-u>zz
+let g:WhichKeyDesc_ScrollUpAndCenter = "<C-u> scroll up and center"
+nnoremap H ^
+nnoremap L $
+nnoremap <CR> o<Esc>
+
+" allow switching number formats - good for sharing screen
+nnoremap <leader>nn :set number norelativenumber<CR>
+nnoremap <leader>nr :set relativenumber<CR>
+
+" Tab navigation
+nmap <A-l> <Action>(NextTab)
+nmap <Tab> <Action>(NextTab)
+nmap <A-h> <Action>(PreviousTab)
+nmap <S-Tab> <Action>(PreviousTab)
+nmap <leader>wv <Action>(MoveTabRight)
+nmap <leader>wo <nction>(MoveEditorToOppositeTabGroup)
+nmap <leader>wq <Action>(CloseEditor)
+nmap <leader>wq <Action>(Terminal.CloseTab)
+nmap <leader>wq <Action>(CloseContent)
+let g:WhichKeyDesc_WindowClose = "<leader>wq close editor"
+
+
+" Window navigation
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+" nmap <C-l> <Action>(NextSplitter)
+" nmap <C-k> <Action>(PrevSplitter)
+let g:WhichKeyDesc_WindowLeft = "<C-h> Move to left window"
+let g:WhichKeyDesc_WindowRight = "<C-l> Move to right window"
+let g:WhichKeyDesc_WindowDown = "<C-j> Move to window below"
+let g:WhichKeyDesc_WindowUp = "<C-k> Move to window above"
+
+" source code navigation
+nmap <leader>sc <Action>(GotoClass)
+nmap <leader>sf <Action>(GotoFile)
+nmap <leader>ss <Action>(GotoSymbol)
+nmap <leader>sa <Action>(GotoAction)
+nmap <leader>gl <Action>(GotoLine)
+
+nmap <leader>gd <Action>(GotoDeclaration)
+nmap <leader>gy <Action>(GotoTypeDeclaration)
+nmap <leader>gi <Action>(GotoImplementation)
+nmap gi <Action>(GotoImplementation)
+nmap <leader>gt <Action>(GotoTest)
+nmap <leader>gm <Action>(GotoSuperMethod)
+nmap <leader>gu <Action>(FindUsages)
+nmap <leader>uu <Action>(ShowUsages)
+nmap <leader>vs <Action>(ViewSource)
+nmap <leader>ti <Action>(ExpressionTypeInfo)
+nmap <leader>oo <Action>(FileStructurePopup)
+nmap gh <Action>(ShowHoverInfo)
+let g:WhichKeyDesc_GotoImplementation = "<leader>gi go to implementation"
+
+nmap <c-z> <Action>(ToggleDistractionFreeMode)
+nmap ] <Action>(MethodDown)
+nmap [ <Action>(MethodUp)
+nmap <C-n> <Action>(Tree-selectNext)
+nmap <C-p> <Action>(Tree-selectPrevious)
+vmap <A-k> <Action>(MoveStatementUp)
+nmap <A-k> <Action>(MoveStatementUp)
+vmap <A-j> <Action>(MoveStatementDown)
+nmap <A-j> <Action>(MoveStatementDown)
+
+nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
+
+"refactoring
+map<leader>rn <Action>(RenameElement)
+map<leader>rm <Action>(ExtractMethod)
+map<leader>rv <Action>(IntroduceVariable)
+map<leader>rf <Action>(IntroduceField)
+map<leader>rs <Action>(ChangeSignature)
+map<leader>ref <Action>(Refactorings.QuickListPopupAction)
+
+" Git open changes for current file
+" nmap <leader>oc <Action>(Vcs.ShowTabbedFileHistory)
+nmap <leader>oc <Action>(Compare.SameVersion)
+let g:WhichKeyDesc_GitOpenChanges = "<leader>oc Show changes for current file"
+"nmap <leader>gl <Action>(ActivateVersionControlToolWindow)
+nmap <leader>grs <Action>(ChangesView.Revert)
+nmap <leader>gc <Action>(ActivateCommitToolWindow)
+nmap <leader><leader>dh <Action>(Diff.ApplyLeftSide)
+nmap <leader><leader>dl <Action>(Diff.ApplyRightSide)
+let g:WhichKeyDesc_ApplyLeftSide = "<leader><leader>dh Apply left side"
+let g:WhichKeyDesc_ApplyRightSide = "<leader><leader>dl Apply right side"
+
+" replace currently selected text with default register without yanking it
+" vnoremap p "_dP
+let g:WhichKeyDesc_DeleteCharWithoutYank = "x Delete single character without yanking"
+let g:WhichKeyDesc_ChangeWithoutYank = "<leader>c change without yanking"
+let g:WhichKeyDesc_DeleteWithoutYank = "<leader>d delete without yanking"
+let g:WhichKeyDesc_PreviousTab = "<A-h> Go to previous tab"
+let g:WhichKeyDesc_NextTab = "<A-l> Go to next tab"
+
+" NERD tree configuration
+set NERDTree
+let g:NERDTreeMapActivateNode='l'
+let g:NERDTreeMapCloseDir='h'
+let g:NERDTreeMapPreviewVSplit='S'
+nmap <leader>ee :NERDTreeFocus<CR>
+let g:WhichKeyDesc_NerdTreeFocus = "<leader>ee Focus NerdTree"
+
+Plug 'easymotion/vim-easymotion'
+map <leader>j <Plug>(easymotion-f)
