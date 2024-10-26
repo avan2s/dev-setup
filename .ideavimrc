@@ -35,11 +35,6 @@ set ignorecase " Use smart case for searching
 set smartcase " if you type uppercase letter in the search, it will be case sensitive
 set matchpairs+=<:>
 
-nmap <leader>fi <Action>(Find)
-nmap <leader>ff <Action>(FindInPath)
-nmap <leader>ri <Action>(Replace)
-nmap <leader>rr <Action>(ReplaceInPath)
-
 " tabs & indentation (unsupported in ideavim plugin - should be set via editor settings)
 " set tabstop=2 " 2 spaces for tabs (prettier default)
 " set shiftwidth=2 "2 spaces for indent width
@@ -61,6 +56,7 @@ set notimeout
 " And remember to write the ollowing line before that, to make sure spacebar doesn't have any mapping beforehand:
 noremap <SPACE> <Nop>
 let mapleader = " "
+
 " delete without yanking
 nnoremap <leader>d "_d
 nnoremap x "_x
@@ -84,9 +80,7 @@ nnoremap <leader>nr :set relativenumber<CR>
 
 " Tab navigation
 nmap <A-l> <Action>(NextTab)
-nmap <Tab> <Action>(NextTab)
 nmap <A-h> <Action>(PreviousTab)
-nmap <S-Tab> <Action>(PreviousTab)
 nmap <leader>wq <Action>(Terminal.CloseTab)
 
 nmap <C-h> <C-w>h
@@ -94,19 +88,31 @@ nmap <C-l> <C-w>l
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <leader>wv <Action>(MoveTabRight)
-nmap <leader>wo <nction>(MoveEditorToOppositeTabGroup)
+let g:WhichKeyDesc_MoveTabRight = "<leader>wv move tab right"
+nmap <leader>wo <Action>(MoveEditorToOppositeTabGroup)
+let g:WhichKeyDesc_MoveEditorToOppositeTabGroup = "<leader>wo move editor to opposite tab group"
 nmap <leader>wq <Action>(CloseEditor)
+let g:WhichKeyDesc_CloseEditor = "<leader>wq close editor"
 nmap <leader>wq <Action>(CloseContent)
+let g:WhichKeyDesc_CloseContent = "<leader>wq close content"
 nmap <leader>wQ <Action>(CloseAllEditors)
+let g:WhichKeyDesc_CloseAllEditors = "<leader>wQ close all editors"
 nmap <leader>wxa <Action>(CloseAllEditors)
+let g:WhichKeyDesc_CloseAllEditors = "<leader>wxa close all editors"
 nmap <leader>wxo <Action>(CloseAllEditorsButActive)
-let g:WhichKeyDesc_WindowClose = "<leader>wq close editor"
+let g:WhichKeyDesc_CloseAllEditorsButActive = "<leader>wxo close all editors but active"
 " nmap <C-l> <Action>(NextSplitter)
 " nmap <C-k> <Action>(PrevSplitter)
 let g:WhichKeyDesc_WindowLeft = "<C-h> Move to left window"
 let g:WhichKeyDesc_WindowRght = "<C-l> Move to right window"
 let g:WhichKeyDesc_WindowDown = "<C-j> Move to window below"
 let g:WhichKeyDesc_WindowUp = "<C-k> Move to window above"
+
+" Action find and replace
+nmap <leader>fi <Action>(Find)
+nmap <leader>ff <Action>(FindInPath)
+nmap <leader>ri <Action>(Replace)
+nmap <leader>rr <Action>(ReplaceInPath)
 
 " source code navigation
 nmap <leader>sc <Action>(GotoClass)
@@ -142,8 +148,8 @@ nmap <c-]> <Action>(Forward)
 nmap <c-[> <Action>(Back)
 nmap <c-n> <Action>(Tree-selectNext)
 nmap <c-p> <Action>(Tree-selectPrevious)
-map <A-k> <Action>(MoveStatementUp)
-map <A-j> <Action>(MoveStatementDown)
+vmap K <Action>(MoveStatementUp)
+vmap J <Action>(MoveStatementDown)
 let g:WhichKeyDesc_GotoImplementation = "<leader>gi go to implementation"
 let g:WhichKeyDesc_GotoLastLocations = "<leader>ll last locations"
 
@@ -165,16 +171,29 @@ nmap <leader>fc <Action>(ReformatCode)
 map<leader>ca <Action>(CopyAbsolutePath)
 map<leader>cn <Action>(CopyFileName)
 map<leader>cp <Action>(CopyContentRootPath)
+map<leader>cr <Action>(CopyPathFromRepositoryRootProvider)
 
 " file management
 nmap <leader><leader>s <Action>(NewScratchFile)
+let g:WhichKeyDesc_NewScratchFile="<leader><leader>s New scratch file"
 nmap <leader><leader>n <Action>(NewFile)
+let g:WhichKeyDesc_NewFile="<leader><leader>n New file"
 nmap <leader><leader>N <Action>(NewDir)
+let g:WhichKeyDesc_NewDir="<leader><leader>N New directory"
 nmap <leader>rN <Action>(RenameFile)
+let g:WhichKeyDesc_RenameFile="<leader>rN Rename file"
 nmap <leader>fm <Action>(Move)
+let g:WhichKeyDesc_Move="<leader>fm Move"
 nmap <leader>of <Action>(OpenFile)
+let g:WhichKeyDesc_OpenFile="<leader>of Open file"
 nmap <leader><leader>re <Action>(RestartIde)
+let g:WhichKeyDesc_RestartIde="<leader><leader>re Restart IDE"
 
+" ai
+map <leader>ai <Action>(com.codeium.intellij.command.CommandAction)
+let g:WhichKeyDesc_CommandAction="<leader>ai Ai-Instruction"
+vmap <leader>ex <Action>(com.codeium.intellij.editor_menu.ExplainSelection)
+let g:WhichKeyDesc_ExplainSelection="<leader>ex Explain selection"
 
 " Git open changes for current file
 " nmap <leader>oc <Action>(Vcs.ShowTabbedFileHistory)
@@ -206,3 +225,5 @@ let g:WhichKeyDesc_NerdTreeFocus = "<leader>ee Focus NerdTree"
 
 Plug 'easymotion/vim-easymotion'
 map <leader>j <Plug>(easymotion-f)
+
+
