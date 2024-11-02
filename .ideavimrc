@@ -58,7 +58,7 @@ noremap <SPACE> <Nop>
 let mapleader = " "
 
 " delete without yanking
-nnoremap <leader>d "_d
+noremap <leader>d "_d
 nnoremap x "_x
 nnoremap s "_s
 nnoremap c "_c
@@ -87,7 +87,7 @@ nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
-nmap <leader>wv <Action>(MoveTabRight)
+nmap <leader>wv <Action>(SplitVertically)
 let g:WhichKeyDesc_MoveTabRight = "<leader>wv move tab right"
 nmap <leader>wo <Action>(MoveEditorToOppositeTabGroup)
 let g:WhichKeyDesc_MoveEditorToOppositeTabGroup = "<leader>wo move editor to opposite tab group"
@@ -225,5 +225,4 @@ let g:WhichKeyDesc_NerdTreeFocus = "<leader>ee Focus NerdTree"
 
 Plug 'easymotion/vim-easymotion'
 map <leader>j <Plug>(easymotion-f)
-
 
