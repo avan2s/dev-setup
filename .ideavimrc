@@ -197,7 +197,8 @@ let g:WhichKeyDesc_ExplainSelection="<leader>ex Explain selection"
 
 " Git open changes for current file
 " nmap <leader>oc <Action>(Vcs.ShowTabbedFileHistory)
-nmap <leader>oc <Action>(Compare.SameVersion)
+nmap <leader>oc <Action>(Git.Stage.Compare.Local.Staged)
+nmap <leader>oC <Action>(Compare.SameVersion)
 let g:WhichKeyDesc_GitOpenChanges = "<leader>oc Show changes for current file"
 "nmap <leader>gl <Action>(ActivateVersionControlToolWindow)
 nmap <leader>grs <Action>(ChangesView.Revert)
