@@ -154,7 +154,7 @@ let g:WhichKeyDesc_GotoImplementation = "<leader>gi go to implementation"
 let g:WhichKeyDesc_GotoLastLocations = "<leader>ll last locations"
 
 " nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
-nmap <c-t> <Action>(ActivateTerminalToolWindow)
+nmap <leader>tt <Action>(ActivateTerminalToolWindow)
 
 "refactoring - also in visual mode if something is selected
 map<leader>rn <Action>(RenameElement)
