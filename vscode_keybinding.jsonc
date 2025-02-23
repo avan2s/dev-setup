@@ -32,6 +32,11 @@
     "command": "workbench.action.toggleSidebarVisibility",
     "key": "ctrl ctrl"
   },
+  {
+    "key": "z",
+    "command": "workbench.files.action.collapseExplorerFolders",
+    "when": "explorerViewletVisible && filesExplorerFocus"
+  },
   // in order to focus the fileView only  if the explorer is currently not visible
   {
     "command": "workbench.explorer.fileView.focus",
@@ -42,6 +47,11 @@
     "command": "workbench.explorer.fileView.focus",
     "key": "ctrl+h",
     "when": "!editorIsOpen && explorerViewletVisible && !explorerViewletFocus"
+  },
+  {
+    "key": "cmd+/",
+    "command": "-editor.action.commentLine",
+    "when": "editorTextFocus && !editorReadonly"
   },
   {
     "command": "workbench.action.terminal.focus",
@@ -138,6 +148,11 @@
   // window - terminal navigation
   {
     "key": "shift+escape",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+/",
     "command": "workbench.action.terminal.toggleTerminal",
     "when": "terminal.active"
   },
@@ -294,12 +309,54 @@
           "command": "workbench.view.scm"
         },
         {
-          "command": "list.focusFirst"
+          "command": "list.focusDown"
         }
-        // "list.select",
       ]
     }
   },
+  // see the git diff changes without losing focus inside the list
+  {
+    "key": "space",
+    "command": "list.selectAndPreserveFocus",
+    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && listFocus",
+  },
+  {
+    "key": "shift+p",
+    "command": "list.selectAndPreserveFocus",
+    "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && listFocus",
+  },
+  // {
+  //   "key": "enter",
+  //   "command": "list.s",
+  //   "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && listFocus",
+  // },
+  // {
+  //   "key": "enter",
+  //   "command": "list.op",
+  //   "when": "activeViewlet == 'workbench.view.scm' && listFocus",
+  // },
+  // {
+  //   "key": "j",
+  //   "command": "runCommands",
+  //   "when": "activeViewlet == 'workbench.view.scm' && listFocus && !inputFocus && listHasSelectionOrFocus",
+  //   "args": {
+  //     "commands": [
+  //         { "command": "list.focusDown"},
+  //         { "command": "list.selectAndPreserveFocus"}
+  //     ]
+  //   }
+  // },
+  // {
+  //   "key": "k",
+  //   "command": "runCommands",
+  //   "when": "activeViewlet == 'workbench.view.scm' && listFocus && !inputFocus",
+  //   "args": {
+  //     "commands": [
+  //         { "command": "list.focusUp"},
+  //         { "command": "list.selectAndPreserveFocus"}
+  //     ]
+  //   }
+  // },
   {
     "key": "alt+]",
     "command": "editor.gotoNextFold",
@@ -446,10 +503,22 @@
     "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'",
     "command": "workbench.action.navigateToLastEditLocation"
   },
+  // TODO: causes isue using other goto commands
+  // {
+  //     "key": "g i",
+  //     "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'",
+  //     "command": "workbench.action.navigateToLastEditLocation"
+  // },
   {
     "key": "space o o",
-    "command": "workbench.action.gotoSymbol",
+    // "command": "workbench.action.gotoSymbol",
+    "command": "workbench.action.quickOpen",
+    "args": "@:",
     "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
+  },
+  {
+    "key": "ctrl+e", // Use "cmd+alt+t" for macOS
+    "command": "workbench.action.openEditors"
   },
   {
     "key": "space g i",
@@ -497,8 +566,27 @@
     "when": "neovim.init && neovim.mode != 'insert' && editorHasRenameProvider && editorTextFocus && !editorReadonly"
   },
   {
-    "key": "space c o",
-    "command": "editor.action.organizeImports",
-    "when": "neovim.init && neovim.mode == 'normal' && editorTextFocus && !editorReadonly && supportedCodeAction =~ /(\\s|^)source\\.organizeImports\\b/"
-  }
+    "key": "ctrl+k",
+    "command": "editor.debug.action.showDebugHover",
+    "when": "neovim.init && neovim.mode == 'normal' && editorTextFocus && inDebugMode"
+  },
+  {
+    "key": "cmd+k cmd+i",
+    "command": "-editor.debug.action.showDebugHover",
+    "when": "editorTextFocus && inDebugMode"
+  },
+  {
+    "key": "shift+f2",
+    "command": "editor.debug.action.addLogPoint"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
+    "when": "!activeEditorGroupEmpty"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "workbench.action.quickOpenNavigateNextInEditorPicker",
+    "when": "inEditorsPicker && inQuickOpen"
+  },
 ]
