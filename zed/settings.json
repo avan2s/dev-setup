@@ -37,16 +37,26 @@
   },
   "languages": {
     "JavaScript": {
-      "code_actions_on_format": {
-        "source.fixAll.eslint": true,
-        "source.organizeImports": true
-      }
+      "formatter": [
+        "prettier",
+        {
+          "code_actions": {
+            "source.fixAll.eslint": true,
+            "source.organizeImports": true
+          }
+        }
+      ]
     },
     "TypeScript": {
-      "code_actions_on_format": {
-        "source.fixAll.eslint": true,
-        "source.organizeImports": true
-      }
+      "formatter": [
+        "prettier",
+        {
+          "code_actions": {
+            "source.fixAll.eslint": true,
+            "source.organizeImports": true
+          }
+        }
+      ]
     }
   },
   "base_keymap": "JetBrains",
