@@ -32,13 +32,14 @@
     "enabled": true
   },
   "format_on_save": "on",
+  "formatter": "auto",
   "terminal": {
     "font_family": "MesloLGS Nerd Font"
   },
   "languages": {
     "JavaScript": {
       "formatter": [
-        "prettier",
+        // "prettier",
         {
           "code_actions": {
             "source.fixAll.eslint": true,
@@ -49,7 +50,7 @@
     },
     "TypeScript": {
       "formatter": [
-        "prettier",
+        // "prettier",
         {
           "code_actions": {
             "source.fixAll.eslint": true,
