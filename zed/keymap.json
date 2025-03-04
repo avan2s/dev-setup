@@ -1,0 +1,133 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "shift shift": "file_finder::Toggle",
+      "f1": "command_palette::Toggle",
+      "ctrl-/": "terminal_panel::ToggleFocus",
+      "ctrl ctrl": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-s": "workspace::Save",
+      "ctrl-h": "workspace::ActivatePaneLeft"
+      // "space e": ["workspace::SendKeystrokes", ":e  "]
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  },
+  // https://zed.dev/docs/vim#useful-contexts-for-vim-mode-key-bindings
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      // Put key bindings here if you want them to work in normal & visual mode.
+      "tab": "tab_switcher::Toggle",
+      "space f": "file_finder::Toggle",
+      "space b d": "pane::CloseActiveItem",
+      "space b o": "workspace::CloseInactiveTabsAndPanes",
+      "space e": "project_panel::ToggleFocus",
+      "ctrl-l": ["workspace::SendKeystrokes", "ctrl-w l"],
+      "ctrl-h": ["workspace::SendKeystrokes", "ctrl-w h"],
+      "ctrl-k": ["workspace::SendKeystrokes", "ctrl-w k"],
+      "ctrl-j": ["workspace::SendKeystrokes", "ctrl-w j"],
+      "alt-l": "pane::ActivateNextItem",
+      "alt-h": "pane::ActivatePreviousItem",
+      "shift-h": ["workspace::SendKeystrokes", "_"],
+      "shift-l": ["workspace::SendKeystrokes", "$"],
+      "space q q": "zed::Quit",
+      "ctrl-shift-u": "vim::ScrollUp",
+      // scroll and center
+      "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
+      "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
+      "g n": "vim::SelectNext",
+      "g l": "go_to_line::Toggle",
+      "space l c": "vim::InsertAtPrevious",
+      "space u u": "editor::FindAllReferences",
+      "space o o": "outline::Toggle",
+      "alt-k": "editor::ExpandExcerptsUp",
+      "alt-j": "editor::ExpandExcerptsDown"
+    }
+  },
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      "shift-h": ["workspace::SendKeystrokes", "_"],
+      "shift-l": ["workspace::SendKeystrokes", "$"],
+      // "x": "editor::Delete",
+      "x": ["workspace::SendKeystrokes", "\" _ x"],
+      "shift-d": "editor::DeleteToEndOfLine",
+      "shift-c": ["workspace::SendKeystrokes", "shift-d i"],
+      "c": ["workspace::SendKeystrokes", "\" _ c"],
+      "space w l": "pane::SplitRight",
+      "space w h": "pane::SplitLeft"
+      // in order to move the middle window and merge it to the right
+      // "": "pane::JoinIntoNext"
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "c": ["workspace::SendKeystrokes", "\" _ d i"],
+      "shift-k": "editor::MoveLineUp",
+      "shift-j": "editor::MoveLineDown",
+      "shift-s": ["vim::PushAddSurrounds", {}],
+      "<": ["workspace::SendKeystrokes", "< g v"],
+      ">": ["workspace::SendKeystrokes", "> g v"]
+    }
+  },
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore" // In insert mode, make jk escape to normal mode.
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      // Put key bindings here (in addition to the context above) if you want them to
+      // work when no editor exists.
+      "space f": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "ProjectPanel && !editing",
+    "bindings": {
+      "space e": "workspace::ToggleLeftDock",
+      "ctrl-l": "project_panel::ToggleFocus",
+      // "A": "project_panel::NewDirectory",
+      "a": "project_panel::NewFile",
+      "d": "project_panel::Delete",
+      "p": "project_panel::Paste",
+      "y": "project_panel::Copy",
+      "r": "project_panel::Rename",
+      "z": "project_panel::CollapseAllEntries"
+    }
+  },
+  {
+    "context": "OutlinePanel",
+    "bindings": {
+      "ctrl-l": "outline_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-k": "terminal_panel::ToggleFocus",
+      "ctrl-/": "workspace::ToggleBottomDock",
+      "ctrl-n": "workspace::NewTerminal",
+      "alt-h": "pane::ActivatePreviousItem",
+      "alt-l": "pane::ActivateNextItem",
+      "shift-k": "terminal::ScrollLineUp",
+      "shift-j": "terminal::ScrollLineDown",
+      "ctrl-;": "terminal::ToggleViMode"
+    }
+  }
+]
