@@ -12,7 +12,16 @@
       "shift shift": "file_finder::Toggle",
       "f1": "command_palette::Toggle",
       "ctrl-/": "terminal_panel::ToggleFocus",
-      "ctrl ctrl": "workspace::ToggleLeftDock"
+      "ctrl ctrl": "workspace::ToggleLeftDock",
+      "cmd-r": null
+    }
+  },
+  {
+    "context": "EmptyPane || PromptLibrary",
+    "bindings": {
+      "space b d": "pane::CloseActiveItem",
+      "alt-l": "pane::ActivateNextItem",
+      "alt-h": "pane::ActivatePreviousItem"
     }
   },
   {
@@ -29,12 +38,15 @@
     "context": "VimControl && !menu",
     "bindings": {
       // Put key bindings here if you want them to work in normal & visual mode.
+      // asidjsaidj
       "tab": "tab_switcher::Toggle",
-      "space f": "file_finder::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space f s": "project_symbols::Toggle",
       "space b d": "pane::CloseActiveItem",
       "space b o": "workspace::CloseInactiveTabsAndPanes",
       "space e": "project_panel::ToggleFocus",
-      "ctrl-l": ["workspace::SendKeystrokes", "ctrl-w l"],
+      "space g e": "git_panel::ToggleFocus",
+      // "ctrl-l": ["workspace::SendKeystrokes", "ctrl-w l"],
       "ctrl-h": ["workspace::SendKeystrokes", "ctrl-w h"],
       "ctrl-k": ["workspace::SendKeystrokes", "ctrl-w k"],
       "ctrl-j": ["workspace::SendKeystrokes", "ctrl-w j"],
@@ -67,7 +79,12 @@
       "shift-c": ["workspace::SendKeystrokes", "shift-d i"],
       "c": ["workspace::SendKeystrokes", "\" _ c"],
       "space w l": "pane::SplitRight",
-      "space w h": "pane::SplitLeft"
+      // "space w h": "pane::SplitLeft",
+      "space r n": "editor::Rename",
+      "space o c": "git::Diff",
+      "space G r s": "git::RestoreFile",
+      "space g r s": ["workspace::SendKeystrokes", "space G r s ctrl-s"]
+      // "fn-r": "search::ReplaceNext"
       // in order to move the middle window and merge it to the right
       // "": "pane::JoinIntoNext"
     }
@@ -101,7 +118,7 @@
     "context": "ProjectPanel && !editing",
     "bindings": {
       "space e": "workspace::ToggleLeftDock",
-      "ctrl-l": "project_panel::ToggleFocus",
+      // "ctrl-l": "project_panel::ToggleFocus",
       // "A": "project_panel::NewDirectory",
       "a": "project_panel::NewFile",
       "d": "project_panel::Delete",
@@ -112,7 +129,7 @@
     }
   },
   {
-    "context": "OutlinePanel",
+    "context": "OutlinePanel && menu",
     "bindings": {
       "ctrl-l": "outline_panel::ToggleFocus"
     }
@@ -121,6 +138,8 @@
     "context": "Terminal",
     "bindings": {
       "ctrl-k": "terminal_panel::ToggleFocus",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      // "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-/": "workspace::ToggleBottomDock",
       "ctrl-n": "workspace::NewTerminal",
       "alt-h": "pane::ActivatePreviousItem",
@@ -128,6 +147,53 @@
       "shift-k": "terminal::ScrollLineUp",
       "shift-j": "terminal::ScrollLineDown",
       "ctrl-;": "terminal::ToggleViMode"
+    }
+  },
+  // in git diff editor
+  {
+    "context": "GitDiff > Editor && vim_mode == normal && !menu",
+    "bindings": {
+      "space o c": "pane::CloseActiveItem"
+    }
+  },
+  // in the git panel list
+  {
+    "context": "GitPanel && menu && ChangesList",
+    "bindings": {
+      "space": null,
+      "space g e": "git_panel::Close",
+      "space g s": "git::ToggleStaged",
+      "space g r s": "git::RestoreFile"
+    }
+  },
+  // {
+  //   "context": "Editor",
+  //   "bindings": {
+  //     "ctrl-l": null
+  //   }
+  // },
+  {
+    "context": "GitDiff > Editor && vim_mode==normal",
+    "bindings": {
+      "space g s": "git::StageAndNext",
+      "space g u": "git::UnstageAndNext"
+    }
+  },
+  // {
+  //   "context": "BufferSearchBar",
+  //   "bindings": {
+  //     "cmd-f": "search::SelectNextMatch",
+  //     "fn-r": "search::ReplaceNext"
+  //   }
+  // }
+  {
+    // context from vim git keybindings
+    "context": "GitPanel || ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView",
+    "bindings": {
+      "ctrl-h": ["workspace::SendKeystrokes", "ctrl-w h"],
+      "ctrl-k": ["workspace::SendKeystrokes", "ctrl-w k"],
+      "ctrl-j": ["workspace::SendKeystrokes", "ctrl-w j"],
+      "ctrl-l": ["workspace::SendKeystrokes", "ctrl-w l"]
     }
   }
 ]
