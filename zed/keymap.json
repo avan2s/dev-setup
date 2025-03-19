@@ -7,6 +7,12 @@
 // from the command palette.
 [
   {
+    "bindings": {
+      // prevent accidential hiding
+      "cmd-h": null
+    }
+  },
+  {
     "context": "Workspace",
     "bindings": {
       "shift shift": "file_finder::Toggle",
@@ -28,7 +34,8 @@
     "context": "Editor",
     "bindings": {
       "ctrl-s": "workspace::Save",
-      "ctrl-h": "workspace::ActivatePaneLeft"
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": null
       // "space e": ["workspace::SendKeystrokes", ":e  "]
       // "j k": ["workspace::SendKeystrokes", "escape"]
     }
@@ -38,7 +45,6 @@
     "context": "VimControl && !menu",
     "bindings": {
       // Put key bindings here if you want them to work in normal & visual mode.
-      // asidjsaidj
       "tab": "tab_switcher::Toggle",
       "space f f": "file_finder::Toggle",
       "space f s": "project_symbols::Toggle",
@@ -46,7 +52,6 @@
       "space b o": "workspace::CloseInactiveTabsAndPanes",
       "space e": "project_panel::ToggleFocus",
       "space g e": "git_panel::ToggleFocus",
-      // "ctrl-l": ["workspace::SendKeystrokes", "ctrl-w l"],
       "ctrl-h": ["workspace::SendKeystrokes", "ctrl-w h"],
       "ctrl-k": ["workspace::SendKeystrokes", "ctrl-w k"],
       "ctrl-j": ["workspace::SendKeystrokes", "ctrl-w j"],
@@ -73,7 +78,6 @@
     "bindings": {
       "shift-h": ["workspace::SendKeystrokes", "_"],
       "shift-l": ["workspace::SendKeystrokes", "$"],
-      // "x": "editor::Delete",
       "x": ["workspace::SendKeystrokes", "\" _ x"],
       "shift-d": "editor::DeleteToEndOfLine",
       "shift-c": ["workspace::SendKeystrokes", "shift-d i"],
@@ -101,25 +105,19 @@
     }
   },
   {
-    "context": "vim_mode == insert",
-    "bindings": {
-      // "j k": "vim::NormalBefore" // In insert mode, make jk escape to normal mode.
-    }
-  },
-  {
     "context": "EmptyPane || SharedScreen",
     "bindings": {
       // Put key bindings here (in addition to the context above) if you want them to
       // work when no editor exists.
-      "space f": "file_finder::Toggle"
+      "space f": "file_finder::Toggle",
+      "space e": "project_panel::ToggleFocus"
     }
   },
   {
     "context": "ProjectPanel && !editing",
     "bindings": {
       "space e": "workspace::ToggleLeftDock",
-      // "ctrl-l": "project_panel::ToggleFocus",
-      // "A": "project_panel::NewDirectory",
+      "A": "project_panel::NewDirectory",
       "a": "project_panel::NewFile",
       "d": "project_panel::Delete",
       "p": "project_panel::Paste",
@@ -129,17 +127,11 @@
     }
   },
   {
-    "context": "OutlinePanel && menu",
-    "bindings": {
-      "ctrl-l": "outline_panel::ToggleFocus"
-    }
-  },
-  {
     "context": "Terminal",
     "bindings": {
-      "ctrl-k": "terminal_panel::ToggleFocus",
       "ctrl-h": "workspace::ActivatePaneLeft",
-      // "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-w k": "workspace::ActivatePaneUp",
       "ctrl-/": "workspace::ToggleBottomDock",
       "ctrl-n": "workspace::NewTerminal",
       "alt-h": "pane::ActivatePreviousItem",
@@ -163,15 +155,10 @@
       "space": null,
       "space g e": "git_panel::Close",
       "space g s": "git::ToggleStaged",
+      "t": "git::ToggleStaged",
       "space g r s": "git::RestoreFile"
     }
   },
-  // {
-  //   "context": "Editor",
-  //   "bindings": {
-  //     "ctrl-l": null
-  //   }
-  // },
   {
     "context": "GitDiff > Editor && vim_mode==normal",
     "bindings": {
@@ -179,21 +166,15 @@
       "space g u": "git::UnstageAndNext"
     }
   },
-  // {
-  //   "context": "BufferSearchBar",
-  //   "bindings": {
-  //     "cmd-f": "search::SelectNextMatch",
-  //     "fn-r": "search::ReplaceNext"
-  //   }
-  // }
   {
     // context from vim git keybindings
-    "context": "GitPanel || ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView",
+    "context": "(GitPanel && ChangesList)|| (GitPanel || CommitEditor > Editor) || ProjectPanel || CollabPanel || (OutlinePanel || OutlinePanel > Editor) || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView",
     "bindings": {
       "ctrl-h": ["workspace::SendKeystrokes", "ctrl-w h"],
       "ctrl-k": ["workspace::SendKeystrokes", "ctrl-w k"],
       "ctrl-j": ["workspace::SendKeystrokes", "ctrl-w j"],
-      "ctrl-l": ["workspace::SendKeystrokes", "ctrl-w l"]
+      "ctrl-l": ["workspace::SendKeystrokes", "ctrl-w l"],
+      "space b d": "pane::CloseActiveItem"
     }
   }
 ]

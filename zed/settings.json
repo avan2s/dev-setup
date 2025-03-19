@@ -7,11 +7,12 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
-  "telemetry": {
-    "metrics": false
+  "features": {
+    "edit_prediction_provider": "zed"
   },
-  "ui_font_size": 16,
-  "buffer_font_size": 16,
+  "auto_update_extensions": {
+    "vue": false
+  },
   "vim_mode": true,
   "use_smartcase_search": true,
   "vim": {
@@ -19,8 +20,51 @@
     "highlight_on_yank_duration": 500,
     "use_smartcase_find": true
   },
+  "icon_theme": "Material Icon Theme",
+  "assistant": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest"
+    },
+    "version": "2"
+  },
+  "telemetry": {
+    "metrics": false
+  },
+  "experimental.theme_overrides": {
+    // https://github.com/zed-industries/zed/blob/main/assets/themes/one/one.json
+    // 6 digits for the color, 2 for transparency
+    // "version_control.deleted": "#ff0000ff",
+    // "version_control.deleted_background": "#ff0000ff",
+    // "version_control.modified": "#FFFF00ff",
+    // "version_control.modified_background": "#FFFF00ff",
+    // "version_control.added": "#39FF14ff",
+    // "version_control.added_background": "#39FF14ff"
+    // "editor.active_line.background": "#FFFFFF15"
+  },
+  "file_types": {
+    // https://zed.dev/docs/languages/xml
+    "XML": ["xsd"]
+  },
+  "file_finder": {
+    "modal_max_width": "medium"
+  },
+  "project_panel": {
+    "dock": "left",
+    "indent_size": 10,
+    "auto_fold_dirs": false,
+    "entry_spacing": "standard"
+  },
+  "git_panel": {
+    "status_style": "label_color",
+    "button": true
+  },
+  "collaboration_panel": { "button": false },
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
   "outline_panel": {
-    "default_width": 500
+    "default_width": 500,
+    "indent_size": 10
   },
   "toggle_relative_line_numbers": true,
   "theme": {
