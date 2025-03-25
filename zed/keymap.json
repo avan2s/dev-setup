@@ -23,11 +23,13 @@
     }
   },
   {
-    "context": "EmptyPane || PromptLibrary",
+    "context": "EmptyPane || PromptLibrary || (ProjectSearchBar > Editor)",
     "bindings": {
       "space b d": "pane::CloseActiveItem",
       "alt-l": "pane::ActivateNextItem",
-      "alt-h": "pane::ActivatePreviousItem"
+      "alt-h": "pane::ActivatePreviousItem",
+      // Experimental - go down to the multibuffer if you are in project searchbar
+      "ctrl-j": ["workspace::SendKeystrokes", "escape"]
     }
   },
   {
@@ -35,7 +37,8 @@
     "bindings": {
       "ctrl-s": "workspace::Save",
       "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": null
+      "ctrl-l": null,
+      "ctrl-j": ["workspace::SendKeystrokes", "escape"]
       // "space e": ["workspace::SendKeystrokes", ":e  "]
       // "j k": ["workspace::SendKeystrokes", "escape"]
     }
@@ -50,7 +53,7 @@
       "space f s": "project_symbols::Toggle",
       "space b d": "pane::CloseActiveItem",
       "space b o": "workspace::CloseInactiveTabsAndPanes",
-      "space e": "project_panel::ToggleFocus",
+      "space e e": "project_panel::ToggleFocus",
       "space g e": "git_panel::ToggleFocus",
       "ctrl-h": ["workspace::SendKeystrokes", "ctrl-w h"],
       "ctrl-k": ["workspace::SendKeystrokes", "ctrl-w k"],
@@ -85,9 +88,14 @@
       "space w l": "pane::SplitRight",
       // "space w h": "pane::SplitLeft",
       "space r n": "editor::Rename",
-      "space o c": "git::Diff",
-      "space G r s": "git::RestoreFile",
-      "space g r s": ["workspace::SendKeystrokes", "space G r s ctrl-s"]
+      "space o C": "git::Diff",
+      "space o c": "editor::ExpandAllDiffHunks",
+      "ctrl-c": ["workspace::SendKeystrokes", "escape"],
+      "space c c": "editor::ToggleSelectedDiffHunks",
+      "space g s": "git::ToggleStaged",
+      "space G r f": "git::RestoreFile",
+      "space g r": "git::Restore",
+      "space g r f": ["workspace::SendKeystrokes", "space G r f ctrl-s"]
       // "fn-r": "search::ReplaceNext"
       // in order to move the middle window and merge it to the right
       // "": "pane::JoinIntoNext"
@@ -110,13 +118,13 @@
       // Put key bindings here (in addition to the context above) if you want them to
       // work when no editor exists.
       "space f": "file_finder::Toggle",
-      "space e": "project_panel::ToggleFocus"
+      "space e e": "project_panel::ToggleFocus"
     }
   },
   {
     "context": "ProjectPanel && !editing",
     "bindings": {
-      "space e": "workspace::ToggleLeftDock",
+      "space e e": "workspace::ToggleLeftDock",
       "A": "project_panel::NewDirectory",
       "a": "project_panel::NewFile",
       "d": "project_panel::Delete",
@@ -156,7 +164,7 @@
       "space g e": "git_panel::Close",
       "space g s": "git::ToggleStaged",
       "t": "git::ToggleStaged",
-      "space g r s": "git::RestoreFile"
+      "space g r f": "git::RestoreFile"
     }
   },
   {
@@ -175,6 +183,13 @@
       "ctrl-j": ["workspace::SendKeystrokes", "ctrl-w j"],
       "ctrl-l": ["workspace::SendKeystrokes", "ctrl-w l"],
       "space b d": "pane::CloseActiveItem"
+    }
+  },
+  {
+    "context": "Editor && multibuffer",
+    "bindings": {
+      // while inside a multibuffer to go back to the search panel on the top it will focus the search
+      "ctrl-k": "search::FocusSearch"
     }
   }
 ]
