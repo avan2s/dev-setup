@@ -156,6 +156,13 @@
       "space o c": "pane::CloseActiveItem"
     }
   },
+  // if
+  {
+    "context": "GitDiff && !(GitDiff > Editor)",
+    "bindings": {
+      "space b d": "pane::CloseActiveItem"
+    }
+  },
   // in the git panel list
   {
     "context": "GitPanel && menu && ChangesList",
@@ -176,12 +183,17 @@
   },
   {
     // context from vim git keybindings
-    "context": "(GitPanel && ChangesList)|| (GitPanel || CommitEditor > Editor) || ProjectPanel || CollabPanel || (OutlinePanel || OutlinePanel > Editor) || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView",
+    // "context": "(GitDiff && !(GitDiff > Editor))" -> after commiting you are still in the git diff view without an editor. Without this context you have to click or press cmd+w after commit.
+    "context": "(GitPanel && ChangesList)|| (GitPanel || CommitEditor > Editor) || ProjectPanel || CollabPanel || (OutlinePanel || OutlinePanel > Editor) || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || (GitDiff && !(GitDiff > Editor))",
     "bindings": {
       "ctrl-h": ["workspace::SendKeystrokes", "ctrl-w h"],
       "ctrl-k": ["workspace::SendKeystrokes", "ctrl-w k"],
       "ctrl-j": ["workspace::SendKeystrokes", "ctrl-w j"],
       "ctrl-l": ["workspace::SendKeystrokes", "ctrl-w l"],
+      "space s f": "pane::DeploySearch",
+      "space s b": "buffer_search::Deploy",
+      "space s r": "buffer_search::DeployReplace",
+      "ctrl-r": "search::ReplaceNext",
       "space b d": "pane::CloseActiveItem"
     }
   },
