@@ -10,10 +10,13 @@
   "active_pane_modifiers": {
     "inactive_opacity": 0.75
   },
-  "assistant": {
+  "agent": {
+    "single_file_review": true,
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-latest"
+      // https://github.com/zed-industries/zed/pull/27468/files
+      "model": "claude-3-7-sonnet-latest"
+      // "model": "gemini-2.5-pro-exp-03-25" - geht NOCH nicht, muss ueber API key eingerichtet werden
     },
     "version": "2"
   },
@@ -25,6 +28,9 @@
   "buffer_font_size": 16,
   "collaboration_panel": { "button": false },
   "confirm_quit": false,
+  "edit_predictions": {
+    "mode": "eager"
+  },
   "experimental.theme_overrides": {
     // https://github.com/zed-industries/zed/blob/main/assets/themes/one/one.json
     // 6 digits for the color, 2 for transparency
@@ -37,7 +43,8 @@
     // "editor.active_line.background": "#FFFFFF15"
   },
   "features": {
-    "edit_prediction_provider": "zed"
+    // https://zed.dev/docs/completions#configuring-zeta -- will not be free forever
+    "edit_prediction_provider": "supermaven"
   },
   "file_finder": {
     "modal_max_width": "medium"
@@ -53,6 +60,7 @@
     "button": true
   },
   "icon_theme": "Material Icon Theme",
+  "show_edit_predictions": true,
   "inlay_hints": {
     "show_parameter_hints": true,
     "show_other_hints": true,
@@ -66,8 +74,8 @@
         // "prettier",
         {
           "code_actions": {
-            "source.fixAll.eslint": true,
-            "source.organizeImports": true
+            "source.organizeImports": false,
+            "source.fixAll.eslint": true
           }
         }
       ]
@@ -77,8 +85,8 @@
         // "prettier",
         {
           "code_actions": {
-            "source.fixAll.eslint": true,
-            "source.organizeImports": true
+            "source.organizeImports": false,
+            "source.fixAll.eslint": true
           }
         }
       ]
@@ -94,7 +102,8 @@
   },
   "outline_panel": {
     "default_width": 500,
-    "indent_size": 10
+    "indent_size": 10,
+    "auto_fold_dirs": false
   },
   "project_panel": {
     "dock": "left",
