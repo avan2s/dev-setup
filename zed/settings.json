@@ -28,6 +28,18 @@
   "buffer_font_size": 16,
   "collaboration_panel": { "button": false },
   "confirm_quit": false,
+  "diagnostics": {
+    "button": true,
+    "include_warnings": true,
+    "inline": {
+      "enabled": true,
+      "update_debounce_ms": 150,
+      "padding": 4,
+      "min_column": 0,
+      "max_severity": "warning"
+    },
+    "cargo": null
+  },
   "edit_predictions": {
     "mode": "eager"
   },
@@ -82,10 +94,18 @@
     },
     "TypeScript": {
       "formatter": [
-        // "prettier",
         {
           "code_actions": {
             "source.organizeImports": false,
+            "source.fixAll.eslint": true
+          }
+        }
+      ]
+    },
+    "Vue.js": {
+      "formatter": [
+        {
+          "code_actions": {
             "source.fixAll.eslint": true
           }
         }
