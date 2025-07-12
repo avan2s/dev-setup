@@ -54,6 +54,7 @@
       "space b d": "pane::CloseActiveItem",
       "space b O": "workspace::CloseInactiveTabsAndPanes",
       "space b o": "pane::CloseInactiveItems",
+      "space b p": "pane::TogglePinTab",
       "space e e": "project_panel::ToggleFocus",
       "space g e": "git_panel::ToggleFocus",
       "ctrl-h": ["workspace::SendKeystrokes", "ctrl-w h"],
@@ -89,8 +90,7 @@
       "shift-c": ["workspace::SendKeystrokes", "shift-d i"],
       "c": ["workspace::SendKeystrokes", "\" _ c"],
       "space w l": "pane::SplitRight",
-      // "space w h": "pane::SplitLeft",
-      "space r n": "editor::Rename",
+      "space c r": "editor::Rename",
       "space o C": "git::Diff",
       "space o c": "editor::ExpandAllDiffHunks",
       "ctrl-c": ["workspace::SendKeystrokes", "escape"],
@@ -102,7 +102,9 @@
       "space s f": "pane::DeploySearch",
       "space s b": "buffer_search::Deploy",
       "space s r": "buffer_search::DeployReplace",
-      "space c o": "editor::OrganizeImports"
+      "space c o": "editor::OrganizeImports",
+      "] h": "editor::GoToHunk",
+      "[ h": "editor::GoToPreviousHunk"
       // "fn-r": "search::ReplaceNext"
       // in order to move the middle window and merge it to the right
       // "": "pane::JoinIntoNext"

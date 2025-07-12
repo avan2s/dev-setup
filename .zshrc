@@ -115,6 +115,8 @@ export PATH=/opt/homebrew/bin:$PATH
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim='nvim'
 alias cat='bat'
+alias dcu='docker compose up -d'
+alias dclo='docker compose logs -f'
 alias ls="eza --icons=always"
 # ---- Zoxide (better cd) ----
 eval "$(zoxide init zsh)"
@@ -122,7 +124,6 @@ alias cd="z"
 alias dc='docker compose'
 alias dcubl='docker compose up -d && docker compose logs -f backend'
 alias cls="printf '\33c\e[3J'"
-# alias git='LANG=en_US git'
 alias gfast='gfa && gst'
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -146,6 +147,10 @@ esac
 # bun completions
 [ -s "/Users/andreas.vanhelden/.bun/_bun" ] && source "/Users/andreas.vanhelden/.bun/_bun"
 
+# Add user's private bin directory to PATH if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -153,6 +158,13 @@ export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk@17/include"
 export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
 export LC_ALL=en_US.UTF-8
+export PATH="$PATH:$(perl -MConfig -e 'print $Config{sitebin}')"
+
+# local bin scripts
+export PATH="$HOME/.local/bin:$PATH"
+
+# Docker export
+export COMPOSE_BAKE=true
 
 
 # history setup
@@ -170,11 +182,6 @@ setopt hist_verify
 bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 
-# vv() {
-#   select config in lazyvim kickstart nvchad astrovim lunarvim
-#   do NVIM_APPNAME=nvim-$config nvim $@; break; done
-# }
-#
 vv() {
   # Assumes all configs exist in directories named ~/.config/nvim-*
   local config=$(fd --max-depth 1 --glob 'nvim-*' ~/.config | fzf --prompt="Neovim Configs > " --height=~50% --layout=reverse --border --exit-0)
@@ -185,3 +192,54 @@ vv() {
   # Open Neovim with the selected config
   NVIM_APPNAME=$(basename $config) nvim $@
 }
+
+# Smart tmux starter function
+# Call it something like 'tmx', 'ts' (tmux start), or even alias 'tmux' to it.
+start_tmux_sensibly() {
+    # Check if we're already inside a tmux session
+    if [ -n "$TMUX" ]; then
+        echo "Already inside a tmux session."
+        # If you want to allow creating nested sessions or switching,
+        # you could call `command tmux "$@"` here.
+        # For now, we'll just exit, as the common case is to avoid nesting.
+        return 0
+    fi
+
+    # Check if a tmux server is running and has sessions
+    if tmux has-session 2>/dev/null; then
+        # Server is running, and it has sessions. Attach to one.
+        # `tmux attach-session` will attach to the last used session by default.
+        # You can pass arguments to target a specific session, e.g., `start_tmux_sensibly -t main_work`
+        echo "Tmux server already running. Attaching..."
+        command tmux attach-session "$@"
+    else
+        # No server running, or server is up but has no sessions (e.g., after 'tmux kill-server').
+        echo "No active tmux sessions found."
+
+        # Check if Resurrect has saved data (this is a good hint Continuum *should* restore)
+        # The default path is ~/.tmux/resurrect/last
+        # Your config specifies: set -g @resurrect-dir '~/.tmux/resurrect'
+        local resurrect_last_file="$HOME/.tmux/resurrect/last"
+        if [ -f "$resurrect_last_file" ]; then
+            echo "Tmux Resurrect data found. Starting server (Continuum should auto-restore)..."
+            # Start the server WITHOUT creating a session.
+            # This gives Continuum a chance to run its restore hook on a "clean" server.
+            command tmux start-server
+
+            # At this point, tmux-continuum's hook should have triggered and run the restore script.
+            # Now, try to attach. If Continuum restored sessions, this should pick one up.
+            # If Continuum failed or had nothing to restore, the `|| command tmux new-session "$@"` will create a new one.
+            echo "Attempting to attach to a restored session (or creating a new one if restore fails/is empty)..."
+            command tmux attach-session "$@" || command tmux new-session "$@"
+        else
+            # No Resurrect data found, so Continuum has nothing to restore.
+            # Just start a new tmux session as usual.
+            echo "No Tmux Resurrect data found. Starting a new session..."
+            command tmux new-session "$@"
+        fi
+    fi
+}
+
+# Create an alias. You can choose 'tmux' if you want to override the default command.
+# Using a different alias like 'tm' or 'tx' is safer initially.
+alias t="start_tmux_sensibly"

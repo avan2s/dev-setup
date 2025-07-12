@@ -17,8 +17,10 @@
       // https://github.com/zed-industries/zed/pull/27468/files
       "model": "claude-3-7-sonnet-latest"
       // "model": "gemini-2.5-pro-exp-03-25" - geht NOCH nicht, muss ueber API key eingerichtet werden
-    },
-    "version": "2"
+    }
+  },
+  "minimap": {
+    "show": "never"
   },
   "auto_update_extensions": {
     "vue": false
@@ -28,6 +30,7 @@
   "buffer_font_size": 16,
   "collaboration_panel": { "button": false },
   "confirm_quit": false,
+  "debugger": { "log_dap_communications": false },
   "diagnostics": {
     "button": true,
     "include_warnings": true,
