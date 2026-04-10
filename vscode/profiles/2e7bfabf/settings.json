@@ -25,7 +25,7 @@
   },
   // "editor.hover.above": false
   "diffEditor.experimental.showMoves": true,
-  "debug.javascript.autoAttachFilter": "smart",
+  "debug.javascript.autoAttachFilter": "always",
   "editor.mouseWheelZoom": true,
   "security.workspace.trust.untrustedFiles": "open",
   "diffEditor.ignoreTrimWhitespace": false,

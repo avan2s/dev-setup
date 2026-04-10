@@ -33,6 +33,11 @@
         "key": "ctrl ctrl"
     },
     {
+        "key": "space e",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "editorFocus && editorTextFocus && !terminalFocus && neovim.init && neovim.mode != 'insert'"
+    },
+    {
         "key": "z",
         "command": "workbench.files.action.collapseExplorerFolders",
         "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
@@ -42,6 +47,11 @@
         "command": "workbench.explorer.fileView.focus",
         "key": "ctrl ctrl",
         "when": "!explorerViewletVisible"
+    },
+    {
+        "command": "workbench.explorer.fileView.focus",
+        "key": "space e",
+        "when": "!explorerViewletVisible && !terminalFocus && neovim.init && neovim.mode != 'insert'"
     },
     {
         "command": "workbench.explorer.fileView.focus",
@@ -75,7 +85,7 @@
     },
     // make nvim redo working and use U redo und u undo
     {
-        "key": "shift+u",
+        "key": "shift+r",
         "command": "vscode-neovim.send",
         "when": "editorTextFocus && neovim.mode != insert && neovim.mode != visual",
         "args": "<C-r>"
@@ -517,6 +527,13 @@
         "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
     },
     {
+        "key": "space s s",
+        // "command": "workbench.action.gotoSymbol",
+        "command": "workbench.action.quickOpen",
+        "args": "@",
+        "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
+    },
+    {
         "key": "ctrl+e", // Use "cmd+alt+t" for macOS
         "command": "workbench.action.openEditors"
     },
@@ -562,11 +579,6 @@
         "args": "gd",
         "when": "editorTextFocus && neovim.init && neovim.mode == 'normal'"
     },
-    {
-        "key": "space e n",
-        "command": "editor.action.marker.next",
-        "when": "editorFocus && editorTextFocus && neovim.init && neovim.mode != 'insert'"
-    },
     // test
     {
         "key": "] d",
@@ -576,11 +588,6 @@
     {
         "key": "space shift+e n",
         "command": "editor.action.marker.nextInFiles",
-        "when": "editorFocus && editorTextFocus && neovim.init && neovim.mode != 'insert'"
-    },
-    {
-        "key": "space e p",
-        "command": "editor.action.marker.prev",
         "when": "editorFocus && editorTextFocus && neovim.init && neovim.mode != 'insert'"
     },
     // test
@@ -652,5 +659,40 @@
         "key": "space q q",
         "command": "workbench.action.quit",
         "when": "editorFocus && neovim.mode != insert && !findWidgetVisible && !replaceWidgetVisible"
-    }
+    },
+    // MERGE-EDITOR
+    // right to middle
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "isMergeEditor && !isMergeResultEditor"
+    },
+    // middle to left
+    {
+      "key": "ctrl+h",
+      "command": "mergeEditor.toggleBetweenInputs",
+      "when": "isMergeEditor && isMergeResultEditor"
+    },
+    // left to right
+    {
+      "key": "ctrl+l",
+      "command": "workbench.action.navigateEditorGroups",
+      "when": "isMergeEditor && !isMergeResultEditor"
+    },
+    // middle to right
+    {
+        "key": "ctrl+l",
+        "command": "runCommands",
+        "when": "isMergeEditor && isMergeResultEditor",
+        "args": {
+            "commands": [
+                {
+                    "command": "mergeEditor.toggleBetweenInputs",
+                },
+                {
+                    "command": "mergeEditor.toggleBetweenInputs",
+                },
+            ]
+        }
+    },
 ]
