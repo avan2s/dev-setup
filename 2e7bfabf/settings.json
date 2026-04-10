@@ -1,0 +1,131 @@
+{
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.view.showQuietly": {"workbench.panel.output": true},
+  // "workbench.activityBar.location": "hidden",
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "editor.minimap.enabled": true,
+  "editor.formatOnSave": true, // optional
+  "workbench.editor.showTabs": "multiple",
+  "redhat.telemetry.enabled": true,
+  "breadcrumbs.enabled": true,
+  "explorer.compactFolders": false,
+  "nvim-ui.nvimColorNormal": "#ffc600",
+  "nvim-ui.nvimColorInsert": "#D32F2F",
+  "nvim-ui.nvimColorVisual": "#673AB7",
+  "nvim-ui.nvimColorReplace": "#000",
+  "workbench.tree.indent": 8,
+  "material-icon-theme.hidesExplorerArrows": true,
+  "window.confirmSaveUntitledWorkspace": true,
+  "workbench.editor.enablePreview": true,
+  "git.openDiffOnClick": true,
+  "window.customTitleBarVisibility": "never",
+  "window.titleBarStyle": "custom",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+  },
+  // "editor.hover.above": false
+  "diffEditor.experimental.showMoves": true,
+  "debug.javascript.autoAttachFilter": "smart",
+  "editor.mouseWheelZoom": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "npm.packageManager": "bun",
+  "npm.keybindingsChangedWarningShown": true,
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar",
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  },
+  "[json]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  },
+  "workbench.startupEditor": "none",
+  "[typescript]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  },
+  "hediet.vscode-drawio.resizeImages": null,
+  "terminal.integrated.fontSize": 14,
+  "workbench.editorAssociations": {
+    "*.png": "imagePreview.previewEditor",
+  },
+  "peacock.elementAdjustments": {
+    "activityBar": "lighten",
+    "statusBar": "none",
+    "titleBar": "none",
+  },
+  "vscode_custom_css.imports": [
+    "file:///Users/andreas.vanhelden/dev/pretty-ts-errors-hack.css",
+  ],
+  "sql-formatter.dialect": "pl/sql",
+  "material-icon-theme.activeIconPack": "nest",
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+  "vscode-neovim.neovimClean": false,
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1,
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+  },
+  "editor.autoClosingQuotes": "never",
+  "editor.lineNumbers": "on",
+  "git.mergeEditor": true,
+  "plantuml.render": "PlantUMLServer",
+  "plantuml.server": "http://localhost:9393",
+  "prisma.showPrismaDataPlatformNotification": false,
+  "scm.experimental.showHistoryGraph": true,
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "codeium.enableConfig": {
+    "*": true,
+    "xml": true,
+  },
+  "git.blame.editorDecoration.enabled": true,
+  "git.blame.statusBarItem.enabled": true,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "workbench.colorTheme": "JetBrains New UI Dark Theme",
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml",
+  },
+  "diffEditor.hideUnchangedRegions.enabled": false,
+  "git.openRepositoryInParentFolders": "always",
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true,
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+  },
+  "workbench.colorCustomizations": {
+    "editorCursor.foreground": "#3e97f7",
+    "activityBarBadge.background": "#e9dbb7",
+    "activityBarBadge.foreground": "#262626",
+    "statusBar.background": "#5079b0",
+    "statusBar.foreground": "#e9dbb7",
+  },
+  "claudeCode.preferredLocation": "panel",
+  "terminal.integrated.scrollback": 10000,
+  // attach to tmux
+  "terminal.integrated.profiles.osx": {
+    "tmux": {
+      "path": "/bin/zsh",
+      "args": ["-c", "tmux new-session -A -s vscode-$$"]
+    }
+  },
+  "terminal.integrated.defaultProfile.osx": "tmux",
+  "claudeCode.selectedModel": "default",
+  // "typescript.preferences.preferTypeOnlyAutoImports": true
+  // "editor.cursorStyle": "block"
+  // "action-tracker.logFolderPath": "/Users/andreas.vanhelden/Library/Application Support/Code/logs",
+}
