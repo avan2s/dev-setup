@@ -534,6 +534,11 @@
         "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
     },
     {
+      "key": "space s shift+s",
+      "command": "workbench.action.showAllSymbols",
+      "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
+    },
+    {
         "key": "ctrl+e", // Use "cmd+alt+t" for macOS
         "command": "workbench.action.openEditors"
     },
@@ -640,6 +645,7 @@
         "command": "workbench.action.compareEditor.previousChange",
         "when": "textCompareEditorVisible && editorTextFocus && neovim.init && neovim.mode!='insert'"
     },
+    // OPEN CHANGES / DIFF EDITOR
     {
         "key": "ctrl+h",
         "command": "workbench.action.compareEditor.focusSecondarySide",
@@ -695,4 +701,9 @@
             ]
         }
     },
+    {
+        "key": "z a",
+        "command": "editor.toggleFold",
+        "when": "editorTextFocus && foldingEnabled && neovim.init && neovim.mode=='normal'"
+    }
 ]

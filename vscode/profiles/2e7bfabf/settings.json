@@ -120,11 +120,22 @@
   "terminal.integrated.profiles.osx": {
     "tmux": {
       "path": "/bin/zsh",
-      "args": ["-c", "tmux new-session -A -s vscode-$$"]
+      "args": ["-c", "tmux new-session -A -s \"vscode-$(basename $PWD)\""]
+    },
+    "zsh": {
+      "path": "/bin/zsh"
     }
+  },
+  "debug.javascript.terminalOptions": {
+    "shellPath": "/bin/zsh",
+    "shellArgs": []
+  },
+  "terminal.integrated.automationProfile.osx": {
+    "path": "/bin/zsh",
   },
   "terminal.integrated.defaultProfile.osx": "tmux",
   "claudeCode.selectedModel": "default",
+  "chat.disableAIFeatures": true,
   // "typescript.preferences.preferTypeOnlyAutoImports": true
   // "editor.cursorStyle": "block"
   // "action-tracker.logFolderPath": "/Users/andreas.vanhelden/Library/Application Support/Code/logs",

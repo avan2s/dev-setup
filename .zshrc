@@ -99,11 +99,12 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 export PATH=/opt/homebrew/bin:$PATH
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# append completions to fpath
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
 
-#export NVM_DIR="$HOME/.nvm"
-#  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
-#  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. 
-#"/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -118,18 +119,14 @@ alias cat='bat'
 alias dcu='docker compose up -d'
 alias dclo='docker compose logs -f'
 alias ls="eza --icons=always"
-# ---- Zoxide (better cd) ----
-eval "$(zoxide init zsh)"
-alias cd="z"
 alias dc='docker compose'
 alias dcubl='docker compose up -d && docker compose logs -f backend'
 alias cls="printf '\33c\e[3J'"
 alias gfast='gfa && gst'
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# in order to let lazyvim editor still show liquibase outputs/logs
+export COMPOSE_MENU=0
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 bindkey "^[^[[C" forward-word
 bindkey "^[^[[D" backward-word
@@ -243,3 +240,12 @@ start_tmux_sensibly() {
 # Create an alias. You can choose 'tmux' if you want to override the default command.
 # Using a different alias like 'tm' or 'tx' is safer initially.
 alias t="start_tmux_sensibly"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/andreas.vanhelden/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+#
+# ---- Zoxide (better cd) ----
+[[ -o interactive ]] && eval "$(zoxide init zsh)"
+alias cd="z"
