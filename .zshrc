@@ -246,6 +246,8 @@ autoload -Uz compinit
 compinit
 # End of Docker CLI completions
 #
-# ---- Zoxide (better cd) ----
-[[ -o interactive ]] && eval "$(zoxide init zsh)"
-alias cd="z"
+# ---- Zoxide (better cd), interactive means that it is not throwing errors when claude is executing cd commands ----
+if [[ -o interactive ]]; then
+  eval "$(zoxide init zsh)"
+  alias cd="z"
+fi
