@@ -36,6 +36,7 @@
         "key": "space e",
         "command": "workbench.action.toggleSidebarVisibility",
         "when": "editorFocus && editorTextFocus && !terminalFocus && neovim.init && neovim.mode != 'insert'"
+        // "when": "editorFocus && editorTextFocus && !terminalFocus && neovim.init && neovim.mode != 'insert' && !inQuickInput && !searchViewletFocus"
     },
     {
         "key": "z",
@@ -51,7 +52,8 @@
     {
         "command": "workbench.explorer.fileView.focus",
         "key": "space e",
-        "when": "!explorerViewletVisible && !terminalFocus && neovim.init && neovim.mode != 'insert'"
+        "when": "!explorerViewletVisible && editorTextFocus && !terminalFocus && neovim.init && neovim.mode != 'insert'"
+        // "when": "!explorerViewletVisible && editorTextFocus && !terminalFocus && neovim.init && neovim.mode != 'insert' && !inQuickInput && !searchViewletFocus"
     },
     {
         "command": "workbench.explorer.fileView.focus",
