@@ -128,8 +128,10 @@ alias gfast='gfa && gst'
 export COMPOSE_MENU=0
 
 
-bindkey "^[^[[C" forward-word
-bindkey "^[^[[D" backward-word
+bindkey "^[[1;3C" forward-word   # Alt+Right (Kitty, modern xterm)
+bindkey "^[[1;3D" backward-word  # Alt+Left  (Kitty, modern xterm)
+bindkey "^[^[[C" forward-word    # Alt+Right (iTerm2, older xterm)
+bindkey "^[^[[D" backward-word   # Alt+Left  (iTerm2, older xterm)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
