@@ -335,38 +335,6 @@
         "command": "list.selectAndPreserveFocus",
         "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && listFocus",
     },
-    // {
-    //   "key": "enter",
-    //   "command": "list.s",
-    //   "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && listFocus",
-    // },
-    // {
-    //   "key": "enter",
-    //   "command": "list.op",
-    //   "when": "activeViewlet == 'workbench.view.scm' && listFocus",
-    // },
-    // {
-    //   "key": "j",
-    //   "command": "runCommands",
-    //   "when": "activeViewlet == 'workbench.view.scm' && listFocus && !inputFocus && listHasSelectionOrFocus",
-    //   "args": {
-    //     "commands": [
-    //         { "command": "list.focusDown"},
-    //         { "command": "list.selectAndPreserveFocus"}
-    //     ]
-    //   }
-    // },
-    // {
-    //   "key": "k",
-    //   "command": "runCommands",
-    //   "when": "activeViewlet == 'workbench.view.scm' && listFocus && !inputFocus",
-    //   "args": {
-    //     "commands": [
-    //         { "command": "list.focusUp"},
-    //         { "command": "list.selectAndPreserveFocus"}
-    //     ]
-    //   }
-    // },
     {
         "key": "alt+]",
         "command": "editor.gotoNextFold",
@@ -513,12 +481,6 @@
         "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'",
         "command": "workbench.action.navigateToLastEditLocation"
     },
-    // TODO: causes isue using other goto commands
-    // {
-    //     "key": "g i",
-    //     "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'",
-    //     "command": "workbench.action.navigateToLastEditLocation"
-    // },
     {
         "key": "space o o",
         // "command": "workbench.action.gotoSymbol",
@@ -553,21 +515,6 @@
         "when": "editorHasReferenceProvider && !inReferenceSearchEditor && !isInEmbeddedEditor && editorTextFocus && neovim.init && neovim.mode == 'normal'"
     },
     {
-        "key": "space g d",
-        "command": "editor.action.goToDeclaration",
-        "when": "editorHasDefinitionProvider && editorTextFocus && neovim.init && neovim.mode != 'insert'"
-    },
-    {
-        "key": "space g l",
-        "command": "workbench.action.gotoLine",
-        "when": "editorFocusneovim.init && neovim.mode != 'insert'"
-    },
-    {
-        "key": "space u u",
-        "command": "editor.action.goToReferences",
-        "when": "editorHasReferenceProvider && !inReferenceSearchEditor && !isInEmbeddedEditor && editorTextFocus && neovim.init && neovim.mode != 'insert'"
-    },
-    {
         "key": "g g",
         "command": "vscode-neovim.send",
         "args": "gg",
@@ -584,18 +531,11 @@
         "args": "gd",
         "when": "editorTextFocus && neovim.init && neovim.mode == 'normal'"
     },
-    // test
     {
         "key": "] d",
         "command": "editor.action.marker.next",
         "when": "editorFocus && editorTextFocus && neovim.init && neovim.mode != 'insert'"
     },
-    {
-        "key": "space shift+e n",
-        "command": "editor.action.marker.nextInFiles",
-        "when": "editorFocus && editorTextFocus && neovim.init && neovim.mode != 'insert'"
-    },
-    // test
     {
         "key": "[ d",
         "command": "editor.action.marker.prev",
@@ -666,6 +606,7 @@
         "command": "workbench.action.quit",
         "when": "editorFocus && neovim.mode != insert && !findWidgetVisible && !replaceWidgetVisible"
     },
+
     // MERGE-EDITOR
     // right to middle
     {
