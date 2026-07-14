@@ -120,6 +120,8 @@ alias dcu='docker compose up -d'
 alias dclo='docker compose logs -f'
 alias ls="eza --icons=always"
 alias dc='docker compose'
+alias dcd='docker compose down'
+alias dcdv='docker compose down -v'
 alias dcubl='docker compose up -d && docker compose logs -f backend'
 alias cls="printf '\33c\e[3J'"
 alias gfast='gfa && gst'
