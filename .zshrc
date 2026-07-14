@@ -123,6 +123,7 @@ alias dc='docker compose'
 alias dcubl='docker compose up -d && docker compose logs -f backend'
 alias cls="printf '\33c\e[3J'"
 alias gfast='gfa && gst'
+alias mountfs="~/mount-fileserver.sh"
 
 # in order to let lazyvim editor still show liquibase outputs/logs
 export COMPOSE_MENU=0
@@ -253,3 +254,6 @@ if [[ -o interactive ]]; then
   eval "$(zoxide init zsh)"
   alias cd="z"
 fi
+
+# ---- Claude LSP Support ----
+export ENABLE_LSP_TOOL=1
