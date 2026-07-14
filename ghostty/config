@@ -5,3 +5,6 @@ font-thicken = true
 
 # start maximized in fullscreen (kitty equivalent: os_window_state fullscreen)
 fullscreen = true
+
+# color scheme matching nvim-lazy (tokyonight, night style)
+theme = "TokyoNight Night"
