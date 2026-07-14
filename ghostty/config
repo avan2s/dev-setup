@@ -1,0 +1,7 @@
+font-family = "MesloLGS NF"
+
+# sharper, less "blurry" text on macOS retina
+font-thicken = true
+
+# start maximized in fullscreen (kitty equivalent: os_window_state fullscreen)
+fullscreen = true
