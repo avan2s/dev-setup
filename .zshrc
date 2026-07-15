@@ -198,6 +198,8 @@ vv() {
 # Smart tmux starter function
 # Call it something like 'tmx', 'ts' (tmux start), or even alias 'tmux' to it.
 start_tmux_sensibly() {
+    echo "Terminal resolution: $(tput cols)x$(tput lines) (cols x rows), TERM=$TERM"
+
     # Check if we're already inside a tmux session
     if [ -n "$TMUX" ]; then
         echo "Already inside a tmux session."
