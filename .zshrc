@@ -195,6 +195,26 @@ vv() {
   NVIM_APPNAME=$(basename $config) nvim $@
 }
 
+# Background refit loop: after a reboot the resurrect/continuum restore runs
+# asynchronously and re-pins each window to its saved (stale) size shortly AFTER
+# we attach, leaving the dot-filled area. A tmux hook fires too early to catch
+# this. So we refit repeatedly from the shell (where the real client with the
+# correct terminal size is guaranteed) long enough to outlast the restore.
+# resize-window -A / refresh-client -S are idempotent, so once the size is
+# correct these passes are no-ops (no flicker).
+_tmux_refit_loop() {
+    local i
+    for i in $(seq 1 24); do
+        sleep 0.3
+        command tmux list-clients -F '#{client_name}' 2>/dev/null | while read -r c; do
+            command tmux refresh-client -S -t "$c" 2>/dev/null
+        done
+        command tmux list-windows -a -F '#{window_id}' 2>/dev/null | while read -r w; do
+            command tmux resize-window -A -t "$w" 2>/dev/null
+        done
+    done
+}
+
 # Smart tmux starter function
 # Call it something like 'tmx', 'ts' (tmux start), or even alias 'tmux' to it.
 start_tmux_sensibly() {
@@ -215,6 +235,7 @@ start_tmux_sensibly() {
         # `tmux attach-session` will attach to the last used session by default.
         # You can pass arguments to target a specific session, e.g., `start_tmux_sensibly -t main_work`
         echo "Tmux server already running. Attaching..."
+        _tmux_refit_loop &!
         command tmux attach-session "$@"
     else
         # No server running, or server is up but has no sessions (e.g., after 'tmux kill-server').
@@ -234,6 +255,7 @@ start_tmux_sensibly() {
             # Now, try to attach. If Continuum restored sessions, this should pick one up.
             # If Continuum failed or had nothing to restore, the `|| command tmux new-session "$@"` will create a new one.
             echo "Attempting to attach to a restored session (or creating a new one if restore fails/is empty)..."
+            _tmux_refit_loop &!
             command tmux attach-session "$@" || command tmux new-session "$@"
         else
             # No Resurrect data found, so Continuum has nothing to restore.
