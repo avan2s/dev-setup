@@ -3,8 +3,19 @@ font-family = "MesloLGS NF"
 # sharper, less "blurry" text on macOS retina
 font-thicken = true
 
-# start maximized in fullscreen (kitty equivalent: os_window_state fullscreen)
-fullscreen = true
+# non-native fullscreen hides the menu bar and stays on the current Space;
+# plain `true` means NATIVE fullscreen, which always gets its own Space.
+# on linux this behaves like normal fullscreen (kitty: macos_traditional_fullscreen)
+fullscreen = non-native-padded-notch
+
+# same behaviour when toggling fullscreen at runtime
+macos-non-native-fullscreen = padded-notch
+
+# no titlebar / traffic lights, but keep the native frame and rounded corners
+macos-titlebar-style = hidden
+
+# linux: drop the GTK headerbar when the window is maximized
+gtk-titlebar-hide-when-maximized = true
 
 # color scheme matching nvim-lazy (tokyonight, night style)
 theme = "TokyoNight Night"
