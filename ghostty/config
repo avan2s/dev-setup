@@ -14,6 +14,11 @@ macos-non-native-fullscreen = padded-notch
 # no titlebar / traffic lights, but keep the native frame and rounded corners
 macos-titlebar-style = hidden
 
+# Option must send Alt so <M-h>/<M-l> (buffer nav) reach nvim. Ghostty's unset
+# default only enables this for U.S. Standard/International layouts, so it dies
+# whenever the active layout is something else (kitty: macos_option_as_alt yes).
+macos-option-as-alt = true
+
 # linux: drop the GTK headerbar when the window is maximized
 gtk-titlebar-hide-when-maximized = true
 
