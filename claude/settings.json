@@ -1,0 +1,59 @@
+{
+  "model": "opus[1m]",
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "vue-volar@claude-code-lsps": true,
+    "vtsls@claude-code-lsps": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-code-lsps": {
+      "source": {
+        "source": "github",
+        "repo": "Piebald-AI/claude-code-lsps"
+      }
+    }
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Doku-ignorieren",
+      "Feierabend-ignorieren",
+      "How could this ever work",
+      "Multitonisieren",
+      "Sending Sebastian back in time",
+      "Syntax-frustrieren",
+      "Who wrote that junk?",
+      "callieren",
+      "delivery start-datifizieren",
+      "dockerisieren",
+      "entiwicklertränenisieren",
+      "entmolochisieren",
+      "entwicklertränen wischieren",
+      "kotze aufwischen",
+      "mollochisieren",
+      "my eyes bleed",
+      "overengineeren",
+      "prio-jonglieren",
+      "quick-und-dirty-sieren",
+      "rollbackieren",
+      "spaghetti-fizieren",
+      "wolfgangisieren",
+      "frickelerisieren",
+      "funktionierende auto weiterleitung auf Fehlfunktion pruefen",
+      "merging and randomizing identity keys",
+      "andreas kurz vor feierabend mit produktiven problemen anrufen",
+      "deployment verhindern"
+    ]
+  },
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "low"
+    }
+  },
+  "tui": "fullscreen",
+  "showThinkingSummaries": true,
+  "theme": "dark"
+}
