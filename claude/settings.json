@@ -1,5 +1,4 @@
 {
-  "model": "opus[1m]",
   "permissions": {
     "allow": [
       "Read",
@@ -7,7 +6,6 @@
       "Grep",
       "NotebookRead",
       "LSP",
-
       "Bash(ls *)",
       "Bash(cat *)",
       "Bash(head *)",
@@ -18,12 +16,16 @@
       "Bash(du *)",
       "Bash(tree *)",
       "Bash(pwd)",
+      "Bash(cd *)",
+      "Bash(env)",
+      "Bash(whoami)",
+      "Bash(hostname)",
+      "Bash(uname *)",
       "Bash(which *)",
       "Bash(basename *)",
       "Bash(dirname *)",
       "Bash(realpath *)",
       "Bash(readlink *)",
-
       "Bash(rg *)",
       "Bash(grep *)",
       "Bash(find *)",
@@ -39,7 +41,6 @@
       "Bash(echo *)",
       "Bash(date *)",
       "Bash(printenv *)",
-
       "Bash(git status *)",
       "Bash(git log *)",
       "Bash(git diff *)",
@@ -53,6 +54,14 @@
       "Bash(git merge-base *)",
       "Bash(git reflog show *)",
       "Bash(git shortlog *)",
+      "Bash(git grep *)",
+      "Bash(git ls-tree *)",
+      "Bash(git for-each-ref *)",
+      "Bash(git name-rev *)",
+      "Bash(git symbolic-ref *)",
+      "Bash(git diff-tree *)",
+      "Bash(git stash show *)",
+      "Bash(git count-objects *)",
       "Bash(git branch)",
       "Bash(git branch -a)",
       "Bash(git branch -v)",
@@ -66,7 +75,6 @@
       "Bash(git worktree list *)",
       "Bash(git config --get *)",
       "Bash(git config --list *)",
-
       "Bash(gh pr view *)",
       "Bash(gh pr list *)",
       "Bash(gh pr diff *)",
@@ -76,12 +84,12 @@
       "Bash(gh run view *)",
       "Bash(gh run list *)",
       "Bash(gh repo view *)",
-
       "Bash(npm ls *)",
       "Bash(npm view *)",
       "Bash(npm outdated *)"
     ]
   },
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
