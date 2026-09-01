@@ -24,4 +24,4 @@ Grep is for text search only.
 # no comments if possible
 
 - code reads by itself, comments only when absolutely needed
-- if you comment functions method use multiline comments
+- if you comment functions or methods use multiline comments (esopecially in tsdocs)
