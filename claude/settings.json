@@ -1,5 +1,87 @@
 {
   "model": "opus[1m]",
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "NotebookRead",
+      "LSP",
+
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(file *)",
+      "Bash(stat *)",
+      "Bash(du *)",
+      "Bash(tree *)",
+      "Bash(pwd)",
+      "Bash(which *)",
+      "Bash(basename *)",
+      "Bash(dirname *)",
+      "Bash(realpath *)",
+      "Bash(readlink *)",
+
+      "Bash(rg *)",
+      "Bash(grep *)",
+      "Bash(find *)",
+      "Bash(jq *)",
+      "Bash(sort *)",
+      "Bash(uniq *)",
+      "Bash(cut *)",
+      "Bash(tr *)",
+      "Bash(column *)",
+      "Bash(awk *)",
+      "Bash(sed -n *)",
+      "Bash(diff *)",
+      "Bash(echo *)",
+      "Bash(date *)",
+      "Bash(printenv *)",
+
+      "Bash(git status *)",
+      "Bash(git log *)",
+      "Bash(git diff *)",
+      "Bash(git show *)",
+      "Bash(git blame *)",
+      "Bash(git describe *)",
+      "Bash(git rev-parse *)",
+      "Bash(git ls-files *)",
+      "Bash(git ls-remote *)",
+      "Bash(git cat-file *)",
+      "Bash(git merge-base *)",
+      "Bash(git reflog show *)",
+      "Bash(git shortlog *)",
+      "Bash(git branch)",
+      "Bash(git branch -a)",
+      "Bash(git branch -v)",
+      "Bash(git branch -vv)",
+      "Bash(git branch --list *)",
+      "Bash(git branch --show-current)",
+      "Bash(git tag -l *)",
+      "Bash(git remote -v)",
+      "Bash(git remote get-url *)",
+      "Bash(git stash list *)",
+      "Bash(git worktree list *)",
+      "Bash(git config --get *)",
+      "Bash(git config --list *)",
+
+      "Bash(gh pr view *)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr diff *)",
+      "Bash(gh pr checks *)",
+      "Bash(gh issue view *)",
+      "Bash(gh issue list *)",
+      "Bash(gh run view *)",
+      "Bash(gh run list *)",
+      "Bash(gh repo view *)",
+
+      "Bash(npm ls *)",
+      "Bash(npm view *)",
+      "Bash(npm outdated *)"
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
@@ -50,7 +132,7 @@
   },
   "modelSettings": {
     "claude-opus-5": {
-      "effortLevel": "low"
+      "effortLevel": "medium"
     }
   },
   "tui": "fullscreen",
