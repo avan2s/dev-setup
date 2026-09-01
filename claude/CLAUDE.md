@@ -1,11 +1,12 @@
 # code-navigation
 
-use lsp-tool (not grep) for
+Use the `LSP` tool (not grep) for
 
-- Finding references to symbols
-- Go-to-definition
-- Detecting type errors
+- Finding references to symbols (findReferences)
+- Go-to-definition, go-to-implementation
+- Call hierarchy (incomingCalls / outgoingCalls)
 - Rename/hover/diagnostics
+- Locating a symbol by name across the repo (workspaceSymbol)
 
 # specs
 
