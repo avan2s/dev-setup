@@ -103,7 +103,7 @@
       "Bash(npm outdated *)"
     ]
   },
-  "model": "opus[1m]",
+  "model": "sonnet",
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
@@ -158,6 +158,7 @@
     }
   },
   "tui": "fullscreen",
+  "autoMemoryEnabled": false,
   "showThinkingSummaries": true,
   "theme": "dark"
 }

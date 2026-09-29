@@ -10,7 +10,8 @@ Use the `LSP` tool (not grep) for
 
 # specs
 
-in specs use fn.name if supported instead in case of rename
+- in specs use fn.name if supported instead in case of rename
+- for unit test use createUnitTest helper function if available - define mocks in the mocks section in case you have to use oprisma mock or mocks, which you want to access in multiple specs, otherwise you could use also getMocks helper function if available
 
 # database migration liquibase
 
@@ -24,5 +25,5 @@ Grep is for text search only.
 
 # no comments if possible
 
-- code reads by itself, comments only when absolutely needed
+- code reads by itself, comments only when absolutely needed for exported functions prefered
 - if you comment functions or methods use multiline comments (esopecially in tsdocs)
