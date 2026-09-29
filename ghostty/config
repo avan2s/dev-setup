@@ -6,10 +6,10 @@ font-thicken = true
 # non-native fullscreen hides the menu bar and stays on the current Space;
 # plain `true` means NATIVE fullscreen, which always gets its own Space.
 # on linux this behaves like normal fullscreen (kitty: macos_traditional_fullscreen)
-fullscreen = non-native-padded-notch
+fullscreen = non-native
 
 # same behaviour when toggling fullscreen at runtime
-macos-non-native-fullscreen = padded-notch
+macos-non-native-fullscreen = true
 
 # no titlebar / traffic lights, but keep the native frame and rounded corners
 macos-titlebar-style = hidden
