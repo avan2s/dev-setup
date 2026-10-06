@@ -1,5 +1,5 @@
 #!/bin/bash
-# Claude Code status line: cwd | git branch(dirty) | model | context usage %
+# Claude Code status line: cwd | git branch(dirty) | model | context usage % | weekly usage %
 
 input=$(cat)
 
@@ -29,6 +29,11 @@ output="$dir"
 [ -n "$model" ] && output="$output | $model"
 if [ -n "$used_pct" ] && [ "$used_pct" != "null" ]; then
   output="$output | $(printf '%.0f' "$used_pct")% ctx"
+fi
+
+week_pct=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
+if [ -n "$week_pct" ]; then
+  output="$output | $(printf '%.0f' "$week_pct")% week"
 fi
 
 printf '%s\n' "$output"
