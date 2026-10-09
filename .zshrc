@@ -125,6 +125,10 @@ alias dcdv='docker compose down -v'
 alias dcubl='docker compose up -d && docker compose logs -f backend'
 alias cls="printf '\33c\e[3J'"
 alias gfast='gfa && gst'
+alias ghsv='gh stack view -s'
+alias ghsp='gh stack push'
+alias ghsrb='gh stack rebase'
+alias ghsco='gh stack checkout'
 alias mountfs="~/mount-fileserver.sh"
 
 # in order to let lazyvim editor still show liquibase outputs/logs
