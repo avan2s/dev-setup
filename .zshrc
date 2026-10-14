@@ -130,6 +130,8 @@ alias ghsp='gh stack push'
 alias ghsrb='gh stack rebase'
 alias ghsco='gh stack checkout'
 alias mountfs="~/mount-fileserver.sh"
+alias wws="wormhole-william send"
+alias wwr="wormhole-william recv"
 
 # in order to let lazyvim editor still show liquibase outputs/logs
 export COMPOSE_MENU=0
