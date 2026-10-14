@@ -3,6 +3,7 @@
 # Installs the Claude Code environment this repo configures:
 #   - the language servers the enabled LSP plugins spawn from PATH
 #   - symlinks ~/.claude/{settings.json,CLAUDE.md,statusline-command.sh} into this repo
+#   - symlinks each claude/skills/<name> into ~/.claude/skills/
 #
 # The plugins themselves are declared in claude/settings.json
 # (extraKnownMarketplaces + enabledPlugins) and install on next start.
@@ -63,6 +64,14 @@ link_config() {
   ln -sfn "$src" "$dest"
 }
 
+link_skills() {
+  local dir
+  mkdir -p "$CLAUDE_DIR/skills"
+  for dir in "$REPO_DIR"/claude/skills/*/; do
+    link_config "skills/$(basename "$dir")"
+  done
+}
+
 main() {
   require_bun
   install_language_servers
@@ -71,6 +80,7 @@ main() {
   link_config settings.json
   link_config CLAUDE.md
   link_config statusline-command.sh
+  link_skills
   info "Done. Plugins install on the next 'claude' start."
 }
 

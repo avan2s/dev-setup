@@ -1,7 +1,7 @@
 # claude code
 
 Run `../install-claude.sh` on a fresh machine. It installs the language
-servers and symlinks the configs here into `~/.claude/`.
+servers and symlinks the configs and skills here into `~/.claude/`.
 
 Plugins are not installed by the script — `settings.json` declares the
 marketplace (`extraKnownMarketplaces`) and which plugins to enable
