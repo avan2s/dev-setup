@@ -12,6 +12,7 @@ description: Implement a requested code change with clear intent, minimal comple
 - KISS/YAGNI: build only what is needed now; no speculative features, abstractions, or generalization.
 - Reuse existing functionality; avoid duplication without adding needless indirection.
 - Keep the change focused; don't modify unrelated code.
+- Add or update specs for changed behavior; run them.
 
 ## Done when
 

@@ -31,5 +31,5 @@ Re-evaluate independently; working code or a "finished" verdict from implementat
 
 ## Done when
 
-- Behavior is unchanged.
+- Behavior is unchanged; relevant specs pass and match refactorings.
 - Report only remaining material concerns, or state briefly that refinement is complete.
