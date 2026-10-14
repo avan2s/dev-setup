@@ -16,4 +16,3 @@ description: Implement a requested code change with clear intent, minimal comple
 ## Done when
 
 - The complete requirement is implemented, not just the obvious part, and the intended behavior works end to end.
-- Then hand over to `implementation-refinement` for an independent quality pass.
