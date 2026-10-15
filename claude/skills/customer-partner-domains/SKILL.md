@@ -1,6 +1,6 @@
 ---
 name: customer-partner-domains
-description: Fill the domain and participant_to_domain tables for a customer's real partners with a multi-upsert Liquibase migration, deriving domains from real mails, Impressum research and external answers, as done for Fricke in CIS4-EDI2. Use when a customer needs its partners' domains seeded.
+description: Fill the domain and participant_to_domain tables for a customer's real partners with a multi-upsert Liquibase migration, deriving domains only from the partners' real mails (verified with the npm tmp-mails script) and from answers the user researches, as done for Fricke in CIS4-EDI2. Use when a customer needs its partners' domains seeded.
 disable-model-invocation: true
 argument-hint: "<customer>"
 ---
@@ -9,7 +9,7 @@ argument-hint: "<customer>"
 
 Arguments: $ARGUMENTS (customer name; also the Liquibase context)
 
-Repeat the Fricke migration for another customer. Work iteratively: skeleton with proven domains, research, verification, test. Ask only for real decisions (group domains, shared domains).
+Repeat the Fricke migration for another customer. Work iteratively: domains from mails, test, commit, then hand the rest to the user for research. No Impressum or web search of your own. Ask only for real decisions (group domains, shared domains, conflicts).
 
 ## Reference
 
@@ -18,7 +18,7 @@ Read first, then mirror: commit "assign the fricke partner domains" on `chore/ED
 - `liquibase/scripts/postgres/EDI2-3951-fricke-assign-partner-domains.sql` and `...-intercompany-partner-domains.sql`
 - include in the release changelog with `context="fricke"`
 
-Create `liquibase/setup/<customer>/` XML with two changesets (`context="<customer>"`, `sqlFile` with `${databaseType}`, `splitStatements="false"`): real partners (`tenant_id IS NULL`), then intercompany partners (`tenant_id IS NOT NULL AND is_intercompany_partner = TRUE`), each with its own SQL file.
+Create `liquibase/setup/<customer>/` XML with two changesets (`context="<customer>"`, `sqlFile` with `${databaseType}`, `splitStatements="false"`): real partners (`tenant_id IS NULL`), then intercompany partners (`tenant_id IS NOT NULL AND is_intercompany_partner = TRUE`), each with its own SQL file. Leave out the intercompany changeset when the customer has no intercompany partners (an empty `VALUES` list is invalid).
 
 ## SQL rules
 
@@ -33,8 +33,8 @@ Create `liquibase/setup/<customer>/` XML with two changesets (`context="<custome
    - Create gitignored `backend/test/resources/tmp-mails-blob.env` (`AZURE_STORAGE_CONNECTION_STRING`, `AZURE_STORAGE_CONTAINER`) and let the user fill it.
    - Back up and empty `backend/test/resources/tmp-mails/`; download read-only (`downloadToFile` only; production blob, never write or delete) as `<PARTNERNAME>__<blobname>`.
    - Run `npm run test:tmp-mails:domains` in `backend` (redirect to a file) and read each partner's `stored` domains. Ignore the customer's own and system sender domains, social media, Adobe, tracking and mail-provider domains.
-2. Impressum/contact page of the company itself (agents sequentially, max 2 searches per partner; the session has a WebSearch budget of about 200 calls; no scraping of search engines via curl).
-3. External answers (the user's Google): only domains matching name or label.
+   - Assign a domain to the partner by its label, falling back to the name: accept it when it fits; when the mail's real sender (also inside forwarded mails) belongs to another partner or company, it is a conflict, not an assignment.
+2. Everything else goes to the user: no Impressum, WebSearch or agent research. Show a numbered table of the open partners (#, partner, label, AI-marked, reason) so the user can research them, and work in their answers: only domains matching name or label.
 
 ## Acceptance rules
 
@@ -42,24 +42,25 @@ Create `liquibase/setup/<customer>/` XML with two changesets (`context="<custome
 - Domain name must fit the partner name or label. Skip domains that sound like another company, generic names, product names, tracking-link domains, mail providers.
 - Group domains only with proof (mail or known group membership), else skip.
 - Skip country copies with empty labels (`XYZ_AT`, `XYZ_DE`); they cannot be researched separately.
-- Verify every external domain with DNS (`dig +short A`, `MX`, `NS` against 1.1.1.1 and 8.8.8.8); drop domains with no records (about 37 of 140 Google answers were invented). Also check by `WebFetch` that the page names the company.
+- Verify every domain the user brings back with DNS (`dig +short A`, `MX`, `NS` against 1.1.1.1 and 8.8.8.8); drop domains with no records (about 37 of 140 Google answers were invented).
 - Include shared domains for sister partners; check near-duplicates (same brand, other TLD) and domains seen in mails of unrelated partners, and leave those out unless the user decides otherwise.
 
 ## Test
 
 Use `test-environment/compose.yaml`, never a deleted or foreign DB:
-- Create a scratch DB in `db-test`, run `lb-test` with `-e LB_DB_URL=jdbc:postgresql://db-test:5432/<scratch> -e LB_CONTEXTS=<customer>,pro`, or use the dev DB with the customer dump.
-- Check: both changesets EXECUTED, no error with missing partners, second run changes nothing, DB pair count equals SQL pair count, no orphan domains. Drop the scratch DB afterwards.
+- Create a scratch DB in `db-test`, run `lb-test` with `-e LB_DB_URL=jdbc:postgresql://db-test:5432/<scratch> -e LB_CONTEXTS=<customer>,pro`, or, when the dev DB holds the customer dump, clone it (`CREATE DATABASE <scratch> TEMPLATE cis4_edi2`) and run `lb` with `LB_DB_URL=jdbc:postgresql://db:5432/<scratch>` so the dev DB stays untouched.
+- There is no local `psql`; use `docker exec -i <db container> psql`.
+- Check: every changeset EXECUTED, no error with missing partners, second run changes nothing, DB pair count equals SQL pair count, no orphan domains. Drop the scratch DB afterwards.
 - In ad-hoc test transactions always end with `ROLLBACK` and verify the row count afterwards.
 
 ## Reporting
 
-Give the user numbered tables: partners still without domain (#, partner, label, reason), split into AI-marked (`is_trained_for_document_ai`) and the rest, plus omitted domains with reason. Work in answers the user brings back under the same rules.
+Give the user numbered tables: unsure or conflicting partners (#, partner, label, domain(s), why unsure) to decide by number; partners still without domain (#, partner, label, reason), split into AI-marked (`is_trained_for_document_ai`) and the rest, plus omitted domains with reason. Work in answers the user brings back under the same rules.
 
 ## Cleanup and commit
 
 - Delete downloaded emls, restore the original test emls, blank the env file, empty the scratchpad.
-- Commit only the Liquibase files; never emls or the env file.
+- Commit only the Liquibase files; never emls, the env file or `compose.yaml`.
 
 ## Done when
 
