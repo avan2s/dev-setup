@@ -130,8 +130,20 @@ alias ghsp='gh stack push'
 alias ghsrb='gh stack rebase'
 alias ghsco='gh stack checkout'
 alias mountfs="~/mount-fileserver.sh"
-alias wws="wormhole-william send"
 alias wwr="wormhole-william recv"
+
+# send via wormhole and copy the full receive command (incl. code) to the clipboard
+unalias wws 2>/dev/null
+function wws {
+  wormhole-william send "$@" | while IFS= read -r line; do
+    print -r -- "$line"
+    if [[ $line == "Wormhole code is: "* ]]; then
+      print -rn -- "wormhole-william recv ${line#Wormhole code is: }" | pbcopy
+      print "→ receive command copied to clipboard"
+    fi
+  done
+  return $pipestatus[1]
+}
 
 # in order to let lazyvim editor still show liquibase outputs/logs
 export COMPOSE_MENU=0
