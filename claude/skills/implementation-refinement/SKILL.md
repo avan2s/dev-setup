@@ -21,6 +21,7 @@ Re-evaluate independently; working code or a "finished" verdict from implementat
 - **Architecture:** check responsibilities, dependencies, boundaries, and consistency with surrounding code.
 - **Scope:** stay within the focus; no speculative future-proofing.
 - Apply justified improvements directly; don't refactor for stylistic preference or theoretical purity.
+- Never commit without asking for confirmation first.
 
 ## Check the whole change
 
