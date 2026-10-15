@@ -34,7 +34,7 @@ Create `liquibase/setup/<customer>/` XML with two changesets (`context="<custome
    - Back up and empty `backend/test/resources/tmp-mails/`; download read-only (`downloadToFile` only; production blob, never write or delete) as `<PARTNERNAME>__<blobname>`.
    - Run `npm run test:tmp-mails:domains` in `backend` (redirect to a file) and read each partner's `stored` domains. Ignore the customer's own and system sender domains, social media, Adobe, tracking and mail-provider domains.
    - Assign a domain to the partner by its label, falling back to the name: accept it when it fits; when the mail's real sender (also inside forwarded mails) belongs to another partner or company, it is a conflict, not an assignment.
-2. Everything else goes to the user: no Impressum, WebSearch or agent research. Show a numbered table of the open partners (#, partner, label, AI-marked, reason) so the user can research them, and work in their answers: only domains matching name or label.
+2. Everything else goes to the user: no Impressum, WebSearch or agent research. Show the table of participants without a domain (see Reporting) so the user can research them, and work in their answers: only domains matching name or label.
 
 ## Acceptance rules
 
@@ -55,7 +55,13 @@ Use `test-environment/compose.yaml`, never a deleted or foreign DB:
 
 ## Reporting
 
-Give the user numbered tables: unsure or conflicting partners (#, partner, label, domain(s), why unsure) to decide by number; partners still without domain (#, partner, label, reason), split into AI-marked (`is_trained_for_document_ai`) and the rest, plus omitted domains with reason. Work in answers the user brings back under the same rules.
+As soon as the emls are analysed and the SQL holds the certain pairs (unsure ones stay out), give the user:
+
+1. Unsure or conflicting partners (#, partner, label, domain(s), why unsure) to decide by number.
+2. One numbered table of every participant without a domain, one row per partner, never grouped: `# | Partner | Label | AI | Grund`. AI-marked (`is_trained_for_document_ai`) first, then the rest; the reason is short (e.g. "Mails kommen von schubert-tacke.de (Entscheidung #3)", "Keine Mails", "Keine Mails, kein Label", "Technischer Kanal", "Mails nur über EDI/Plattform").
+3. Omitted domains with reason.
+
+Ask the user to send researched domains by number. Work in their answers under the same rules.
 
 ## Cleanup and commit
 
