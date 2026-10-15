@@ -21,7 +21,7 @@ A number (or `#number`, PR URL) is a PR, other text is a branch; default is the 
    - Rebase: `<branch>` (N commits) onto updated `<target>` (source: PR #n / user)
    - Stack: whole stack will be rebased (list branches) / none / "gh stack not installed, not checked"
    - Push afterwards: `gpf` or `gh stack push`
-7. Run `git fetch origin <target>:<target>` (stop if it's not a fast-forward) and note the `HEAD` SHA of each affected branch. Then run `git rebase <target>`, or `gh stack rebase` for a stack.
+7. Run `git fetch origin <target>:<target>` (stop if it's not a fast-forward). Single branch: note its `HEAD` SHA, then run `git rebase <target>`. Stack: first back up every stack branch locally (`git branch backup/<branch>-<YYYYMMDD-HHMM> <branch>`), then run `gh stack rebase`.
 8. For each conflict:
    - Understand the target's change and the branch commit; merge so both survive, never blindly take one side.
    - If the intent is unclear, stop and ask.
@@ -36,4 +36,4 @@ A number (or `#number`, PR URL) is a PR, other text is a branch; default is the 
 ## Done when
 
 - The rebase is complete and checks pass.
-- Report: target branch, conflicted files with how each was resolved, moved changesets, check results, pre-rebase SHAs for recovery, and the exact push command to run: `gpf` or `gh stack push`.
+- Report: target branch, conflicted files with how each was resolved, moved changesets, check results, pre-rebase SHA or backup branch names for recovery, and the exact push command to run: `gpf` or `gh stack push`.
