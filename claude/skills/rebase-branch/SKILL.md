@@ -26,7 +26,9 @@ A number (or `#number`, PR URL) is a PR, other text is a branch; default is the 
    - Understand the target's change and the branch commit; merge so both survive, never blindly take one side.
    - If the intent is unclear, stop and ask.
    - `git add` the files, then `GIT_EDITOR=true git rebase --continue` (stack: `gh stack rebase --continue`).
-9. Only if the branch (or stack) introduces Liquibase changesets and the target added a changelog file for a newer version: move those changesets into it (content unchanged, includes updated); ask if the right file is unclear.
+9. Liquibase, only if the branch (or stack) introduces changesets:
+   - Always place them after the target's changesets (append at the end).
+   - If the target added a changelog file for a newer version, move them to the end of that file (content unchanged, includes updated); ask if the right file is unclear.
 10. After the rebase, run typecheck/lint and the specs touching conflicted files; fix rebase-caused failures.
 
 ## Rules
@@ -36,4 +38,4 @@ A number (or `#number`, PR URL) is a PR, other text is a branch; default is the 
 ## Done when
 
 - The rebase is complete and checks pass.
-- Report: target branch, conflicted files with how each was resolved, moved changesets, check results, pre-rebase SHA or backup branch names for recovery, and the exact push command to run: `gpf` or `gh stack push`.
+- Report: target branch, conflicted files with how each was resolved, moved changesets (ids, from file → to file), check results, pre-rebase SHA or backup branch names for recovery, and the exact push command to run: `gpf` or `gh stack push`.
