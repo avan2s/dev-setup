@@ -29,7 +29,7 @@ Create `liquibase/setup/<customer>/` XML with two changesets (`context="<custome
 
 ## Gathering domains (priority order)
 
-1. Real mails: per partner the last 2 mails via `extracted_documents_summary.partner_participant_id` -> `inbound_mail` -> `document_file` (`mail_file_id`); blob name = `md5_checksum` without dashes + `_` + `filename`. Prefer summaries whose `user_task` status is COMPLETED, then newest.
+1. Real mails: per partner the last 2 mails via `extracted_documents_summary.partner_participant_id` -> `inbound_mail` -> `document_file` (`mail_file_id`); blob name = `md5_checksum` without dashes + `_` + `filename`. Prefer summaries whose `user_task` status is COMPLETED, then newest. Also select the mail's `extracted_documents_summary.user_task_id`s (`string_agg(DISTINCT ...)`; a mail may have several).
    - Create gitignored `backend/test/resources/tmp-mails-blob.env` (`AZURE_STORAGE_CONNECTION_STRING`, `AZURE_STORAGE_CONTAINER`) and let the user fill it.
    - Back up and empty `backend/test/resources/tmp-mails/`; download read-only (`downloadToFile` only; production blob, never write or delete) as `<PARTNERNAME>__<blobname>`.
    - Run `npm run test:tmp-mails:domains` in `backend` (redirect to a file) and read each partner's `stored` domains. Ignore the customer's own and system sender domains, social media, Adobe, tracking and mail-provider domains.
@@ -57,8 +57,9 @@ Use `test-environment/compose.yaml`, never a deleted or foreign DB:
 
 As soon as the emls are analysed and the SQL holds the certain pairs (unsure ones stay out), give the user:
 
-1. Unsure or conflicting partners (#, partner, label, domain(s), why unsure) to decide by number.
-2. One numbered table of every participant without a domain, one row per partner, never grouped: `# | Partner | Label | AI | Grund`. AI-marked (`is_trained_for_document_ai`) first, then the rest; the reason is short (e.g. "Mails kommen von schubert-tacke.de (Entscheidung #3)", "Keine Mails", "Keine Mails, kein Label", "Technischer Kanal", "Mails nur über EDI/Plattform").
+1. Unsure or conflicting partners (#, partner, label, domain(s), why unsure, eml) to decide by number.
+   - Whenever an eml shows a strange or not clearly assignable domain (deviates too much from the participant name or label, other company as sender, platform/EDI sender), name the eml file followed by its task ids when the DB has them (`<PARTNERNAME>__<blobname> (Task 123, 124)`) in that row, in this table and in the table below, so the user can open it. Keep the selected mails (partner, mail date, blob name, task ids) in the scratchpad until the report is delivered.
+2. One numbered table of every participant without a domain, one row per partner, never grouped: `# | Partner | Label | AI | Grund | eml` (eml with task ids only for strange or unassignable domains, else `–`). AI-marked (`is_trained_for_document_ai`) first, then the rest; the reason is short (e.g. "Mails kommen von schubert-tacke.de (Entscheidung #3)", "Keine Mails", "Keine Mails, kein Label", "Technischer Kanal", "Mails nur über EDI/Plattform").
 3. Omitted domains with reason.
 
 Ask the user to send researched domains by number. Work in their answers under the same rules.
