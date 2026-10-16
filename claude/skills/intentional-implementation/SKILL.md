@@ -13,7 +13,7 @@ description: Implement a requested code change with clear intent, minimal comple
 - Reuse existing functionality; avoid duplication without adding needless indirection.
 - Keep the change focused; don't modify unrelated code.
 - Add or update specs for changed behavior; run them.
-- Never commit without asking for confirmation first.
+- Ask for confirmation before every single commit; a previous approval never covers later commits.
 
 ## Done when
 
