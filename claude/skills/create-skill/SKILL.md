@@ -11,6 +11,7 @@ Token efficiency is a design constraint: maximize signal per token without dropp
 
 1. Define purpose, trigger, inputs, outputs, and boundaries.
    - Unless already stated, ask: may Claude invoke the skill on its own, or only the user via `/<name>`? Explicit-only → `disable-model-invocation: true`.
+   - Subagents: forbid by default (add "Don't spawn subagents."); only if clearly worth it, recommend and ask.
 2. Check existing skills (`~/.claude/skills/`, `.claude/skills/`, plugins) for overlap; reuse or extend instead of duplicating.
 3. Write the smallest complete instruction set covering purpose, trigger, workflow, constraints, and completion criteria.
 4. Review each line: keep only if it changes behavior, clarifies a constraint, or prevents a realistic failure.
