@@ -124,13 +124,24 @@ alias dcd='docker compose down'
 alias dcdv='docker compose down -v'
 alias dcubl='docker compose up -d && docker compose logs -f backend'
 alias cls="printf '\33c\e[3J'"
-alias gfast='gfa && gst'
 alias ghsv='gh stack view -s'
 alias ghsp='gh stack push'
 alias ghsrb='gh stack rebase'
 alias ghsco='gh stack checkout'
 alias mountfs="~/mount-fileserver.sh"
 alias wwr="wormhole-william recv"
+
+# fetch all, then show status below a full-width marker line
+unalias gfast 2>/dev/null
+function gfast {
+  gfa || return
+  local label=" STATUS "
+  local fill=$(( ${COLUMNS:-80} - ${#label} - 3 ))
+  print
+  print -P "%F{cyan}%B━━━${label}${(l:$fill::━:)}%b%f"
+  print
+  gst
+}
 
 # send via wormhole and copy the full receive command (incl. code) to the clipboard
 unalias wws 2>/dev/null
