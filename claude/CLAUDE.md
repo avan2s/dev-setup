@@ -27,3 +27,4 @@ Grep is for text search only.
 
 - code reads by itself, comments only when absolutely needed for exported functions prefered
 - if you comment functions or methods use multiline comments (esopecially in tsdocs)
+- always ask before commiting
