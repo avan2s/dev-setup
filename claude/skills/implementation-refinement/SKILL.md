@@ -19,6 +19,7 @@ Re-evaluate independently; working code or a "finished" verdict from implementat
 - **Simplicity:** apply KISS, DRY, YAGNI pragmatically; remove dead code, pointless indirection, redundant abstractions, and code without a present purpose.
 - **Clean Code:** max. 2 parameters per function/method; group more into a named type (a local, non-exported type is fine if it improves readability).
 - **Extraction:** before extracting into a new class/service, assess its actual reusability: is there a second concrete consumer now, and if not, how likely is it that another one would realistically benefit (or is the code specific to one caller, e.g. one selective query, a helper for a single method)? Without existing or likely reuse, keep it a private method or local function, unless the responsibility is clearly distinct and it reads better extracted. Inline needless extractions.
+- **Existing utilities:** before keeping hand-written helpers (esp. string/array/object utilities), check whether an already installed dependency (e.g. es-toolkit for TypeScript) or one of our own libraries offers it; use it if it makes the code shorter and clearer. Don't add new dependencies for this.
 - **SOLID:** fix SRP/OCP/LSP/ISP/DIP violations only where it improves the actual design; SRP never justifies splitting out code that has no reuse and hurts readability.
 - **Architecture:** check responsibilities, dependencies, boundaries, and consistency with surrounding code.
 - **Scope:** stay within the focus; no speculative future-proofing.
