@@ -17,6 +17,7 @@ Re-evaluate independently; working code or a "finished" verdict from implementat
 - **Naming:** names express intent and domain meaning, not implementation details.
 - **Readability:** code is understandable without unnecessary mental effort.
 - **Simplicity:** apply KISS, DRY, YAGNI pragmatically; remove dead code, pointless indirection, redundant abstractions, and code without a present purpose.
+- **Clean Code:** max. 2 parameters per function/method; group more into a named type (a local, non-exported type is fine if it improves readability).
 - **SOLID:** fix SRP/OCP/LSP/ISP/DIP violations only where it improves the actual design.
 - **Architecture:** check responsibilities, dependencies, boundaries, and consistency with surrounding code.
 - **Scope:** stay within the focus; no speculative future-proofing.
