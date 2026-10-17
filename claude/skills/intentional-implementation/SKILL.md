@@ -10,6 +10,7 @@ description: Implement a requested code change with clear intent, minimal comple
 - Follow existing conventions and architecture unless there is a concrete reason not to.
 - Keep responsibilities clear and code easy to understand.
 - KISS/YAGNI: build only what is needed now; no speculative features, abstractions, or generalization.
+- Put regexes in well-named UPPER_CASE constants; add a short comment above only if the regex is complex.
 - Reuse existing functionality; avoid duplication without adding needless indirection.
 - Keep the change focused; don't modify unrelated code.
 - Add or update specs for changed behavior; run them.
