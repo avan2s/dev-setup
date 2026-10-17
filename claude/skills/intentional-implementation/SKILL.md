@@ -12,7 +12,7 @@ description: Implement a requested code change with clear intent, minimal comple
 - KISS/YAGNI: build only what is needed now; no speculative features, abstractions, or generalization.
 - Put regexes in well-named UPPER_CASE constants; add a short comment above only if the regex is complex.
 - Favor composition over inheritance where it is practical and keeps the code readable.
-- Reuse existing functionality; avoid duplication without adding needless indirection.
+- Reuse existing functionality; avoid duplication without adding needless indirection. DRY by default, but if behavior has a different reason to change (SRP), its own component may justify duplication.
 - Keep the change focused; don't modify unrelated code.
 - Add or update specs for changed behavior; run them.
 - Ask for confirmation before every single commit; a previous approval never covers later commits.
