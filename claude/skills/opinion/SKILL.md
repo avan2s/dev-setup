@@ -28,7 +28,7 @@ Subagents: avoid by default; use one only when the investigation is broad enough
 - Own proposal allowed if it beats the given options.
 - Criteria, by priority:
   1. Maintainability, readability, and understandability for human developers.
-  2. SOLID, especially Open/Closed and SRP; DRY; YAGNI (no speculative abstractions or generalization).
+  2. SOLID, especially Open/Closed and SRP; DRY; YAGNI (no speculative abstractions or generalization); composition over inheritance, hierarchies only where truly sensible.
   3. Effort and risk.
 - Name required or advisable refactorings with effort (S/M/L) and roughly affected files/areas.
 
