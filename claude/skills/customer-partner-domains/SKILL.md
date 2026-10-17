@@ -31,7 +31,7 @@ Create `liquibase/setup/<customer>/` XML with two changesets (`context="<custome
 ## Gathering domains (priority order)
 
 1. Real mails: per partner the last 2 mails via `extracted_documents_summary.partner_participant_id` -> `inbound_mail` -> `document_file` (`mail_file_id`); blob name = `md5_checksum` without dashes + `_` + `filename`. Prefer summaries whose `user_task` status is COMPLETED, then newest. Also select the mail's `extracted_documents_summary.user_task_id`s (`string_agg(DISTINCT ...)`; a mail may have several).
-   - Create gitignored `backend/test/resources/tmp-mails-blob.env` (`AZURE_STORAGE_CONNECTION_STRING`, `AZURE_STORAGE_CONTAINER`) and let the user fill it.
+   - Create gitignored `backend/test/resources/tmp-mails-blob.secret.env` (secrets files always end in `.secret.env`, which the repo `.gitignore` covers) (`AZURE_STORAGE_CONNECTION_STRING`, `AZURE_STORAGE_CONTAINER`) and let the user fill it.
    - Back up and empty `backend/test/resources/tmp-mails/`; download read-only (`downloadToFile` only; production blob, never write or delete) as `<PARTNERNAME>__<blobname>`.
    - Run `npm run test:tmp-mails:domains` in `backend` (redirect to a file) and read each partner's `stored` domains. Ignore the customer's own and system sender domains, social media, Adobe, tracking and mail-provider domains.
    - Assign a domain to the partner by its label, falling back to the name: accept it when it fits; when the mail's real sender (also inside forwarded mails) belongs to another partner or company, it is a conflict, not an assignment.
