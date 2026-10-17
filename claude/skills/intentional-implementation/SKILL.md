@@ -11,6 +11,7 @@ description: Implement a requested code change with clear intent, minimal comple
 - Keep responsibilities clear and code easy to understand.
 - KISS/YAGNI: build only what is needed now; no speculative features, abstractions, or generalization.
 - Put regexes in well-named UPPER_CASE constants; add a short comment above only if the regex is complex.
+- Favor composition over inheritance where it is practical and keeps the code readable.
 - Reuse existing functionality; avoid duplication without adding needless indirection.
 - Keep the change focused; don't modify unrelated code.
 - Add or update specs for changed behavior; run them.

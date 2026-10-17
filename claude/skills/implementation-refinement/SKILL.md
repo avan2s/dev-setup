@@ -22,6 +22,7 @@ Re-evaluate independently; working code or a "finished" verdict from implementat
 - **Extraction:** before extracting into a new class/service, assess its actual reusability: is there a second concrete consumer now, and if not, how likely is it that another one would realistically benefit (or is the code specific to one caller, e.g. one selective query, a helper for a single method)? Without existing or likely reuse, keep it a private method or local function, unless the responsibility is clearly distinct and it reads better extracted. Inline needless extractions.
 - **Existing utilities:** before keeping hand-written helpers (esp. string/array/object utilities), check whether an already installed dependency (e.g. es-toolkit for TypeScript) or one of our own libraries offers it; use it if it makes the code shorter and clearer. Don't add new dependencies for this.
 - **SOLID:** fix SRP/OCP/LSP/ISP/DIP violations only where it improves the actual design; SRP never justifies splitting out code that has no reuse and hurts readability.
+- **Composition:** favor composition over inheritance where it is practical and keeps the code readable.
 - **Architecture:** check responsibilities, dependencies, boundaries, and consistency with surrounding code.
 - **Scope:** stay within the focus; no speculative future-proofing.
 - Apply justified improvements directly; don't refactor for stylistic preference or theoretical purity.
