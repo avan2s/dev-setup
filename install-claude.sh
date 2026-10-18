@@ -3,7 +3,7 @@
 # Installs the Claude Code environment this repo configures:
 #   - the language servers the enabled LSP plugins spawn from PATH
 #   - symlinks ~/.claude/{settings.json,CLAUDE.md,statusline-command.sh} into this repo
-#   - symlinks each claude/skills/<name> into ~/.claude/skills/
+#   - symlinks ~/.claude/skills to claude/skills (migrating an existing skills dir)
 #
 # The plugins themselves are declared in claude/settings.json
 # (extraKnownMarketplaces + enabledPlugins) and install on next start.
@@ -64,12 +64,27 @@ link_config() {
   ln -sfn "$src" "$dest"
 }
 
-link_skills() {
-  local dir
-  mkdir -p "$CLAUDE_DIR/skills"
-  for dir in "$REPO_DIR"/claude/skills/*/; do
-    link_config "skills/$(basename "$dir")"
+migrate_skills_dir() {
+  local dest="$CLAUDE_DIR/skills" entry name
+  info "Migrating ~/.claude/skills into the repo"
+  for entry in "$dest"/* "$dest"/.[!.]*; do
+    [ -e "$entry" ] || [ -L "$entry" ] || continue
+    name="$(basename "$entry")"
+    if [ -L "$entry" ]; then
+      rm "$entry"
+    elif [ ! -e "$REPO_DIR/claude/skills/$name" ]; then
+      mv "$entry" "$REPO_DIR/claude/skills/$name"
+    fi
   done
+  rmdir "$dest" 2>/dev/null || true
+}
+
+link_skills() {
+  mkdir -p "$REPO_DIR/claude/skills"
+  if [ -d "$CLAUDE_DIR/skills" ] && [ ! -L "$CLAUDE_DIR/skills" ]; then
+    migrate_skills_dir
+  fi
+  link_config skills
 }
 
 main() {
