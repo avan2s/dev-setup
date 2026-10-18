@@ -34,7 +34,7 @@ Pick the smallest change with the biggest readability gain; often extracting or 
 - Runtime behavior stays identical: same results, side effects, errors, ordering, and relevant performance.
 - Propose instead of apply when a public API contract would change; name affected consumers.
 - Update affected callers, types, and specs; run relevant specs.
-- Ask before every commit; a previous approval never covers later commits.
+- Never commit on your own; ask every time, a previous approval never covers later commits.
 
 ## Done when
 
