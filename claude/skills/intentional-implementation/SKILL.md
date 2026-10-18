@@ -13,6 +13,7 @@ description: Implement a requested code change with clear intent, minimal comple
 - Put regexes in well-named UPPER_CASE constants; add a short comment above only if the regex is complex.
 - Favor composition over inheritance where it is practical and keeps the code readable.
 - Reuse existing functionality; avoid duplication without adding needless indirection. DRY by default, but if behavior has a different reason to change (SRP), its own component may justify duplication.
+- New services/classes: aim for high cohesion. Before creating one, check whether its methods fit an existing service that still has a clear single responsibility, and extend that instead (no near-duplicates like `AiProcessingSettingsService` + `DocumentAiProcessingSettingsService`). Avoid a farm of tiny services for small scopes. Implement first; just keep this in mind, refinement checks it thoroughly.
 - Keep the change focused; don't modify unrelated code.
 - Add or update specs for changed behavior; run them.
 - Ask for confirmation before every single commit; a previous approval never covers later commits.
