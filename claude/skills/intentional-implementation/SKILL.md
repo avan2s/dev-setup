@@ -14,6 +14,7 @@ description: Implement a requested code change with clear intent, minimal comple
 - Favor composition over inheritance where it is practical and keeps the code readable.
 - Reuse existing functionality; avoid duplication without adding needless indirection. DRY by default, but if behavior has a different reason to change (SRP), its own component may justify duplication.
 - New services/classes: aim for high cohesion. Before creating one, check whether its methods fit an existing service that still has a clear single responsibility, and extend that instead (no near-duplicates like `AiProcessingSettingsService` + `DocumentAiProcessingSettingsService`). Avoid a farm of tiny services for small scopes. Implement first; just keep this in mind, refinement checks it thoroughly.
+- Frontend: reuse existing components and use the components/behavior of the UI framework in use (e.g. Vuetify) instead of custom CSS. Add custom styles only when absolutely necessary, and then in a framework-conformant way (theme, props, utility classes, design tokens).
 - Keep the change focused; don't modify unrelated code.
 - Add or update specs for changed behavior; run them.
 - Ask for confirmation before every single commit; a previous approval never covers later commits.
