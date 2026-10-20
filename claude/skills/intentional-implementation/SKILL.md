@@ -10,6 +10,7 @@ description: Implement a requested code change with clear intent, minimal comple
 - Follow existing conventions and architecture unless there is a concrete reason not to.
 - Keep responsibilities clear and code easy to understand.
 - KISS/YAGNI: build only what is needed now; no speculative features, abstractions, or generalization.
+- Typing: precise types; no convenience `as` casts. Truly unknown → `unknown` + narrowing, never `any`.
 - Put regexes in well-named UPPER_CASE constants; add a short comment above only if the regex is complex.
 - Favor composition over inheritance where it is practical and keeps the code readable.
 - Reuse existing functionality; avoid duplication without adding needless indirection. DRY by default, but if behavior has a different reason to change (SRP), its own component may justify duplication.
