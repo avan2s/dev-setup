@@ -29,6 +29,7 @@ Re-evaluate independently; working code or a "finished" verdict from implementat
 - **Architecture:** check responsibilities, dependencies, boundaries, and consistency with surrounding code.
 - **Scope:** stay within the focus; no speculative future-proofing.
 - Apply justified improvements directly; don't refactor for stylistic preference or theoretical purity.
+- Delegate small, well-defined tasks (e.g. searching for overlapping services or existing utilities, mechanical renames/inlines, running specs) to subagents; give each a precise brief and review its result. Keep design judgments yourself. Max. 3 subagents per run; tasks of ≤3 tool calls do yourself. Subagents only with `model: "sonnet"`, never `fork` (it ignores the model and runs on Opus).
 - Ask for confirmation before every single commit; a previous approval never covers later commits.
 
 ## Check the whole change

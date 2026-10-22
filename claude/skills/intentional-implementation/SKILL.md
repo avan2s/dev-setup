@@ -17,6 +17,7 @@ description: Implement a requested code change with clear intent, minimal comple
 - New services/classes: aim for high cohesion. Before creating one, check whether its methods fit an existing service that still has a clear single responsibility, and extend that instead (no near-duplicates like `AiProcessingSettingsService` + `DocumentAiProcessingSettingsService`). Avoid a farm of tiny services for small scopes. Implement first; just keep this in mind, refinement checks it thoroughly.
 - Frontend: reuse existing components and use the components/behavior of the UI framework in use (e.g. Vuetify) instead of custom CSS. Add custom styles only when absolutely necessary, and then in a framework-conformant way (theme, props, utility classes, design tokens).
 - Keep the change focused; don't modify unrelated code.
+- Delegate small, well-defined tasks (e.g. lookups, mechanical edits, writing/running specs) to subagents; give each a precise brief and review its result. Keep design decisions yourself. Max. 3 subagents per run; tasks of ≤3 tool calls do yourself. Subagents only with `model: "sonnet"`, never `fork` (it ignores the model and runs on Opus).
 - Add or update specs for changed behavior; run them.
 - Ask for confirmation before every single commit; a previous approval never covers later commits.
 
