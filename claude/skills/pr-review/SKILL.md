@@ -17,8 +17,9 @@ A leading number (or `#number`, PR URL) is the PR; the rest are optional accepta
 3. Read the diff via `gh pr diff [number]`. For surrounding code, if the PR head isn't checked out, read it via `git fetch origin pull/<number>/head` and `git show FETCH_HEAD:<path>`, not the working tree.
 4. Review the diff using the "Refine" and "Check the whole change" criteria from `~/.claude/skills/implementation-refinement/SKILL.md`; focus on code introduced by the PR (duplication, unused or dead code, needless complexity).
 5. If acceptance criteria are given, mark each as met, partly met, or not met, with a brief reason.
-6. Check that specs cover new or changed behavior and acceptance criteria; name missing cases.
-7. Flag clear bugs you notice, without doing a full bug hunt.
+6. Check that specs cover new or changed behavior and acceptance criteria; name missing cases. Check specs against `~/.claude/skills/implementation-refinement/references/specs.md`.
+7. If the diff touches Liquibase changelogs/changesets or SQL files, read `references/database.md` and apply it.
+8. Flag clear bugs you notice, without doing a full bug hunt.
 
 ## Rules
 

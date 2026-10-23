@@ -10,8 +10,7 @@ Use the `LSP` tool (not grep) for
 
 # specs
 
-- in specs use fn.name if supported instead in case of rename
-- for unit test use createUnitTest helper function if available - define mocks in the mocks section in case you have to use oprisma mock or mocks, which you want to access in multiple specs, otherwise you could use also getMocks helper function if available
+- before writing, changing or reviewing specs, read `~/.claude/skills/implementation-refinement/references/specs.md` and follow it
 
 # database migration liquibase
 

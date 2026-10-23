@@ -42,4 +42,5 @@ Re-evaluate independently; working code or a "finished" verdict from implementat
 ## Done when
 
 - Behavior is unchanged; relevant specs pass and match refactorings.
+- New or changed specs were checked against `references/specs.md` (read it first if specs are in the change) and fixed where they deviate.
 - Report only remaining material concerns, or state briefly that refinement is complete.

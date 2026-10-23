@@ -18,7 +18,7 @@ description: Implement a requested code change with clear intent, minimal comple
 - Frontend: reuse existing components and use the components/behavior of the UI framework in use (e.g. Vuetify) instead of custom CSS. Add custom styles only when absolutely necessary, and then in a framework-conformant way (theme, props, utility classes, design tokens).
 - Keep the change focused; don't modify unrelated code.
 - Delegate small, well-defined tasks (e.g. lookups, mechanical edits, writing/running specs) to subagents; give each a precise brief and review its result. Keep design decisions yourself. Max. 3 subagents per run; tasks of ≤3 tool calls do yourself. Subagents only with `model: "sonnet"`, never `fork` (it ignores the model and runs on Opus).
-- Add or update specs for changed behavior; run them.
+- Add or update specs for changed behavior; before writing or changing any spec, read `~/.claude/skills/implementation-refinement/references/specs.md` and follow it; run them.
 - Ask for confirmation before every single commit; a previous approval never covers later commits.
 
 ## Done when
