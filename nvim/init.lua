@@ -1,4 +1,5 @@
 -- docs:  https://lazy.folke.io/installation
+--
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -24,8 +25,6 @@ vim.g.maplocalleader = "\\"
 
 -- options
 local opt = vim.opt -- for conciseness
--- enable 24-bit truecolor so colorschemes render sharply (not dull 256-color)
-opt.termguicolors = true
 -- clipboard
 opt.clipboard:append("unnamedplus")
 -- line numbers
