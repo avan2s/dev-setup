@@ -39,6 +39,7 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": null,
       "ctrl-j": ["workspace::SendKeystrokes", "escape"]
+
       // "space e": ["workspace::SendKeystrokes", ":e  "]
       // "j k": ["workspace::SendKeystrokes", "escape"]
     }
@@ -50,13 +51,14 @@
       // Put key bindings here if you want them to work in normal & visual mode.
       "tab": "tab_switcher::ToggleAll",
       "space f f": "file_finder::Toggle",
-      "space f s": "project_symbols::Toggle",
+      "space s S": "project_symbols::Toggle",
       "space b d": "pane::CloseActiveItem",
       "space b O": "workspace::CloseInactiveTabsAndPanes",
-      "space b o": "pane::CloseInactiveItems",
+      "space b o": "pane::CloseOtherItems",
       "space b p": "pane::TogglePinTab",
-      "space e e": "project_panel::ToggleFocus",
-      "space g e": "git_panel::ToggleFocus",
+      "space e": "project_panel::ToggleFocus",
+      "space g g": "git_panel::ToggleFocus",
+      "space c a": "editor::ToggleCodeActions",
       "ctrl-h": ["workspace::SendKeystrokes", "ctrl-w h"],
       "ctrl-k": ["workspace::SendKeystrokes", "ctrl-w k"],
       "ctrl-j": ["workspace::SendKeystrokes", "ctrl-w j"],
@@ -73,11 +75,13 @@
       "g l": "go_to_line::Toggle",
       "space l c": "vim::InsertAtPrevious",
       "space u u": "editor::FindAllReferences",
-      "space o o": "outline::Toggle",
+      "g r": "editor::FindAllReferences",
+      "space s s": "outline::Toggle",
       "alt-k": "editor::ExpandExcerptsUp",
       "alt-j": "editor::ExpandExcerptsDown",
       // "g r": "vim::PushReplaceWithRegister"
-      "g r": ["workspace::SendKeystrokes", "g R"]
+      // "g r": ["workspace::SendKeystrokes", "g R"],
+      "space u L": "editor::ToggleRelativeLineNumbers"
     }
   },
   {
@@ -91,8 +95,8 @@
       "c": ["workspace::SendKeystrokes", "\" _ c"],
       "space w l": "pane::SplitRight",
       "space c r": "editor::Rename",
-      "space o C": "git::Diff",
-      "space o c": "editor::ExpandAllDiffHunks",
+      "space o c": "git::Diff",
+      "space o C": "editor::ExpandAllDiffHunks",
       "ctrl-c": ["workspace::SendKeystrokes", "escape"],
       "space g h d": "editor::ToggleSelectedDiffHunks",
       "space g h s": "git::ToggleStaged",
@@ -104,7 +108,8 @@
       "space s r": "buffer_search::DeployReplace",
       "space c o": "editor::OrganizeImports",
       "] h": "editor::GoToHunk",
-      "[ h": "editor::GoToPreviousHunk"
+      "[ h": "editor::GoToPreviousHunk",
+      "space g h b": "editor::BlameHover"
       // "fn-r": "search::ReplaceNext"
       // in order to move the middle window and merge it to the right
       // "": "pane::JoinIntoNext"
@@ -127,13 +132,13 @@
       // Put key bindings here (in addition to the context above) if you want them to
       // work when no editor exists.
       "space f": "file_finder::Toggle",
-      "space e e": "project_panel::ToggleFocus"
+      "space e": "project_panel::ToggleFocus"
     }
   },
   {
     "context": "ProjectPanel && !editing",
     "bindings": {
-      "space e e": "workspace::ToggleLeftDock",
+      "space e": "workspace::ToggleLeftDock",
       "A": "project_panel::NewDirectory",
       "a": "project_panel::NewFile",
       "d": "project_panel::Delete",
@@ -155,7 +160,8 @@
       "alt-l": "pane::ActivateNextItem",
       "alt-k": "terminal::ScrollLineUp",
       "alt-j": "terminal::ScrollLineDown",
-      "ctrl-;": "terminal::ToggleViMode"
+      "ctrl-;": "terminal::ToggleViMode",
+      "j k": "terminal::ToggleViMode"
     }
   },
   // in git diff editor
@@ -209,6 +215,24 @@
     "bindings": {
       // while inside a multibuffer to go back to the search panel on the top it will focus the search
       "ctrl-k": "search::FocusSearch"
+    }
+  },
+  {
+    "context": "DebugPanel > DebugSessionItem",
+    "bindings": {
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "alt-l": "pane::ActivateNextItem",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "alt-h": "pane::ActivatePreviousItem"
+    }
+  },
+  {
+    "context": "DebugPanel > DebugSessionItem > DebugConsole > Editor",
+    "bindings": {
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "alt-l": "pane::ActivateNextItem",
+      "alt-h": "pane::ActivatePreviousItem"
     }
   }
 ]
