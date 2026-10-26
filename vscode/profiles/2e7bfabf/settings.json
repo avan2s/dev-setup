@@ -77,12 +77,13 @@
   "plantuml.server": "http://localhost:9393",
   "prisma.showPrismaDataPlatformNotification": false,
   "scm.experimental.showHistoryGraph": true,
-  "typescript.inlayHints.enumMemberValues.enabled": true,
-  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-  "typescript.inlayHints.parameterNames.enabled": "all",
-  "typescript.inlayHints.parameterTypes.enabled": true,
-  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
-  "typescript.inlayHints.variableTypes.enabled": true,
+  // "js/ts.inlayHints.enumMemberValues.enabled": true,
+  // "js/ts.inlayHints.functionLikeReturnTypes.enabled": true,
+  // "js/ts.inlayHints.parameterNames.enabled": "all",
+  "js/ts.inlayHints.parameterNames.enabled": "literals",
+  "js/ts.inlayHints.parameterTypes.enabled": true,
+  // "js/ts.inlayHints.propertyDeclarationTypes.enabled": true,
+  // "js/ts.inlayHints.variableTypes.enabled": true,
   "codeium.enableConfig": {
     "*": true,
     "xml": true,
@@ -90,7 +91,7 @@
   "git.blame.editorDecoration.enabled": true,
   "git.blame.statusBarItem.enabled": true,
   "js/ts.updateImportsOnFileMove.enabled": "always",
-  "workbench.colorTheme": "JetBrains New UI Dark Theme",
+  "workbench.colorTheme": "One Dark Pro",
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml",
   },
@@ -136,6 +137,14 @@
   "terminal.integrated.defaultProfile.osx": "tmux",
   "claudeCode.selectedModel": "default",
   "chat.disableAIFeatures": true,
+  // "yaml.disableSchemaDetection": [
+  //   "**/.github/workflows/*.yml",
+  //   "**/.github/workflows/*.yaml",
+  //   "**/.gitea/workflows/*.yml",
+  //   "**/.gitea/workflows/*.yaml",
+  //   "**/.forgejo/workflows/*.yml",
+  //   "**/.forgejo/workflows/*.yaml"
+  // ],
   // "typescript.preferences.preferTypeOnlyAutoImports": true
   // "editor.cursorStyle": "block"
   // "action-tracker.logFolderPath": "/Users/andreas.vanhelden/Library/Application Support/Code/logs",

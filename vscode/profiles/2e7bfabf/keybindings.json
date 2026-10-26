@@ -534,20 +534,32 @@
         "when": "editorTextFocus && neovim.init && neovim.mode == 'normal'"
     },
     {
-        "key": "] d",
-        "command": "editor.action.marker.next",
-        "when": "editorFocus && editorTextFocus && neovim.init && neovim.mode != 'insert'"
+        "key": "g p",
+        "command": "vscode-neovim.send",
+        "args": "gp",
+        "when": "editorTextFocus && neovim.init && neovim.mode == 'normal'"
     },
     {
-        "key": "[ d",
-        "command": "editor.action.marker.prev",
-        "when": "editorFocus && editorTextFocus && neovim.init && neovim.mode != 'insert'"
+        "key": "g s",
+        "command": "vscode-neovim.send",
+        "args": "gs",
+        "when": "editorTextFocus && neovim.init && neovim.mode == 'normal'"
     },
-    {
-        "key": "space shift+e p",
-        "command": "editor.action.marker.prevInFiles",
-        "when": "editorFocus && editorTextFocus && neovim.init && neovim.mode != 'insert'"
-    },
+    // {
+    //     "key": "] d",
+    //     "command": "editor.action.marker.next",
+    //     "when": "editorFocus && editorTextFocus && neovim.init && neovim.mode == 'normal'"
+    // },
+    // {
+    //     "key": "[ d",
+    //     "command": "editor.action.marker.prev",
+    //     "when": "editorFocus && editorTextFocus && neovim.init && neovim.mode == 'normal'"
+    // },
+    // {
+    //     "key": "space shift+e p",
+    //     "command": "editor.action.marker.prevInFiles",
+    //     "when": "editorFocus && editorTextFocus && neovim.init && neovim.mode != 'insert'"
+    // },
     {
         "key": "space c r",
         "command": "editor.action.rename",
