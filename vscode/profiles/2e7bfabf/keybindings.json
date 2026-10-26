@@ -546,6 +546,12 @@
         "when": "editorTextFocus && neovim.init && (neovim.mode == 'normal' || neovim.mode == 'visual')"
     },
     {
+        "key": "g c",
+        "command": "vscode-neovim.send",
+        "args": "gc",
+        "when": "editorTextFocus && neovim.init && (neovim.mode == 'normal' || neovim.mode == 'visual')"
+    },
+    {
         "key": "] d",
         "command": "editor.action.marker.next",
         "when": "editorTextFocus && neovim.init && neovim.mode == 'normal'"
