@@ -144,7 +144,9 @@ require("lazy").setup({
 			version = false,
 			config = function()
 				-- Existing operators configuration
-				require("mini.operators").setup()
+				require("mini.operators").setup({
+					replace = { prefix = "gp" },
+				})
 
 				-- New surround configuration
 				require("mini.surround").setup({
