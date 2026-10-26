@@ -545,16 +545,16 @@
         "args": "gs",
         "when": "editorTextFocus && neovim.init && (neovim.mode == 'normal' || neovim.mode == 'visual')"
     },
-    // {
-    //     "key": "] d",
-    //     "command": "editor.action.marker.next",
-    //     "when": "editorFocus && editorTextFocus && neovim.init && neovim.mode == 'normal'"
-    // },
-    // {
-    //     "key": "[ d",
-    //     "command": "editor.action.marker.prev",
-    //     "when": "editorFocus && editorTextFocus && neovim.init && neovim.mode == 'normal'"
-    // },
+    {
+        "key": "] d",
+        "command": "editor.action.marker.next",
+        "when": "editorTextFocus && neovim.init && neovim.mode == 'normal'"
+    },
+    {
+        "key": "[ d",
+        "command": "editor.action.marker.prev",
+        "when": "editorTextFocus && neovim.init && neovim.mode == 'normal'"
+    },
     // {
     //     "key": "space shift+e p",
     //     "command": "editor.action.marker.prevInFiles",
