@@ -543,7 +543,7 @@
         "key": "g s",
         "command": "vscode-neovim.send",
         "args": "gs",
-        "when": "editorTextFocus && neovim.init && neovim.mode == 'normal'"
+        "when": "editorTextFocus && neovim.init && (neovim.mode == 'normal' || neovim.mode == 'visual')"
     },
     // {
     //     "key": "] d",
