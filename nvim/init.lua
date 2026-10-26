@@ -131,6 +131,11 @@ if not vim.g.vscode then
 	)
 end
 
+if vim.g.vscode then
+	keymap.set("n", "j", "gj", { remap = true, desc = "Move down skipping VSCode folds" })
+	keymap.set("n", "k", "gk", { remap = true, desc = "Move up skipping VSCode folds" })
+end
+
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
