@@ -337,6 +337,19 @@
         "command": "list.selectAndPreserveFocus",
         "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && listFocus",
     },
+    // git.clean resolves its target from the active editor, so open the focused file first
+    {
+        "key": "shift+x",
+        "command": "runCommands",
+        "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && listFocus && !inputFocus",
+        "args": {
+            "commands": [
+                "list.selectAndPreserveFocus",
+                "git.refresh",
+                "git.clean"
+            ]
+        }
+    },
     {
         "key": "alt+]",
         "command": "editor.gotoNextFold",
