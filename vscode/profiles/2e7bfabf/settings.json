@@ -46,6 +46,10 @@
   "workbench.startupEditor": "none",
   "[typescript]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "breadcrumbs.showProperties": false,
+    "breadcrumbs.showFields": false,
+    "breadcrumbs.showVariables": false,
+    "breadcrumbs.symbolSortOrder": "type",
   },
   "hediet.vscode-drawio.resizeImages": null,
   "terminal.integrated.fontSize": 14,

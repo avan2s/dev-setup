@@ -495,17 +495,30 @@
         "command": "workbench.action.navigateToLastEditLocation"
     },
     {
-        "key": "space o o",
-        // "command": "workbench.action.gotoSymbol",
-        "command": "workbench.action.quickOpen",
-        "args": "@:",
+        "key": "space o m",
+        "command": "breadcrumbs.focusAndSelect",
         "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
+    },
+    {
+        "key": "l",
+        "command": "list.expand",
+        "when": "listFocus && !inputFocus && breadcrumbsActive"
+    },
+    {
+        "key": "ctrl+c",
+        "command": "list.closeFind",
+        "when": "treeFindOpen"
+    },
+    {
+        "key": "escape",
+        "command": "list.closeFind",
+        "when": "treeFindOpen && breadcrumbsActive"
     },
     {
         "key": "space s s",
         // "command": "workbench.action.gotoSymbol",
         "command": "workbench.action.quickOpen",
-        "args": "@",
+        "args": "@:",
         "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
     },
     {
