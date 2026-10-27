@@ -318,7 +318,7 @@
         "args": {
             "commands": [
                 {
-                    "command": "workbench.view.scm"
+                    "command": "workbench.scm.action.focusNextResourceGroup"
                 },
                 {
                     "command": "list.focusDown"
