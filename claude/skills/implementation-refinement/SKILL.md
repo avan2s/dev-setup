@@ -25,6 +25,7 @@ Re-evaluate independently; working code or a "finished" verdict from implementat
 - **Existing utilities:** before keeping hand-written helpers (esp. string/array/object utilities), check whether an already installed dependency (e.g. es-toolkit for TypeScript) or one of our own libraries offers it; use it if it makes the code shorter and clearer. Don't add new dependencies for this.
 - **Frontend reuse:** check that existing components are reused and that the UI framework's (e.g. Vuetify) components, props, and utility classes are used instead of custom CSS. Replace custom styling with framework features; keep custom styles only where absolutely necessary and framework-conformant (theme, tokens).
 - **SOLID:** fix SRP/OCP/LSP/ISP/DIP violations only where it improves the actual design; SRP never justifies splitting out code that has no reuse and hurts readability.
+- **Liquibase:** if the change touches Liquibase changelogs, changesets, or SQL files, read `references/database.md` and apply it.
 - **Composition:** favor composition over inheritance where it is practical and keeps the code readable.
 - **Architecture:** check responsibilities, dependencies, boundaries, and consistency with surrounding code.
 - **Scope:** stay within the focus; no speculative future-proofing.

@@ -18,8 +18,8 @@ Subagents: avoid by default; use one only when the investigation is broad enough
 - Inspect the relevant code to ground the opinion in the actual architecture, not assumptions.
 - Identify components that already own the responsibility; reuse them (DRY). Propose new components only where no existing one fits.
 - Resolve open questions yourself from domain logic and senior-developer judgment. Ask domain questions only when the topic is deep and the answer materially changes the recommendation.
-- If DB migrations are involved, check whether the affected changesets exist only on the current branch (not yet in the default branch, `develop` or `main`, e.g. `git log <default>..HEAD -- <changelog-path>`):
-  - Branch-only → changesets may still be edited freely.
+- If DB migrations are involved, read `~/.claude/skills/implementation-refinement/references/database.md` and apply it; check whether the affected changesets are already in the default branch (`develop` or `main`, e.g. `git log <default>..HEAD -- <changelog-path>`); on the own branch or in an unmerged part of a gh stack they are not:
+  - Not yet in default branch → changesets may still be edited freely.
   - Already in default branch → assume productive existing data; require new changesets and data migration.
 
 ## Evaluate

@@ -18,7 +18,7 @@ A leading number (or `#number`, PR URL) is the PR; the rest are optional accepta
 4. Review the diff using the "Refine" and "Check the whole change" criteria from `~/.claude/skills/implementation-refinement/SKILL.md`; focus on code introduced by the PR (duplication, unused or dead code, needless complexity).
 5. If acceptance criteria are given, mark each as met, partly met, or not met, with a brief reason.
 6. Check that specs cover new or changed behavior and acceptance criteria; name missing cases. Check specs against `~/.claude/skills/implementation-refinement/references/specs.md`.
-7. If the diff touches Liquibase changelogs/changesets or SQL files, read `references/database.md` and apply it.
+7. If the diff touches Liquibase changelogs/changesets or SQL files, read `~/.claude/skills/implementation-refinement/references/database.md` and apply it.
 8. Flag clear bugs you notice, without doing a full bug hunt.
 
 ## Rules

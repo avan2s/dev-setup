@@ -23,6 +23,8 @@ Create `liquibase/setup/<customer>/` XML with two changesets (`context="<custome
 
 ## SQL rules
 
+- Follow `~/.claude/skills/implementation-refinement/references/database.md` for the changelog XML.
+
 - `VALUES (partner_name, domain_name)` list, sorted by partner then domain; resolve participants by NAME, never by id.
 - Insert `domain` with `ON CONFLICT (name) DO NOTHING`, then `participant_to_domain` with `ON CONFLICT (participant_id, domain_id) DO NOTHING`; `created_by = 'SYSTEM'`.
 - Inner join on the participant: missing partners are skipped, never an error; nothing is overwritten or deleted. Must be idempotent and safe per environment (qa and pro may differ).
