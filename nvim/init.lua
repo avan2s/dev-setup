@@ -144,6 +144,30 @@ if vim.g.vscode then
 	end
 	keymap.set("x", "j", select_skipping_folds("down"), { desc = "Select down skipping VSCode folds" })
 	keymap.set("x", "k", select_skipping_folds("up"), { desc = "Select up skipping VSCode folds" })
+
+	vim.api.nvim_create_user_command("GitResetHunk", function()
+		local path = require("vscode").eval("return vscode.window.activeTextEditor.document.uri.fsPath")
+		local staged = vim.fn.systemlist({ "git", "-C", vim.fs.dirname(path), "show", ":./" .. vim.fs.basename(path) })
+		if vim.v.shell_error ~= 0 then
+			return
+		end
+		local current = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+		local hunks = vim.text.diff(table.concat(staged, "\n") .. "\n", table.concat(current, "\n") .. "\n", {
+			result_type = "indices",
+		})
+		local first, last = vim.fn.line("v"), vim.fn.line(".")
+		first, last = math.min(first, last), math.max(first, last)
+		for i = #hunks, 1, -1 do
+			local start_a, count_a, start_b, count_b = unpack(hunks[i])
+			local from = count_b == 0 and start_b or start_b - 1
+			local top = count_b == 0 and from or from + 1
+			if top <= last and from + math.max(count_b, 1) >= first then
+				vim.api.nvim_buf_set_lines(0, from, from + count_b, false, vim.list_slice(staged, start_a, start_a + count_a - 1))
+				vim.api.nvim_win_set_cursor(0, { math.min(from + 1, vim.api.nvim_buf_line_count(0)), 0 })
+			end
+		end
+		vim.api.nvim_feedkeys(vim.keycode("<Esc>"), "n", false)
+	end, { desc = "Reset git hunks under cursor or selection" })
 end
 
 -- Setup lazy.nvim

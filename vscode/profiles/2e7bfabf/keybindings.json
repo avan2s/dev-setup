@@ -531,6 +531,17 @@
         "command": "workbench.action.openEditors"
     },
     {
+        "key": "space g h r",
+        "command": "vscode-neovim.lua",
+        "args": "vim.cmd.GitResetHunk()",
+        "when": "editorTextFocus && neovim.init && (neovim.mode == 'normal' || neovim.mode == 'visual')"
+    },
+    {
+        "key": "space g h shift+r",
+        "command": "git.clean",
+        "when": "editorTextFocus && neovim.init && neovim.mode == 'normal'"
+    },
+    {
         "key": "space g i",
         "command": "editor.action.goToImplementation",
         "when": "editorHasReferenceProvider && editorTextFocus && neovim.init && neovim.mode != 'insert'"
