@@ -489,6 +489,17 @@
         "command": "search.focus.previousInputBox",
         "when": "searchViewletVisible && (inputBoxFocus || searchViewletFocus && listFocus)"
     },
+    // search results: replace like grug-far in lazyvim (localleader \)
+    {
+        "key": "\\ r",
+        "command": "search.action.replaceAll",
+        "when": "searchViewletFocus && listFocus && replaceActive"
+    },
+    {
+        "key": "\\ n",
+        "command": "search.action.replace",
+        "when": "searchViewletFocus && listFocus && replaceActive && matchFocus"
+    },
     {
         "key": "space r r",
         "command": "workbench.action.replaceInFiles",
