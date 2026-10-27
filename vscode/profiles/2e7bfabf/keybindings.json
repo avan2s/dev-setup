@@ -299,11 +299,6 @@
         "command": "git.openFile",
         "when": "editorFocus && isInDiffEditor && neovim.mode!=insert && !findWidgetVisible && !replaceWidgetVisible"
     },
-    {
-        "key": "space g r s",
-        "command": "git.clean",
-        "when": "editorFocus && neovim.mode!=insert && !findWidgetVisible && !replaceWidgetVisible"
-    },
     // open git view
     {
         "key": "ctrl+shift+g",
@@ -338,6 +333,7 @@
         "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && listFocus",
     },
     // git.clean resolves its target from the active editor, so open the focused file first
+    // and wait for the diff editor to become active via git.refresh (twice as safety margin)
     {
         "key": "shift+x",
         "command": "runCommands",
@@ -345,6 +341,7 @@
         "args": {
             "commands": [
                 "list.selectAndPreserveFocus",
+                "git.refresh",
                 "git.refresh",
                 "git.clean"
             ]
