@@ -150,12 +150,12 @@
     {
         "key": "space w x o",
         "command": "workbench.action.closeOtherEditors",
-        "when": "editorFocus && neovim.init && neovim.mode != 'insert'"
+        "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
     },
     {
         "key": "space b o",
         "command": "workbench.action.closeOtherEditors",
-        "when": "editorFocus && neovim.init && neovim.mode != 'insert'"
+        "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
     },
     // window - terminal navigation
     {
@@ -533,7 +533,7 @@
     {
         "key": "space g i",
         "command": "editor.action.goToImplementation",
-        "when": "editorHasReferenceProvider && neovim.init && neovim.mode != 'insert'"
+        "when": "editorHasReferenceProvider && editorTextFocus && neovim.init && neovim.mode != 'insert'"
     },
     {
         "key": "g shift+i",
