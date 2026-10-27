@@ -629,6 +629,16 @@
         "command": "workbench.action.compareEditor.previousChange",
         "when": "textCompareEditorVisible && editorTextFocus && neovim.init && neovim.mode!='insert'"
     },
+    {
+        "key": "] h",
+        "command": "workbench.action.editor.nextChange",
+        "when": "!textCompareEditorVisible && editorTextFocus && neovim.init && neovim.mode!='insert'"
+    },
+    {
+        "key": "[ h",
+        "command": "workbench.action.editor.previousChange",
+        "when": "!textCompareEditorVisible && editorTextFocus && neovim.init && neovim.mode!='insert'"
+    },
     // OPEN CHANGES / DIFF EDITOR
     {
         "key": "ctrl+h",
