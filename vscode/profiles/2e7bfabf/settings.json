@@ -135,6 +135,7 @@
     "path": "/bin/zsh",
   },
   "terminal.integrated.defaultProfile.osx": "tmux",
+  "terminal.integrated.environmentChangesIndicator": "off",
   "claudeCode.selectedModel": "default",
   "chat.disableAIFeatures": true,
   // "yaml.disableSchemaDetection": [
