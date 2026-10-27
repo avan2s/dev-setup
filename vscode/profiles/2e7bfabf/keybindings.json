@@ -343,7 +343,8 @@
                 "list.selectAndPreserveFocus",
                 "git.refresh",
                 "git.refresh",
-                "git.clean"
+                "git.clean",
+                "workbench.action.closeActiveEditor"
             ]
         }
     },
