@@ -155,6 +155,7 @@ if vim.g.vscode then
 		local hunks = vim.text.diff(table.concat(staged, "\n") .. "\n", table.concat(current, "\n") .. "\n", {
 			result_type = "indices",
 		})
+		local visual = vim.fn.mode():match("[vV\22]") ~= nil
 		local first, last = vim.fn.line("v"), vim.fn.line(".")
 		first, last = math.min(first, last), math.max(first, last)
 		for i = #hunks, 1, -1 do
@@ -162,8 +163,16 @@ if vim.g.vscode then
 			local from = count_b == 0 and start_b or start_b - 1
 			local top = count_b == 0 and from or from + 1
 			if top <= last and from + math.max(count_b, 1) >= first then
-				vim.api.nvim_buf_set_lines(0, from, from + count_b, false, vim.list_slice(staged, start_a, start_a + count_a - 1))
-				vim.api.nvim_win_set_cursor(0, { math.min(from + 1, vim.api.nvim_buf_line_count(0)), 0 })
+				local skip, stop = 0, math.max(count_a, count_b)
+				if visual and count_b > 0 then
+					skip = math.max(first - top, 0)
+					if last < from + count_b then
+						stop = last - top + 1
+					end
+				end
+				local restored = vim.list_slice(staged, start_a + skip, start_a + math.min(stop, count_a) - 1)
+				vim.api.nvim_buf_set_lines(0, from + skip, from + math.min(stop, count_b), false, restored)
+				vim.api.nvim_win_set_cursor(0, { math.min(from + skip + 1, vim.api.nvim_buf_line_count(0)), 0 })
 			end
 		end
 		vim.api.nvim_feedkeys(vim.keycode("<Esc>"), "n", false)
