@@ -9,7 +9,7 @@ argument-hint: "<customer>"
 
 Arguments: $ARGUMENTS (customer name; also the Liquibase context)
 
-Repeat the Fricke migration for another customer. Work iteratively: domains from mails, test, commit, then hand the rest to the user for research. No Impressum or web search of your own. Ask only for real decisions (group domains, shared domains, conflicts).
+Repeat the Fricke migration for another customer. Work iteratively: domains from mails, test, commit, then hand the rest to the user for research. Never look up Impressum or search the web yourself. Ask only for real decisions (group domains, shared domains, conflicts).
 
 ## Reference
 
@@ -37,7 +37,7 @@ Create `liquibase/setup/<customer>/` XML with two changesets (`context="<custome
    - Back up and empty `backend/test/resources/tmp-mails/`; download read-only (`downloadToFile` only; production blob, never write or delete) as `<PARTNERNAME>__<blobname>`.
    - Run `npm run test:tmp-mails:domains` in `backend` (redirect to a file) and read each partner's `stored` domains. Ignore the customer's own and system sender domains, social media, Adobe, tracking and mail-provider domains.
    - Assign a domain to the partner by its label, falling back to the name: accept it when it fits; when the mail's real sender (also inside forwarded mails) belongs to another partner or company, it is a conflict, not an assignment.
-2. Everything else goes to the user: no Impressum, WebSearch or agent research. Show the table of participants without a domain (see Reporting) so the user can research them, and work in their answers: only domains matching name or label.
+2. Everything else goes to the user: never Impressum lookups, web searches or agent research. Show the table of participants without a domain (see Reporting) so the user can research them, and work in their answers: only domains matching name or label.
 
 ## Acceptance rules
 
@@ -45,7 +45,7 @@ Create `liquibase/setup/<customer>/` XML with two changesets (`context="<custome
 - Domain name must fit the partner name or label. Skip domains that sound like another company, generic names, product names, tracking-link domains, mail providers.
 - Group domains only with proof (mail or known group membership), else skip.
 - Skip country copies with empty labels (`XYZ_AT`, `XYZ_DE`); they cannot be researched separately.
-- Verify every domain the user brings back with DNS (`dig +short A`, `MX`, `NS` against 1.1.1.1 and 8.8.8.8); drop domains with no records (about 37 of 140 Google answers were invented).
+- Verify every domain the user brings back with DNS (`dig +short A`, `MX`, `NS` against 1.1.1.1 and 8.8.8.8); drop domains with no records.
 - Include shared domains for sister partners; check near-duplicates (same brand, other TLD) and domains seen in mails of unrelated partners, and leave those out unless the user decides otherwise.
 
 ## Test
