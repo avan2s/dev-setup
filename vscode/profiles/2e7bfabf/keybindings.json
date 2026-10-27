@@ -471,6 +471,25 @@
         "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
     },
     {
+        "key": "space s r",
+        "command": "workbench.action.findInFiles",
+        "args": {
+            "replace": "",
+            "showIncludesExcludes": true
+        },
+        "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "search.focus.nextInputBox",
+        "when": "searchViewletVisible && inputBoxFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "search.focus.previousInputBox",
+        "when": "searchViewletVisible && (inputBoxFocus || searchViewletFocus && listFocus)"
+    },
+    {
         "key": "space r r",
         "command": "workbench.action.replaceInFiles",
         "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
