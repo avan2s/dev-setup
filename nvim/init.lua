@@ -134,6 +134,16 @@ end
 if vim.g.vscode then
 	keymap.set("n", "j", "gj", { remap = true, desc = "Move down skipping VSCode folds" })
 	keymap.set("n", "k", "gk", { remap = true, desc = "Move up skipping VSCode folds" })
+
+	local function select_skipping_folds(direction)
+		return function()
+			require("vscode").action("cursorMove", {
+				args = { to = direction, by = "wrappedLine", value = vim.v.count1, select = true },
+			})
+		end
+	end
+	keymap.set("x", "j", select_skipping_folds("down"), { desc = "Select down skipping VSCode folds" })
+	keymap.set("x", "k", select_skipping_folds("up"), { desc = "Select up skipping VSCode folds" })
 end
 
 -- Setup lazy.nvim
