@@ -114,7 +114,7 @@
   "git.blame.editorDecoration.enabled": true,
   "git.blame.statusBarItem.enabled": true,
   "js/ts.updateImportsOnFileMove.enabled": "always",
-  "workbench.colorTheme": "One Dark Pro",
+  "workbench.colorTheme": "Atom One Dark",
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml",
   },
