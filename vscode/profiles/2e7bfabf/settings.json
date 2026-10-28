@@ -68,6 +68,7 @@
   "material-icon-theme.activeIconPack": "nest",
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
   "vscode-neovim.neovimClean": false,
+  "vscode-neovim.NVIM_APPNAME": "nvim",
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1,
   },
