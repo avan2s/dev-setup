@@ -234,6 +234,16 @@
         "command": "workbench.action.moveEditorToRightGroup",
         "when": "editorFocus && neovim.mode != insert && !findWidgetVisible && !replaceWidgetVisible"
     },
+    {
+        "key": "space shift+\\",
+        "command": "workbench.action.splitEditorRight",
+        "when": "editorFocus && neovim.mode != insert && !findWidgetVisible && !replaceWidgetVisible"
+    },
+    {
+        "key": "space -",
+        "command": "workbench.action.splitEditorDown",
+        "when": "editorFocus && neovim.mode != insert && !findWidgetVisible && !replaceWidgetVisible"
+    },
     // tab navigation
     {
         "command": "workbench.action.nextEditor",
