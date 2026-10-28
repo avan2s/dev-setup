@@ -333,6 +333,22 @@
         }
     },
     {
+        "key": "ctrl+j",
+        "command": "runCommands",
+        "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && inputFocus && !suggestWidgetVisible",
+        "args": {
+            "commands": [
+                "workbench.scm.action.focusNextResourceGroup",
+                "list.focusDown"
+            ]
+        }
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.scm.action.focusPreviousInput",
+        "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && listFocus && !inputFocus"
+    },
+    {
         "key": "q",
         "command": "workbench.action.closeSidebar",
         "when": "sideBarFocus && (activeViewlet == 'workbench.view.scm' || activeViewlet == 'workbench.view.explorer') && !inputFocus"
