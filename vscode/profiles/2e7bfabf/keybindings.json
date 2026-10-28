@@ -490,6 +490,48 @@
         "when": "searchViewletVisible && (inputBoxFocus || searchViewletFocus && listFocus)"
     },
     {
+        "key": "ctrl+i",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                {
+                    "command": "toggle",
+                    "args": {
+                        "id": "searchIgnoreFiles",
+                        "value": [
+                            { "search.useIgnoreFiles": true },
+                            { "search.useIgnoreFiles": false }
+                        ]
+                    }
+                },
+                "search.action.refreshSearchResults"
+            ]
+        },
+        "when": "searchViewletFocus"
+    },
+    // quick open caches its file list, so reopen it after toggling
+    {
+        "key": "ctrl+i",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                {
+                    "command": "toggle",
+                    "args": {
+                        "id": "searchIgnoreFiles",
+                        "value": [
+                            { "search.useIgnoreFiles": true },
+                            { "search.useIgnoreFiles": false }
+                        ]
+                    }
+                },
+                "workbench.action.closeQuickOpen",
+                "workbench.action.quickOpen"
+            ]
+        },
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
         "key": "space u shift+l",
         "command": "toggle",
         "args": {

@@ -78,7 +78,6 @@
   "editor.lineNumbers": "on",
   "git.mergeEditor": true,
   "plantuml.render": "PlantUMLServer",
-  "search.useIgnoreFiles": false,
   "search.exclude": {
     "**/node_modules": true,
     "**/dist": true,
