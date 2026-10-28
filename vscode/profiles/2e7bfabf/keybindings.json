@@ -499,8 +499,8 @@
                     "args": {
                         "id": "searchIgnoreFiles",
                         "value": [
-                            { "search.useIgnoreFiles": true },
-                            { "search.useIgnoreFiles": false }
+                            { "search.useIgnoreFiles": true, "window.title": "${dirty}${rootName}" },
+                            { "search.useIgnoreFiles": false, "window.title": "[+gitignored] ${dirty}${rootName}" }
                         ]
                     }
                 },
@@ -538,8 +538,8 @@
                     "args": {
                         "id": "searchIgnoreFiles",
                         "value": [
-                            { "search.useIgnoreFiles": true },
-                            { "search.useIgnoreFiles": false }
+                            { "search.useIgnoreFiles": true, "window.title": "${dirty}${rootName}" },
+                            { "search.useIgnoreFiles": false, "window.title": "[+gitignored] ${dirty}${rootName}" }
                         ]
                     }
                 },

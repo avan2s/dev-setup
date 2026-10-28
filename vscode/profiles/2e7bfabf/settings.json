@@ -161,6 +161,7 @@
   "claudeCode.selectedModel": "default",
   "chat.disableAIFeatures": true,
   "search.useIgnoreFiles": true,
+  "window.title": "${dirty}${rootName}",
   // "yaml.disableSchemaDetection": [
   //   "**/.github/workflows/*.yml",
   //   "**/.github/workflows/*.yaml",
