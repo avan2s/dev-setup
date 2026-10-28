@@ -321,6 +321,17 @@
             ]
         }
     },
+    {
+        "key": "space g g",
+        "command": "runCommands",
+        "when": "workbench.scm.active && editorTextFocus && neovim.init && neovim.mode != 'insert'",
+        "args": {
+            "commands": [
+                "workbench.scm.action.focusNextResourceGroup",
+                "list.focusDown"
+            ]
+        }
+    },
     // see the git diff changes without losing focus inside the list
     {
         "key": "space",
