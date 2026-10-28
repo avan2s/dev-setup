@@ -509,6 +509,24 @@
         },
         "when": "searchViewletFocus"
     },
+    {
+        "key": "shift shift",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                {
+                    "command": "vscode-neovim.lua",
+                    "args": "require('vscode').eval([[await vscode.workspace.getConfiguration().update('search.useIgnoreFiles', false, true)]])"
+                },
+                "workbench.action.quickOpen",
+                {
+                    "command": "vscode-neovim.lua",
+                    "args": "require('vscode').eval([[await vscode.workspace.getConfiguration().update('search.useIgnoreFiles', true, true)]])"
+                }
+            ]
+        },
+        "when": "neovim.init"
+    },
     // quick open caches its file list, so reopen it after toggling
     {
         "key": "ctrl+i",

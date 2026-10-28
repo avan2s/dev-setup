@@ -75,7 +75,7 @@
     "editor.defaultFormatter": "redhat.vscode-yaml",
   },
   "editor.autoClosingQuotes": "never",
-  "editor.lineNumbers": "on",
+  "editor.lineNumbers": "relative",
   "git.mergeEditor": true,
   "plantuml.render": "PlantUMLServer",
   "search.exclude": {
@@ -160,6 +160,7 @@
   "terminal.integrated.environmentChangesIndicator": "off",
   "claudeCode.selectedModel": "default",
   "chat.disableAIFeatures": true,
+  "search.useIgnoreFiles": true,
   // "yaml.disableSchemaDetection": [
   //   "**/.github/workflows/*.yml",
   //   "**/.github/workflows/*.yaml",
