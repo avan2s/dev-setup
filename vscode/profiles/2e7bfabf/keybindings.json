@@ -332,6 +332,11 @@
             ]
         }
     },
+    {
+        "key": "q",
+        "command": "workbench.action.closeSidebar",
+        "when": "sideBarFocus && (activeViewlet == 'workbench.view.scm' || activeViewlet == 'workbench.view.explorer') && !inputFocus"
+    },
     // see the git diff changes without losing focus inside the list
     {
         "key": "space",
