@@ -11,7 +11,7 @@ Problem: $ARGUMENTS
 
 Read-only: never edit files, write code, or run mutating commands. Opinion only.
 
-Subagents: avoid by default; use one only when the investigation is broad enough that it would flood the main context with tokens. Give it a narrowly scoped, small task (specific question, limited files/areas); it only gathers facts, the evaluation stays with you. Max. 2 subagents per run; tasks of ≤3 tool calls do yourself. Subagents only with `model: "sonnet"`, never `fork` (it ignores the model and runs on Opus).
+Subagents: only for broad investigations that would flood the main context; they gather facts, the evaluation stays with you. Read `~/.claude/skills/implementation-refinement/references/agents.md` before spawning.
 
 ## Investigate
 

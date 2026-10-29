@@ -24,6 +24,7 @@ A leading number (or `#number`, PR URL) is the PR; the rest are optional accepta
 ## Rules
 
 - Don't modify code.
+- For large PRs, delegate searches (duplicates, unused code, existing utilities) and spec runs to subagents per `~/.claude/skills/implementation-refinement/references/agents.md`; judge findings yourself.
 - Report only material findings; skip style preferences.
 
 ## Output

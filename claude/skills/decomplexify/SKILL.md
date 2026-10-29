@@ -10,7 +10,7 @@ argument-hint: "<target: function, class, module, or file>"
 Target: $ARGUMENTS
 
 Goal: less cognitive load with identical runtime behavior, not fewest lines at any cost.
-Subagents: only for small, narrowly scoped questions where only the result matters. For usage analysis, demand complete `file:line` lists (via LSP) and explicitly flagged uncertainties; verify behavior-critical findings yourself. Max. 2 subagents per run; tasks of ≤3 tool calls do yourself. Subagents only with `model: "sonnet"`, never `fork` (it ignores the model and runs on Opus).
+Subagents: per `~/.claude/skills/implementation-refinement/references/agents.md`; read it before spawning. For usage analysis, demand complete `file:line` lists (via LSP) and explicitly flagged uncertainties; verify behavior-critical findings yourself.
 
 ## 1. Understand
 
