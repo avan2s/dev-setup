@@ -369,6 +369,17 @@
         "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && focusedView == 'workbench.scm.history' && listFocus && !inputFocus"
     },
     {
+        "key": "ctrl+l",
+        "command": "runCommands",
+        "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && activeEditor == 'workbench.editors.textDiffEditor'",
+        "args": {
+            "commands": [
+                "workbench.action.navigateRight",
+                "workbench.action.compareEditor.focusSecondarySide"
+            ]
+        }
+    },
+    {
         "key": "q",
         "command": "workbench.action.closeSidebar",
         "when": "sideBarFocus && (activeViewlet == 'workbench.view.scm' || activeViewlet == 'workbench.view.explorer') && !inputFocus"
