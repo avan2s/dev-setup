@@ -354,6 +354,17 @@
         }
     },
     {
+        "key": "ctrl+c",
+        "command": "runCommands",
+        "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && inputFocus && !suggestWidgetVisible",
+        "args": {
+            "commands": [
+                "workbench.scm.action.focusNextResourceGroup",
+                "list.focusDown"
+            ]
+        }
+    },
+    {
         "key": "ctrl+j",
         "command": "workbench.scm.history.focus",
         "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && focusedView == 'workbench.scm' && listFocus && !inputFocus"
