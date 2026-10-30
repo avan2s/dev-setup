@@ -406,6 +406,29 @@
         "command": "list.selectAndPreserveFocus",
         "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && listFocus",
     },
+    // EXPERIMENTAL: scm list tab/shift+tab - next/previous file with preview, keeps list focus
+    {
+        "key": "tab",
+        "command": "runCommands",
+        "when": "(focusedView == 'workbench.scm' || focusedView == 'workbench.scm.history') && listFocus && !inputFocus",
+        "args": {
+            "commands": [
+                "list.focusDown",
+                "list.selectAndPreserveFocus"
+            ]
+        }
+    },
+    {
+        "key": "shift+tab",
+        "command": "runCommands",
+        "when": "(focusedView == 'workbench.scm' || focusedView == 'workbench.scm.history') && listFocus && !inputFocus",
+        "args": {
+            "commands": [
+                "list.focusUp",
+                "list.selectAndPreserveFocus"
+            ]
+        }
+    },
     // git.clean resolves its target from the active editor, so open the focused file first
     // and wait for the diff editor to become active via git.refresh (twice as safety margin)
     {
@@ -831,6 +854,33 @@
         "key": "ctrl+h",
         "command": "workbench.action.compareEditor.focusSecondarySide",
         "when": "isInDiffEditor"
+    },
+    // EXPERIMENTAL: diff/git editor tab/shift+tab - jump to next/previous file in scm list, keep editor focus
+    {
+        "key": "tab",
+        "command": "runCommands",
+        "when": "(isInDiffEditor || resourceScheme == 'git') && editorTextFocus && neovim.mode != 'insert'",
+        "args": {
+            "commands": [
+                "workbench.scm.focus",
+                "list.focusDown",
+                "list.select",
+                "workbench.action.focusActiveEditorGroup"
+            ]
+        }
+    },
+    {
+        "key": "shift+tab",
+        "command": "runCommands",
+        "when": "(isInDiffEditor || resourceScheme == 'git') && editorTextFocus && neovim.mode != 'insert'",
+        "args": {
+            "commands": [
+                "workbench.scm.focus",
+                "list.focusUp",
+                "list.select",
+                "workbench.action.focusActiveEditorGroup"
+            ]
+        }
     },
     {
         "key": "ctrl+l",
