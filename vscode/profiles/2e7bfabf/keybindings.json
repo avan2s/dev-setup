@@ -354,9 +354,19 @@
         }
     },
     {
+        "key": "ctrl+j",
+        "command": "workbench.scm.history.focus",
+        "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && focusedView == 'workbench.scm' && listFocus && !inputFocus"
+    },
+    {
         "key": "ctrl+k",
         "command": "workbench.scm.action.focusPreviousInput",
         "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && listFocus && !inputFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.scm.focus",
+        "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && focusedView == 'workbench.scm.history' && listFocus && !inputFocus"
     },
     {
         "key": "q",
