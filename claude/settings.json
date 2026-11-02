@@ -104,13 +104,19 @@
     ]
   },
   "model": "sonnet",
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
     "vue-volar@claude-code-lsps": true,
-    "vtsls@claude-code-lsps": true
+    "vtsls@claude-code-lsps": true,
+    "atlassian-mcp@anthropic-plugin-directory": true
   },
   "extraKnownMarketplaces": {
     "claude-code-lsps": {
