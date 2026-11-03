@@ -27,3 +27,10 @@ Grep is for text search only.
 - code reads by itself, comments only when absolutely needed for exported functions prefered
 - if you comment functions or methods use multiline comments (esopecially in tsdocs)
 - always ask before commiting
+
+# shell commands (avoid permission prompts)
+
+- never use heredocs, inline `python3 - <<EOF` or zsh-only expansions like `${(f)"$(...)"}` in Bash calls
+- write helper scripts as a file into the scratchpad directory, then run them in a separate simple call
+- one simple command per Bash call, no long `;` chains
+- prefer plain pipes/xargs or the Edit tool over scripted bulk edits
