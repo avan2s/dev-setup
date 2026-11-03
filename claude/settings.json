@@ -105,7 +105,8 @@
       "Bash(gh repo view *)",
       "Bash(npm ls *)",
       "Bash(npm view *)",
-      "Bash(npm outdated *)"
+      "Bash(npm outdated *)",
+      "Bash(python3 *)"
     ]
   },
   "model": "haiku",
