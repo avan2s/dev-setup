@@ -29,7 +29,7 @@ A number (or `#number`, PR URL) is a PR, other text is a branch; default is the 
 9. Liquibase, only if the branch (or stack) introduces changesets:
    - Always place them after the target's changesets (append at the end).
    - If the target added a changelog file for a newer version, move them to the end of that file (content unchanged, includes updated); ask if the right file is unclear.
-10. After the rebase, run typecheck/lint and the specs touching conflicted files; fix rebase-caused failures.
+10. After the rebase, run typecheck/lint and the specs touching conflicted files via the `run` profile in `~/.claude/skills/implementation-refinement/references/agents.md`; fix rebase-caused failures yourself.
 
 ## Rules
 

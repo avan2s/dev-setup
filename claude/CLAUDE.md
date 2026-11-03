@@ -26,5 +26,9 @@ Grep is for text search only.
 
 - code reads by itself, comments only when absolutely needed for exported functions prefered
 - if you comment functions or methods use multiline comments (esopecially in tsdocs)
+
+# delegation
+
+- run tests, builds, linters and type checks via the `test-runner` subagent, then fix reported failures yourself
 - always ask before commiting
 - once the user agrees, commit via the `commit` subagent, never with a manual `git commit`

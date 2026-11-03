@@ -17,7 +17,7 @@ Central rules for spawning subagents; skills reference this file.
 | Profile | Model | Max parallel | Use for |
 |---|---|---|---|
 | `search` | haiku | 5 | find files, symbols, usages; return `file:line` list |
-| `run` | haiku | 5 | run specs/build/lint; return pass/fail + relevant failure lines |
+| `run` | haiku | 5 | run specs/build/lint/typecheck via `subagent_type: test-runner`; return pass/fail + relevant failure lines; fix failures yourself |
 | `mechanical` | haiku | 3 | fully specified renames/inlines/moves; return changed files |
 | `read` | sonnet | 2 | read/summarize code for context; no verdicts |
 | `review-pass` | sonnet | 2 | checklist review of one area; return findings with `file:line` |
