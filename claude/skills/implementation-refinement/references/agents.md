@@ -10,7 +10,7 @@ Central rules for spawning subagents; skills reference this file.
 - Brief precisely: goal, scope, expected output.
 - Parallel only for independent tasks without shared writes; spawn in one message.
 - Sonnet agents: max 2 in total per run across all profiles. If the session itself runs on Sonnet, spawn no Sonnet agents; use Haiku only, and only if Haiku can handle the task, otherwise do it yourself.
-- Haiku/Sonnet agents never commit, push, or delete.
+- Haiku/Sonnet agents never commit, push, or delete; only the `commit` agent commits, after user approval.
 
 ## Profiles
 

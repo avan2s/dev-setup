@@ -70,7 +70,7 @@ Ask the user to send researched domains by number. Work in their answers under t
 
 ## Cleanup and commit
 
-- Commit the Liquibase files as soon as a test run passed; amend while the user still brings answers.
+- After a passed test run, ask the user, then commit via the `commit` agent, naming the Liquibase files; allow amend while the user still brings answers.
 - Clean up only at the very end and only after the user confirms (ask: "Evaluierung fertig, darf ich aufräumen?"); never while the user is still evaluating. Then delete downloaded emls, restore the original test emls, blank the env file, empty the scratchpad.
 - Commit only the Liquibase files; never emls, the env file or `compose.yaml`.
 
