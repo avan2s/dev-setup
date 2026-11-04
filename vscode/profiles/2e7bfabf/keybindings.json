@@ -445,6 +445,25 @@
             ]
         }
     },
+    // toggle stage/unstage of the focused file
+    // stageFile only matches unstaged (file: uri), unstageFile only staged (git index uri) - order matters
+    // openChange re-previews the diff of the new state, item focus in the list is lost (scm tree updates 100ms debounced)
+    {
+        "key": "s",
+        "command": "runCommands",
+        "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && listFocus && !inputFocus",
+        "args": {
+            "commands": [
+                "list.selectAndPreserveFocus",
+                "git.refresh",
+                "git.refresh",
+                "git.stageFile",
+                "git.unstageFile",
+                "git.openChange",
+                "workbench.scm.focus"
+            ]
+        }
+    },
     {
         "key": "alt+]",
         "command": "editor.gotoNextFold",
