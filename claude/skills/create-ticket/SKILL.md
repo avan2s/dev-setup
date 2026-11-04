@@ -8,49 +8,20 @@ argument-hint: "[description | error | context]"
 # Create Ticket
 
 Arguments: $ARGUMENTS
-Don't spawn subagents.
-
-## Preconditions
-
-- Check the Atlassian plugin tools (`mcp__plugin_atlassian_atlassian__*`) are available. If not, stop and tell the user to install/enable the Jira plugin.
-- Resolve `cloudId` via `getAccessibleAtlassianResources` once. Ask for the project key only if not given or derivable from context.
 
 ## Workflow
 
-1. Derive tickets from arguments/context. One ticket per distinct issue; split if the input contains several.
-2. Choose type: defect/error/wrong behavior → `Bug`; everything else → `Story`.
-3. Draft per rules below. Language: match the user's input language (default German); keep technical terms and code as-is.
-4. Create via `createJiraIssue` with labels `tbd` and `ai-generated`.
-5. Reply with one line per ticket: `KEY – Title – <browse URL>`. Nothing else.
-
-## Writing rules (all tickets)
-
-- Title: precise, names the concrete problem or capability. No generic words ("Fix", "Improve") without object.
-- Concise. Focus on the use case, written in business/domain language, not implementation.
-- Code, commands, payloads, and log lines go in fenced code blocks, written out completely.
-- Mention technical hints in the description only where useful; don't dictate the solution.
-
-## Story
-
-Structure:
-
-- **Als** `<Rolle>` **möchte ich** `<Funktion>`, **damit** `<Nutzen>`.
-- **Beschreibung**: context and use case; optional hints.
-- **Akzeptanzkriterien**: short bullets of observable outcomes. Leave room for the developer; no micro-specification.
-
-(Use English equivalents if writing in English.)
-
-## Bug
-
-Structure:
-
-- **Beschreibung**: what is wrong, one or two sentences, with business impact.
-- **Schritte zur Reproduktion**: numbered, step by step, with concrete inputs/data/environment.
-- **Erwartetes Verhalten**
-- **Tatsächliches Verhalten**: include error message/stack trace in a code block if available.
-- **Hinweise** (optional): suspected cause, affected area.
+1. Arguments are optional. Without them, derive the issue(s) from the session context. With them, use them as the primary issue and enrich from context. One ticket each per distinct issue.
+2. Delegate to the `ticket-creator` subagent (one call, all tickets). It checks the Jira plugin and does all Jira API work itself; don't touch Jira tools here. Pass the project key only if known from context (e.g. branch name, earlier tickets).
+3. Prompt = fact brief, not finished prose, per ticket:
+   - Type hint (defect → Bug, else Story), project key.
+   - Facts: use case or observed behavior, concrete repro inputs/steps, expected vs. actual, error text/stack trace verbatim.
+   - Findings from this session: suspected cause, affected class/area, edge cases.
+   - Tickets are always German; the brief may be in any language.
+4. Don't write the tickets yourself unless the user asks, or the ticket needs a long analysis too nuanced for a brief; then pass the finished text and let the subagent only create it.
+5. Relay the subagent's lines (`KEY – Title – URL`) and any reported gaps. If the subagent reports a missing plugin or project key, tell the user / ask for the key and re-delegate.
+6. If the context suggests a further, separate issue not covered by the created tickets, name it in one line as a recommendation; don't create it without the user's go.
 
 ## Constraints
 
-- Never invent facts (steps, versions, environments); ask or omit if unknown and material.
-- Don't assign, set priority, or link epics unless asked.
+- Never invent facts in the brief; leave unknowns out.
