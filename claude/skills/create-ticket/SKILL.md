@@ -25,3 +25,4 @@ Arguments: $ARGUMENTS
 ## Constraints
 
 - Never invent facts in the brief; leave unknowns out.
+- Jira projects have dedicated fields (e.g. `User Story`, `Akzeptanzkriterien`). Tell the subagent to use them instead of putting everything into the description; if you pass finished text, split it per field.
