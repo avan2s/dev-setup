@@ -12,7 +12,7 @@ Arguments: $ARGUMENTS
 ## Workflow
 
 1. Arguments are optional. Without them, derive the issue(s) from the session context. With them, use them as the primary issue and enrich from context. One ticket each per distinct issue.
-2. Delegate to the `ticket-creator` subagent (one call, all tickets). It checks the Jira plugin and does all Jira API work itself, creating AND updating; never create or edit tickets with Jira tools in the main session. For updates, name the existing key and state the exact change (which section/field, what to add or replace). Pass the project key only if known from context (e.g. branch name, earlier tickets).
+2. Delegate to the `ticket-creator` subagent (one call, all tickets). It checks the Jira plugin and does all Jira API work itself, creating AND updating; never create or edit tickets with Jira tools in the main session. For updates, name the existing key and state the exact change (which section/field, what to add or replace). Pass the user's own email (`git config user.email`) so the subagent can check ticket ownership. Pass the project key only if known from context (e.g. branch name, earlier tickets).
 3. Prompt = fact brief, not finished prose, per ticket:
    - Type hint (defect → Bug, else Story), project key.
    - Facts: use case or observed behavior, concrete repro inputs/steps, expected vs. actual, error text/stack trace verbatim.

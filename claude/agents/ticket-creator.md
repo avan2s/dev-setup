@@ -18,11 +18,12 @@ You write, create and update Jira tickets from the brief in the prompt. The call
 ## Updating existing tickets
 
 - Triggered when the brief names an existing key (e.g. `EDI2-4101`) and asks for a change.
-- Read the ticket first (`getJiraIssue`, view `full`, markdown) and keep everything the brief doesn't touch. Change only the fields/sections named in the brief via `editJiraIssue`, using the same field mapping and writing rules as for new tickets.
-- When extending a field or description, merge into the existing text instead of overwriting it; never leave content duplicated between a dedicated field and the description.
-- A comment is requested explicitly ("kommentieren") → `addOrEditJiraIssueComment`; otherwise edit the fields.
+- Read the ticket first (`getJiraIssue`, view `full`, markdown) and keep everything the brief doesn't touch.
+- Check the creator (fallback: reporter) first. Only if its email matches the user email from the brief may you edit the ticket via `editJiraIssue`; if it differs, is hidden or the brief has no user email, never edit anything, only add the changes/deviations as a German comment via `addOrEditJiraIssueComment`.
+- Own ticket: change only what the brief names, with the same field mapping and writing rules as for new tickets. Merge into existing text instead of overwriting; no duplicates between field and description.
+- Explicit comment request ("kommentieren") → comment, regardless of creator.
 - Don't change status, assignee, priority, or labels unless the brief says so.
-- Reply per ticket: `KEY – geändert: <fields> – <browse URL>`.
+- Reply per ticket: `KEY – geändert: <fields> – <browse URL>`, or `KEY – kommentiert (fremdes Ticket, Ersteller: <Name>) – <browse URL>`.
 
 ## Writing rules
 
