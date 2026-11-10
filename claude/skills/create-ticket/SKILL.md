@@ -1,6 +1,6 @@
 ---
 name: create-ticket
-description: Create or update Jira tickets (Bug or Story) from a description, error, or conversation context. Only on explicit user request.
+description: Create or update Jira tickets (Bug, Story or Task) from a description, error, or conversation context. Only on explicit user request.
 disable-model-invocation: true
 argument-hint: "[description | error | context]"
 ---
@@ -9,20 +9,14 @@ argument-hint: "[description | error | context]"
 
 Arguments: $ARGUMENTS
 
-## Workflow
+The `ticket-creator` agent owns all writing, field, label and update rules. This skill only collects facts and delegates.
 
-1. Arguments are optional. Without them, derive the issue(s) from the session context. With them, use them as the primary issue and enrich from context. One ticket each per distinct issue.
-2. Delegate to the `ticket-creator` subagent (one call, all tickets). It checks the Jira plugin and does all Jira API work itself, creating AND updating; never create or edit tickets with Jira tools in the main session. For updates, name the existing key and state the exact change (which section/field, what to add or replace). Pass the user's own email (`git config user.email`) so the subagent can check ticket ownership. Pass the project key only if known from context (e.g. branch name, earlier tickets).
-3. Prompt = fact brief, not finished prose, per ticket:
-   - Type hint (defect → Bug, else Story), project key.
-   - Facts: use case or observed behavior, concrete repro inputs/steps, expected vs. actual, error text/stack trace verbatim.
-   - Findings from this session: suspected cause, affected class/area, edge cases.
-   - Tickets are always German; the brief may be in any language.
-4. Don't write the tickets yourself unless the user asks, or the ticket needs a long analysis too nuanced for a brief; then pass the finished text and let the subagent only create it.
-5. Relay the subagent's lines (`KEY – Title – URL` / `KEY – geändert: … – URL`) and any reported gaps. If the subagent reports a missing plugin or project key, tell the user / ask for the key and re-delegate.
-6. If the context suggests a further, separate issue not covered by the created tickets, name it in one line as a recommendation; don't create it without the user's go.
-
-## Constraints
-
-- Never invent facts in the brief; leave unknowns out.
-- Jira projects have dedicated fields (e.g. `User Story`, `Akzeptanzkriterien`). Tell the subagent to use them instead of putting everything into the description; if you pass finished text, split it per field.
+1. Source: arguments (if given) as the primary issue, enriched from session context; otherwise session context. One ticket per distinct issue.
+2. Delegate all tickets in one `ticket-creator` call; never use Jira tools in the main session.
+3. Brief per ticket, raw facts only (no prose, nothing invented, unknowns left out):
+   1. Kind hint, project key if known from context (branch, earlier tickets).
+   2. What the session knows about the issue; error text verbatim.
+   3. Update: existing key + exact change.
+4. Write ticket text yourself only if the user asks; then pass it split per field.
+5. Relay the agent's result lines and gaps. Missing plugin or project key → tell/ask the user, re-delegate.
+6. Further separate issue spotted → recommend in one line, don't create it.
