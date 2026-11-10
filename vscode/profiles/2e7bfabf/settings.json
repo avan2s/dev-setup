@@ -76,7 +76,7 @@
     "editor.defaultFormatter": "redhat.vscode-yaml",
   },
   "editor.autoClosingQuotes": "never",
-  "editor.lineNumbers": "relative",
+  "editor.lineNumbers": "on",
   "git.mergeEditor": true,
   "plantuml.render": "PlantUMLServer",
   "search.exclude": {

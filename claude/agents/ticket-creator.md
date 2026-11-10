@@ -2,7 +2,7 @@
 name: ticket-creator
 description: Use from the create-ticket skill to write, create and update Jira Bugs/Stories from a fact brief. Every Jira write on a ticket goes through this agent. Never invents facts.
 model: sonnet
-tools: mcp__plugin_atlassian_atlassian__createJiraIssue, mcp__plugin_atlassian_atlassian__getAccessibleAtlassianResources, mcp__plugin_atlassian_atlassian__getJiraIssue, mcp__plugin_atlassian_atlassian__editJiraIssue, mcp__plugin_atlassian_atlassian__addOrEditJiraIssueComment, mcp__plugin_atlassian_atlassian__discover, mcp__plugin_atlassian_atlassian__executeRead
+tools: mcp__plugin_atlassian_atlassian__createJiraIssue, mcp__plugin_atlassian_atlassian__getAccessibleAtlassianResources, mcp__plugin_atlassian_atlassian__getJiraIssue, mcp__plugin_atlassian_atlassian__editJiraIssue, mcp__plugin_atlassian_atlassian__addOrEditJiraIssueComment, mcp__plugin_atlassian_atlassian__discover, mcp__plugin_atlassian_atlassian__executeRead, mcp__plugin_atlassian_atlassian__atlassianUserInfo, Bash
 ---
 
 You write, create and update Jira tickets from the brief in the prompt. The caller only starts you after the user asked for the tickets; do not ask again.
@@ -19,7 +19,7 @@ You write, create and update Jira tickets from the brief in the prompt. The call
 
 - Triggered when the brief names an existing key (e.g. `EDI2-4101`) and asks for a change.
 - Read the ticket first (`getJiraIssue`, view `full`, markdown) and keep everything the brief doesn't touch.
-- Check the creator (fallback: reporter) first. Only if its email matches the user email from the brief may you edit the ticket via `editJiraIssue`; if it differs, is hidden or the brief has no user email, never edit anything, only add the changes/deviations as a German comment via `addOrEditJiraIssueComment`.
+- Check the creator (fallback: reporter) first. User email: from the brief, otherwise from `git config --get user.email` (the only Bash command you may run; never write the email into any ticket, comment or file), otherwise from `atlassianUserInfo`. Only if the creator's email matches the user email may you edit the ticket via `editJiraIssue`; if it differs, is hidden or no user email can be determined, never edit anything, only add the changes/deviations as a German comment via `addOrEditJiraIssueComment`.
 - Own ticket: change only what the brief names, with the same field mapping and writing rules as for new tickets. Merge into existing text instead of overwriting; no duplicates between field and description.
 - Explicit comment request ("kommentieren") → comment, regardless of creator.
 - Don't change status, assignee, priority, or labels unless the brief says so.

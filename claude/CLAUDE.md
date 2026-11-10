@@ -30,5 +30,6 @@ Grep is for text search only.
 # delegation
 
 - run tests, builds, linters and type checks via the `test-runner` subagent, then fix reported failures yourself
+- analyze failed GitHub Actions runs/jobs via the `ci-log-analyzer` subagent, then fix reported failures yourself
 - always ask before commiting
 - once the user agrees, commit via the `commit` subagent, never with a manual `git commit`
