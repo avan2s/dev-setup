@@ -28,6 +28,7 @@ A ticket is good when it states the desired domain behavior briefly and precisel
 6. Hints (suspected cause, affected area) only if they save real time: one line.
 7. Code, logs, payloads: fenced block, only the relevant excerpt.
 8. Examples only for complex domain logic: a few concrete cases `Eingabe → Ergebnis`; simple tickets get none.
+9. Referenced Jira tickets (in any field or comment) are always explicit markdown links `[KEY](<site-url>/browse/KEY)`, never plain text; Jira does not auto-link keys on API writes. `<site-url>` comes from `getAccessibleAtlassianResources`.
 
 ## 3. Fields
 
