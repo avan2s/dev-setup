@@ -19,7 +19,7 @@ description: Implement a requested code change with clear intent, minimal comple
 - Keep the change focused; don't modify unrelated code.
 - Delegate small, well-defined tasks (lookups, mechanical edits, running specs) to subagents per `~/.claude/skills/implementation-refinement/references/agents.md`; read it before spawning any. Keep design decisions yourself.
 - Add or update specs for changed behavior; before writing or changing any spec, read `~/.claude/skills/implementation-refinement/references/specs.md` and follow it; run them.
-- Ask for confirmation before every single commit; a previous approval never covers later commits.
+- Never commit or push on your own; ask first, unless the user's latest message explicitly allows it.
 
 ## Done when
 

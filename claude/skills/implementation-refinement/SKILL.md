@@ -31,7 +31,7 @@ Re-evaluate independently; working code or a "finished" verdict from implementat
 - **Scope:** stay within the focus; no speculative future-proofing.
 - Apply justified improvements directly; don't refactor for stylistic preference or theoretical purity.
 - Delegate small, well-defined tasks (searching for overlapping services or existing utilities, mechanical renames/inlines, running specs) to subagents as defined in `references/agents.md`; read it before spawning any. Keep design judgments and complex code changes yourself.
-- Ask for confirmation before every single commit; a previous approval never covers later commits.
+- Never commit or push on your own; ask first, unless the user's latest message explicitly allows it.
 
 ## Check the whole change
 

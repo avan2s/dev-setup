@@ -31,5 +31,5 @@ Grep is for text search only.
 
 - run tests, builds, linters and type checks via the `test-runner` subagent, then fix reported failures yourself
 - analyze failed GitHub Actions runs/jobs via the `ci-log-analyzer` subagent, then fix reported failures yourself
-- always ask before commiting
-- once the user agrees, commit via the `commit` subagent, never with a manual `git commit`
+- never commit or push on your own: ask first, every time
+- commit or push directly only if the user's latest message explicitly says so; once the user writes another message without repeating it, ask again
