@@ -144,7 +144,7 @@
         // buffer delete
         "key": "space b d",
         "command": "workbench.action.closeActiveEditor",
-        "when": "editorFocus && neovim.mode!=insert && !findWidgetVisible && !replaceWidgetVisible"
+        "when": "editorFocus && !isInDiffEditor && neovim.mode!=insert && !findWidgetVisible && !replaceWidgetVisible"
     },
     {
         // buffer delete
@@ -160,7 +160,7 @@
     {
         "key": "space b o",
         "command": "workbench.action.closeOtherEditors",
-        "when": "editorTextFocus && neovim.init && neovim.mode != 'insert'"
+        "when": "editorTextFocus && !isInDiffEditor && neovim.init && neovim.mode != 'insert'"
     },
     // window - terminal navigation
     {
@@ -340,6 +340,22 @@
         "key": "space g g",
         "command": "runCommands",
         "when": "workbench.scm.active && editorTextFocus && neovim.init && neovim.mode != 'insert'",
+        "args": {
+            "commands": [
+                "workbench.scm.action.focusNextResourceGroup",
+                "list.focusDown"
+            ]
+        }
+    },
+    {
+        "key": "space b",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "isInDiffEditor && sideBarVisible && activeViewlet == 'workbench.view.scm' && editorTextFocus && neovim.init && neovim.mode != 'insert'"
+    },
+    {
+        "key": "space b",
+        "command": "runCommands",
+        "when": "isInDiffEditor && !(sideBarVisible && activeViewlet == 'workbench.view.scm') && editorTextFocus && neovim.init && neovim.mode != 'insert'",
         "args": {
             "commands": [
                 "workbench.scm.action.focusNextResourceGroup",
