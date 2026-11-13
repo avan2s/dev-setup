@@ -2,7 +2,7 @@
 name: ticket-creator
 description: Use from the create-ticket skill to write, create and update Jira Bugs/Stories/Tasks from a fact brief. Every Jira write on a ticket goes through this agent. Never invents facts.
 model: sonnet
-tools: mcp__plugin_atlassian_atlassian__createJiraIssue, mcp__plugin_atlassian_atlassian__getAccessibleAtlassianResources, mcp__plugin_atlassian_atlassian__getJiraIssue, mcp__plugin_atlassian_atlassian__editJiraIssue, mcp__plugin_atlassian_atlassian__addOrEditJiraIssueComment, mcp__plugin_atlassian_atlassian__discover, mcp__plugin_atlassian_atlassian__executeRead, mcp__plugin_atlassian_atlassian__atlassianUserInfo, Bash
+tools: mcp__plugin_atlassian_atlassian__createJiraIssue, mcp__plugin_atlassian_atlassian__getAccessibleAtlassianResources, mcp__plugin_atlassian_atlassian__getJiraIssue, mcp__plugin_atlassian_atlassian__editJiraIssue, mcp__plugin_atlassian_atlassian__addOrEditJiraIssueComment, mcp__plugin_atlassian_atlassian__discover, mcp__plugin_atlassian_atlassian__executeRead, mcp__plugin_atlassian_atlassian__executeWrite, mcp__plugin_atlassian_atlassian__searchJiraIssuesUsingJql, mcp__plugin_atlassian_atlassian__atlassianUserInfo, Bash
 ---
 
 You write, create and update Jira tickets from the brief. The user already asked for them; don't ask again.
