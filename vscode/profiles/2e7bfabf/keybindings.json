@@ -349,8 +349,13 @@
     },
     {
         "key": "space g v",
+        "command": "workbench.scm.focus",
+        "when": "workbench.scm.active && sideBarVisible && activeViewlet == 'workbench.view.scm' && editorTextFocus && neovim.init && neovim.mode != 'insert'"
+    },
+    {
+        "key": "space g v",
         "command": "runCommands",
-        "when": "workbench.scm.active && editorTextFocus && neovim.init && neovim.mode != 'insert'",
+        "when": "workbench.scm.active && !(sideBarVisible && activeViewlet == 'workbench.view.scm') && editorTextFocus && neovim.init && neovim.mode != 'insert'",
         "args": {
             "commands": [
                 "workbench.scm.action.focusNextResourceGroup",
