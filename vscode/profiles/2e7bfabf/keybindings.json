@@ -348,6 +348,11 @@
         }
     },
     {
+        "key": "space g c",
+        "command": "workbench.action.closeSidebar",
+        "when": "sideBarVisible && activeViewlet == 'workbench.view.scm' && editorTextFocus && neovim.init && neovim.mode != 'insert'"
+    },
+    {
         "key": "space g v",
         "command": "workbench.scm.focus",
         "when": "workbench.scm.active && sideBarVisible && activeViewlet == 'workbench.view.scm' && editorTextFocus && neovim.init && neovim.mode != 'insert'"
