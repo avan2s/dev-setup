@@ -311,8 +311,16 @@
     },
     {
         "key": "space o c",
-        "command": "git.openFile",
-        "when": "editorFocus && isInDiffEditor && neovim.mode!=insert && !findWidgetVisible && !replaceWidgetVisible"
+        "command": "runCommands",
+        "when": "editorFocus && isInDiffEditor && neovim.mode!=insert && !findWidgetVisible && !replaceWidgetVisible",
+        "args": {
+            "commands": [
+                "git.openFile",
+                "workbench.action.openPreviousRecentlyUsedEditorInGroup",
+                "workbench.action.closeActiveEditor",
+                "workbench.action.focusActiveEditorGroup"
+            ]
+        }
     },
     // open git view
     {
