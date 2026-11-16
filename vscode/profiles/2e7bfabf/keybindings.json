@@ -377,6 +377,27 @@
         }
     },
     {
+        "key": "space g v",
+        "command": "workbench.scm.focus",
+        "when": "workbench.scm.active && sideBarVisible && activeViewlet == 'workbench.view.scm' && !editorIsOpen && !inputFocus && !sideBarFocus && !panelFocus && !terminalFocus"
+    },
+    {
+        "key": "space g v",
+        "command": "runCommands",
+        "when": "workbench.scm.active && !(sideBarVisible && activeViewlet == 'workbench.view.scm') && !editorIsOpen && !inputFocus && !sideBarFocus && !panelFocus && !terminalFocus",
+        "args": {
+            "commands": [
+                "workbench.scm.action.focusNextResourceGroup",
+                "list.focusDown"
+            ]
+        }
+    },
+    {
+        "key": "space e",
+        "command": "workbench.explorer.fileView.focus",
+        "when": "!editorIsOpen && !inputFocus && !sideBarFocus && !panelFocus && !terminalFocus"
+    },
+    {
         "key": "ctrl+j",
         "command": "runCommands",
         "when": "sideBarFocus && activeViewlet == 'workbench.view.scm' && inputFocus && !suggestWidgetVisible",
