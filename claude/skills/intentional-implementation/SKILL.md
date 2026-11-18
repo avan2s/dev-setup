@@ -13,6 +13,7 @@ description: Implement a requested code change with clear intent, minimal comple
 - Typing: precise types; no convenience `as` casts. Truly unknown → `unknown` + narrowing, never `any`. A method contract implemented by a class (classic `class FooService implements Foo`, as in Java) is an `interface`, not a `type`.
 - File placement: new exported validators, types, or classes go in the directory/file kind the project designates for them (e.g. `*.type.ts`/`*.types.ts` for types), following existing structure; don't mix different kinds in one file. Local, non-exported helper types used only in that file are fine where they are.
 - Exported constants are always UPPER_CASE.
+- Response DTOs: put `@Exclude()` on the class and `@Expose({ name: 'propertyName' })` on each property that should be returned (always with the explicit name), so only explicitly wanted properties are exposed.
 - Put regexes in well-named UPPER_CASE constants; add a short comment above only if the regex is complex.
 - Favor composition over inheritance where it is practical and keeps the code readable.
 - Reuse existing functionality; avoid duplication without adding needless indirection. DRY by default, but if behavior has a different reason to change (SRP), its own component may justify duplication.

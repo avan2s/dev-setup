@@ -19,6 +19,7 @@ prefer sqlFile with databaseType property isntead of plain <sql>..</sql>
 # code quality
 
 - follow SOLID-principles if it makes sense
+- response DTOs: exclude the whole class (`@Exclude()`) and expose each wanted property explicitly with its name (`@Expose({ name: 'propertyName' })`), so only intended properties are returned
 
 Grep is for text search only.
 
