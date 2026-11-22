@@ -17,7 +17,7 @@ A number, `#number` or PR URL targets that PR; `stack` targets all PRs of the cu
    - Target PR number/URL if given.
    - Intent: use case / problem solved and why.
    - Ticket key or URL, if known (also from branch name).
-   - Design decisions, trade-offs, risky areas, how to test.
+   - Design decisions known from the session, if any; the agent decides itself whether one belongs in the description.
 3. Pushing: creating a PR needs a pushed branch; `gh stack submit` pushes all stack branches. Ask the user for a go before either; pass "user approved push" in the brief only after a yes.
 4. Relay PR URL(s), the per-PR change summary, and reported gaps.
 
