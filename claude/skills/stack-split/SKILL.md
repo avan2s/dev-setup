@@ -24,6 +24,7 @@ Goal: make large changes understandable for reviewer and implementer as mileston
      - gh stack exists: note its PRs/branches and order.
      - PRs stacked on each other (PR base = another PR's head branch) but no gh stack: check whether linking them into a gh stack on GitHub (`gh stack link <pr/branch...>`) is sensible; this keeps the PRs and avoids re-creating them.
      - Neither: plain branch.
+   - Base check: if the branch is not based on the default branch (develop/main) but on another branch or PR (PR base, merge-base with other branches), identify that PR or PR chain. Right after the analysis, ask the user whether it should be included in the stack (as lower PRs, untouched or also split) or ignored (then it is the trunk). Don't assume.
 3. Identify milestones
    - Group changes by functional or technical cohesion, e.g. rename/move (mechanical, own PR), refactoring/preparation, new abstractions/interfaces, migrations/schema, core logic, API/DTO layer, wiring/config, tests, docs.
    - Commits may be regrouped, reordered, or split by hunk. Moving a piece of logic into another milestone is fine when that makes the milestones more comprehensible; only the end state must match. Keep dependencies valid (a milestone only uses what it or earlier milestones provide).
