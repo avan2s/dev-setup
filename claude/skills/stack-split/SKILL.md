@@ -16,7 +16,7 @@ Goal: make large changes understandable for reviewer and implementer as mileston
 
 1. Preflight
    - Require a clean working tree; otherwise stop and ask.
-   - Resolve base (stack trunk or default branch) and original tip `ORIG` (for a stack: top branch).
+   - Resolve base (stack trunk, else `develop`, else `main`) and original tip `ORIG` (for a stack: top branch).
    - Create safety ref `backup/<branch>-pre-split` at `ORIG`; record `git rev-parse ORIG^{tree}`.
 2. Analyze the branch
    - Read commit history (`git log`, per-commit `--stat`) and the full diff `base...ORIG`; use commit messages and branch/ticket names as hints for the functional intent of each change.
@@ -28,12 +28,22 @@ Goal: make large changes understandable for reviewer and implementer as mileston
 3. Identify milestones
    - Group changes by functional or technical cohesion, e.g. rename/move (mechanical, own PR), refactoring/preparation, new abstractions/interfaces, migrations/schema, core logic, API/DTO layer, wiring/config, tests, docs.
    - Commits may be regrouped, reordered, or split by hunk. Moving a piece of logic into another milestone is fine when that makes the milestones more comprehensible; only the end state must match. Keep dependencies valid (a milestone only uses what it or earlier milestones provide).
-   - Plan the commit history per milestone too: squash noisy commits (fixups, WIP, back-and-forth) and restructure into a few meaningful commits with clear messages, so the history reads as a traceable story within each PR.
+   - Plan the commit history per milestone too: squash noisy commits (fixups, WIP, back-and-forth) and restructure into a few meaningful commits with clear messages, so the history reads as a traceable story within each PR. The goal is not one commit per PR: several logical commits are fine and wanted; together they form the one milestone of that PR in the stack.
    - Original milestone order may stay or change when better understanding suggests it. A better split is welcome even if it replaces existing PRs or branches.
    - Size guide: ~30 changed files per milestone; soft limit only. Never lose or alter logic to meet it; exceed it instead (e.g. mechanical renames, formatting, import moves as own PR rather than mixed with logic).
    - Each milestone must build and pass tests on its own, so it never blocks later PRs. Avoid temporary shims; if unavoidable, name them in the proposal.
 4. Propose, then wait
-   - Show a table: order, branch name, PR title, short description, file count, planned commits (squashed/restructured), source commits/files, rationale for any reorder.
+   - Show the stack as a table, top to bottom, one row per PR, the bottom row being the base (`develop`, or `main` if `develop` doesn't exist). Columns: position, branch name, PR title, short description, file count, rationale for any reorder.
+   - Print the table directly in the reply (not in a file), followed by one commit list per PR in the same top-to-bottom order with its planned commit messages (squashed/restructured) and the source commits/files they come from. Example:
+
+     | # | Branch | PR title | Description | Files | Note |
+     |---|---|---|---|---|---|
+     | 3 | feat-x-3-api | API layer for X | endpoints and DTOs | 12 | |
+     | 2 | feat-x-2-core | Core logic for X | service and persistence | 18 | moved before API |
+     | 1 | feat-x-1-rename | Rename Y to Z | mechanical rename only | 64 | large, mechanical |
+     | – | develop | base | | | |
+
+     PR 3: `add X endpoints` · `add X response DTOs` (from abc123, def456)
    - State the stack situation: existing gh stack will be modified / a new stack will be formed / existing stacked PRs will be linked into a gh stack (no new PRs needed) / existing PRs get replaced by the new split.
    - Flag risks (hunks that must be split, unavoidable large milestones, shims).
    - Ask explicitly whether to proceed; adjust on feedback. Never start building before a yes.
