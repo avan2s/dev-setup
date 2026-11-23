@@ -31,6 +31,7 @@ Grep is for text search only.
 # delegation
 
 - run tests, builds, linters and type checks via the `test-runner` subagent, then fix reported failures yourself
+- `test-runner` only gets the project's own commands (npm scripts, a single spec, lint/type-check of named files), never exploratory full-repo analyses or prompts with fallback/retry instructions
 - analyze failed GitHub Actions runs/jobs via the `ci-log-analyzer` subagent, then fix reported failures yourself
 - never commit or push on your own: ask first, every time
 - commit or push directly only if the user's latest message explicitly says so; once the user writes another message without repeating it, ask again
